@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const productRoutes = require("./routes/products");
+const categoryRoutes = require('./routes/categories');
 
 const app = express();
 
@@ -11,6 +12,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use("/", productRoutes);
+app.use('/', categoryRoutes);
+
 
 const PORT = process.env.PORT || 5000;
 const CONNECTION_URL =
