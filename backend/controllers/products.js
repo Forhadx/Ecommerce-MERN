@@ -1,5 +1,4 @@
 const ProductModel = require("../models/products");
-const Categories = require("../models/categories");
 
 exports.getAllProducts = async (req, res, next) => {
   try {
@@ -16,7 +15,7 @@ exports.addProduct = async (req, res, next) => {
     if (!product) {
       console.log("product could not added!");
     }
-    let prod = await product.save();
+    await product.save();
     res.json({ message: "added a product successfully.", product: product });
   } catch (err) {
     console.log(err);
@@ -50,7 +49,7 @@ exports.updateProduct = async (req, res, next) => {
 exports.deleteProduct = async (req, res, next) => {
   const pId = req.params.pId;
   try {
-    await ProductModel.findByIdAndDelete(pId);
+    let product = await ProductModel.findByIdAndDelete(pId);
     if (!product) {
       console.log("product not found!");
     }

@@ -1,63 +1,59 @@
-const Categories = require("../models/categories");
+const CategoriesModel = require("../models/categories");
 
-exports.getSelectedCategories = async (req, res, next) => {
-  let result = await Categories.find()
-    .populate({
-      path: "allProducts.productId",
-      match: { price: { $gte: 110 } },
-      select: "name price -_id",
-    })
-    .exec();
-  //console.log("category: ", result);
-  res.json({ message: "category populated..", products: { ...result } });
-};
-
-exports.getSingleCategory = async (req, res, next) => {
-  let doc = await Categories.findById(req.params.id)
-    //.populate("allProducts.productId", "name price")
-    .populate({
-      path: "allProducts.productId",
-     // match: { price: { $gte: 110 } },
-      //select: "name price",
-       perDocumentLimit: 2
-    });
-
-  /*
-  const products = doc.allProducts.map(i =>{
-    return {...i.productId._doc}
-  })
-
-  console.log('all product: ', products)
-
-  res.json({ message: "single category..", products: products });
-  */
-
-  const p = doc.allProducts.map((i) => {
-    if (i.productId !== null ) {
-      return { ...i.productId._doc };
+exports.getCategories = async (req, res, next) => {
+  try {
+    const categories = await CategoriesModel.find();
+    if (!categories) {
+      console.log("not found");
     }
-  });
-
-  let products = p.filter(Boolean)
-
-  console.log('p: ', products)
-
-  res.json({ message: "single category..", products: products });
+    res.json({ message: "Fetch all categories", categories: categories });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
-exports.addCategories = (req, res, next) => {
-  const { name, description } = req.body;
-
-  const categories = new Categories({
-    name: name,
-    description: description,
-  });
-
-  categories
-    .save()
-    .then((result) => {
-      res.json({ message: "added..", categories: result });
-      console.log("added..", result);
-    })
-    .catch((err) => console.log("err"));
+exports.addCategory = async (req, res, next) => {
+  try {
+    const category = new CategoriesModel(req.body);
+    await category.save();
+    res.json({ message: "category add successfully.", category: category });
+  } catch (err) {
+    console.log(err);
+  }
 };
+
+exports.updateCategory = async (req, res, next) => {
+  const cId = req.params.cId;
+  try {
+    let category = await CategoriesModel.findOneAndUpdate(
+      cId,
+      req.body,
+      (err, doc) => {
+        if (err) {
+          console.log(err);
+        }
+        return doc;
+      }
+    );
+    if (!category) {
+      console.log("not found!");
+    }
+    res.json({ message: "updated category sucessfully.", category: category });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+exports.deleteCategory = async (req,res,next)=>{
+  const cId = req.params.cId;
+  try{
+    let category = await CategoriesModel.findByIdAndDelete(cId);
+    if(!category){
+      console.log('id not found!')
+    }
+    res.json({message: 'category delete successfully'})
+  }catch(err){
+    console.log(err)
+  }
+}

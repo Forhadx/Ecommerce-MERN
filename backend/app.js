@@ -5,14 +5,18 @@ const cors = require("cors");
 
 const productRoutes = require("./routes/products");
 const categoryRoutes = require('./routes/categories');
+const ordersRoutes = require("./routes/orders");
+const buyerRoutes = require('./routes/buyer');
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use("/", productRoutes);
+app.use('/', productRoutes);
 app.use('/', categoryRoutes);
+app.use('/', ordersRoutes);
+app.use('/', buyerRoutes);
 
 
 const PORT = process.env.PORT || 5000;
