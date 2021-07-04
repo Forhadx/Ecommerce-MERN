@@ -73,14 +73,37 @@ exports.fetchProductById = async (req, res, next) => {
   }
 };
 
-
-exports.fetchProductByName = async (req, res, next) =>{
+exports.fetchProductByName = async (req, res, next) => {
   const name = req.params.pName;
-  console.log('name: ', name)
-  try{
-    let products = await ProductModel.find({ _id: name});
-    res.json({message: 'product fetch by name', products: products})
-  }catch(err){
-    console.log(err)
+  console.log("name: ", name);
+  try {
+    let products = await ProductModel.find({ name: name });
+    //console.log('product: ', products)
+    res.json({ message: "product fetch by name", products: products });
+  } catch (err) {
+    console.log(err);
   }
-}
+};
+
+exports.fetchProductByCategory = async (req, res, next) => {
+  let pSubCategory = req.params.pSubCategory;
+  const currentPage = req.query.page || 1;
+  const perPage = 1;
+  try {
+    const totalProducts = await ProductModel.find({
+      subCategory: pSubCategory,
+    }).countDocuments();
+    const products = await ProductModel.find({
+      subCategory: pSubCategory,
+    })
+      .skip((currentPage - 1) * perPage)
+      .limit(perPage);
+    res.json({
+      message: "page...",
+      products: products,
+      totalProducts: totalProducts,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};

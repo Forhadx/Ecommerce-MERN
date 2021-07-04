@@ -7,11 +7,11 @@ const App = () => {
   const [arr, setArr] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/category")
+      .get(`http://localhost:5000/product/${'pant'}`)
       .then((res) => {
-        //console.log("cat: ", res);
-        console.log("cat2: ", res.data.products[0].allProducts);
-        setArr(res.data.products[0].allProducts)
+        console.log("cat: ", res);
+        //console.log("cat2: ", res.data.products[0].allProducts);
+        //setArr(res.data.products[0].allProducts)
       })
       .catch((err) => console.log(err));
   }, []);

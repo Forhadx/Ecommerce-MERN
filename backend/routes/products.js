@@ -5,11 +5,14 @@ const productsController = require('../controllers/products');
 
 const router = express.Router();
 
-router.get('/', productsController.getAllProducts);
+router.get('/product', productsController.getAllProducts);
 
-router.get('/product/:pId', productsController.fetchProductById);
+router.get('/product/id/:pId', productsController.fetchProductById);
 
-router.get('/product/:pName', productsController.fetchProductByName);
+router.get('/product/name/:pName', productsController.fetchProductByName);
+
+//http://localhost:5000/product/subCategory/men?page=11
+router.get('/product/subCategory/:pSubCategory', productsController.fetchProductByCategory);
 
 router.post('/product', productsController.addProduct);
 
