@@ -13,6 +13,10 @@ const productSchema = new Schema(
       type: Number,
       required: true,
     },
+    amount: {
+      type: Number,
+      required: true
+    },
     mainCategory: {
       type: String,
       required: true,
@@ -29,25 +33,9 @@ const productSchema = new Schema(
       type: String,
       required: true,
     },
-    color: {
-      type: Array,
-      default: [],
-    },
-    size: {
-      type: Array,
-      default: [],
-    },
     image: {
       type: String,
       required: true,
-    },
-    stock: {
-      type: Number,
-      required: true,
-    },
-    sold: {
-      type: Number,
-      default: 0,
     },
   },
   { timestamps: true }

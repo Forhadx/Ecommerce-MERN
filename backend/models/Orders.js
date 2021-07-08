@@ -20,11 +20,12 @@ const orderSchema = new Schema(
     totalPrice: {
       type: Number,
       required: true,
-    },/*
+    },
     buyer: {
       type: ObjectId,
       ref: "buyer",
-    },*/
+      required: true,
+    },
     phone: {
       type: Number,
       required: true,
@@ -37,6 +38,9 @@ const orderSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    onWayAt: {
+      type: Date,
+    },
     isDelivered: {
       type: Boolean,
       default: false,
@@ -44,10 +48,14 @@ const orderSchema = new Schema(
     deliveredAt: {
       type: Date,
     },
-    orderRejected:{
-        type: Boolean,
-        default: false
-    }
+    orderRejected: {
+      type: Boolean,
+      default: false,
+    },
+    isVisited: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

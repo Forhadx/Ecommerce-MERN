@@ -5,8 +5,10 @@ const cors = require("cors");
 
 const productRoutes = require("./routes/products");
 const categoryRoutes = require('./routes/categories');
-const ordersRoutes = require("./routes/orders");
+const buyerOrdersRoutes = require("./routes/buyerOrders");
+const adminOrdersRoutes = require("./routes/adminOrders");
 const buyerRoutes = require('./routes/buyer');
+const adminRoutes = require('./routes/admin');
 
 const app = express();
 
@@ -15,9 +17,10 @@ app.use(cors());
 
 app.use('/', productRoutes);
 app.use('/', categoryRoutes);
-app.use('/', ordersRoutes);
+app.use('/', buyerOrdersRoutes);
+app.use('/', adminOrdersRoutes);
 app.use('/', buyerRoutes);
-
+app.use('/', adminRoutes);
 
 const PORT = process.env.PORT || 5000;
 const CONNECTION_URL =

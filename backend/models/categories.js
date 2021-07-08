@@ -21,14 +21,6 @@ const categoriesSchema = new Schema(
       type: String,
       required: true,
     },
-    size: {
-      type: Array,
-      default: [],
-    },
-    color: {
-      type: Array,
-      default: [],
-    },
   },
   {
     timestamps: true,

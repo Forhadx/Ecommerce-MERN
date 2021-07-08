@@ -85,7 +85,7 @@ exports.fetchProductByName = async (req, res, next) => {
 };
 
 exports.fetchProductByCategory = async (req, res, next) => {
-  let pSubCategory = req.params.pSubCategory;
+  let pSubCategory = +req.params.pSubCategory;
   const currentPage = req.query.page || 1;
   const perPage = 1;
   try {
