@@ -21,7 +21,7 @@ const orderSchema = new Schema(
       type: Number,
       required: true,
     },
-    buyer: {
+    buyerId: {
       type: ObjectId,
       ref: "buyer",
       required: true,

@@ -85,8 +85,8 @@ exports.fetchProductByName = async (req, res, next) => {
 };
 
 exports.fetchProductByCategory = async (req, res, next) => {
-  let pSubCategory = +req.params.pSubCategory;
-  const currentPage = req.query.page || 1;
+  let pSubCategory = req.params.pSubCategory;
+  const currentPage = +req.query.page || 1;
   const perPage = 1;
   try {
     const totalProducts = await ProductModel.find({

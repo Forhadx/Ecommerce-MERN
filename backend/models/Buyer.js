@@ -19,6 +19,11 @@ const buyerSchema = new Schema(
     },
     resetToken: String,
     resetTokenExpiration: Date,
+    totalbuy: {
+      type: String,
+      default: 0
+    }
+    /*
     currentOrder: {
       type: Array,
       default: [],
@@ -26,10 +31,9 @@ const buyerSchema = new Schema(
     orderHistory:{
       type: Array,
       default: []
-    }
+    }*/
   },
   { timestamps: true }
 );
 
-
-module.exports = mongoose.model('buyer', buyerSchema); 
+module.exports = mongoose.model("buyer", buyerSchema);
