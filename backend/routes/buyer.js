@@ -13,9 +13,9 @@ router.post('/buyer/login', buyerController.loginBuyer);
 
 router.get('/buyer/a', buyerController.fetchAllBuyers);
 
-router.get('/buyer/a/:bId', buyerController.fetchBuyerById);
-
 router.get('/buyer/a/email', buyerController.fetchBuyerByEmail);
+
+router.get('/buyer/a/:bId', buyerController.fetchBuyerById);
 
 router.delete('/buyer/a/:bId', buyerController.deleteBuyerByAdmin);
 

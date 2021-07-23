@@ -1,24 +1,29 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+import { Route, Switch } from "react-router-dom";
 
-import "./App.css";
+import Navigationbar from "./components/Navigation/Navigationbar";
+import Sidebar from "./components/Sidebar/Sidebar";
+import MainCat from './Pages/mainCat';
+import SubCat from './Pages/SubCat';
+
+import "./App.scss";
 
 const App = () => {
-  const [arr, setArr] = useState([]);
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/product/${'pant'}`)
-      .then((res) => {
-        console.log("cat: ", res);
-        //console.log("cat2: ", res.data.products[0].allProducts);
-        //setArr(res.data.products[0].allProducts)
-      })
-      .catch((err) => console.log(err));
-  }, []);
-  console.log("p: ", arr);
   return (
     <div className="App">
-      <h1>hello</h1>
+      <header className="header">
+        <Navigationbar />
+      </header>
+      <aside className="sidebar">
+        <Sidebar />
+      </aside>
+      <main className="main">
+        <Switch>
+          <Route path="/m/:name" component={MainCat} />
+          <Route path="/s/:name" component={SubCat} />
+        </Switch>
+      </main>
+      <aside className="cartbar">cartbar</aside>
     </div>
   );
 };

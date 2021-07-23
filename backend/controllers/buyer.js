@@ -80,9 +80,8 @@ exports.fetchBuyerById = async (req, res, next) => {
 };
 
 exports.fetchBuyerByEmail = async (req, res, next) => {
-  const { email } = req.body;
   try {
-    const buyer = await BuyerModel.findOne({ email: "mohsin@gmail.com" });
+    const buyer = await BuyerModel.find({ email: req.body.email });
     if (!buyer) {
       console.log("buyer not found!");
     }

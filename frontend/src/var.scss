@@ -1,0 +1,46 @@
+/* variables */
+$header-height: 5rem;
+$sidebar-width: 20rem;
+$cartbar-width: 20rem;
+
+$zIndex-1: 100;
+$zIndex-2: 80;
+$zIndex-3: 50;
+$zIndex-0: -1;
+
+$color-white: white;
+$color-black-1: black;
+$color-gray-1: grey;
+$color-gray-2: rgb(233, 230, 230);
+
+
+
+
+
+/*  responsive media  */
+@mixin respond($breakpoint) {
+    @if ($breakpoint == phone) {
+      @media (max-width: 37.5em) {
+        @content;
+      }
+    }
+  
+    @if ($breakpoint == port) {
+      @media (min-width: 37.5em) and (max-width: 56.25em) {
+        @content;
+      }
+    }
+  
+    @if ($breakpoint == land) {
+      @media (min-width: 56.25em) and (max-width: 75em) {
+        @content;
+      }
+    }
+  
+    @if ($breakpoint == desktop) {
+      @media (min-width: 75em) {
+        @content;
+      }
+    }
+  }
+  

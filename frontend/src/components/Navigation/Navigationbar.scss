@@ -1,0 +1,94 @@
+@import "../../App.scss";
+
+.navigationbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  color: white;
+}
+
+.nav__logo {
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  &-btn {
+      font-size: 2.4rem;
+      cursor: pointer;
+  }
+  &-name {
+      padding-left: 1rem;
+      font-size: 2.4rem;
+      cursor: pointer;
+  }
+}
+
+.nav__search {
+  background-color: $color-white;
+  height: 3.5rem;
+  width: 60%;
+  border-radius: 0.7rem;
+  overflow: hidden;
+  border: 1px solid $color-gray-1;
+
+  & input {
+    border: none;
+    outline: none;
+    font-size: 1.6rem;
+    width: 90%;
+    height: 100%;
+    padding: 0 1rem;
+    color: $color-black-1;
+  }
+  & button {
+    border: none;
+    outline: none;
+    width: 10%;
+    height: 100%;
+    font-size: 2rem;
+    color: $color-gray-1;
+    border-left: 1px solid $color-gray-2;
+    background-color: $color-white;
+    cursor: pointer;
+  }
+}
+
+.nav__options {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  & div {
+    font-size: 1.6rem;
+    padding: 0 2rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-left: 1px solid $color-gray-1;
+    cursor: pointer;
+  }
+
+  & .cart__icon {
+    &-i {
+      font-size: 3rem;
+    }
+    #lblCartCount {
+      font-size: 1.2rem;
+      font-weight: bold;
+      background: #ff0000;
+      color: #fff;
+      padding: 0.2rem 0.5rem;
+      vertical-align: top;
+      margin-left: -1rem;
+    }
+    .badge {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      -webkit-border-radius: 1rem;
+      -moz-border-radius: 1rem;
+      border-radius: 1rem;
+    }
+  }
+}

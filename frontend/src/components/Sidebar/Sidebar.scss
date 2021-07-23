@@ -1,0 +1,28 @@
+
+.mainCategory {
+  color: green;
+  font-weight: bold;
+}
+
+.mainCategory.active{
+  color: red;
+}
+
+.subClass {
+  list-style: none;
+  border-left: 1px solid grey;
+  margin-left: 1rem;
+  padding-left: 1rem;
+  display: none;
+}
+
+.subClass_items{
+  color: rgb(95, 155, 6);
+  cursor: pointer;
+}
+.subClass_items.active{
+  color: red;
+}
+.open {
+  display: block;
+}
