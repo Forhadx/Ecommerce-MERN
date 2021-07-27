@@ -26,9 +26,9 @@ export const fetchProductSubCat = (subName) => {
     try {
       // http://localhost:5000/product/subCategory/milk?page=1
       const result = await axios.get(
-        `http://localhost:5000/product/subCategory/${subName}?page=${"1"}`
+        `http://localhost:5000/product/subCategory/${subName}`
       );
-      console.log(result);
+      //console.log(result);
       dispatch(fetchProductSubSuccess(result.data.products));
     } catch (err) {
       console.log(err);

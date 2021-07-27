@@ -48,10 +48,14 @@ const Sidebar = (props) => {
   };
 
   return (
-    <div>
-      <NavLink to="">Regular item</NavLink>
+    <div className="sidebar_details">
+      <div className="sidebar_details-category">
+        <NavLink to="/regular" className="mainCategory">
+          Regular item
+        </NavLink>
+      </div>
       {arr.map((i) => (
-        <div key={i.id}>
+        <div key={i.id} className="sidebar_details-category">
           <NavLink
             to={"/m/" + i.mainCategory}
             className="mainCategory"
@@ -59,10 +63,14 @@ const Sidebar = (props) => {
           >
             {i.mainCategory}
           </NavLink>
-          <ul className={className("subClass", { open: flag && cid === i.id })}>
+          <ul
+            className={className("subCategory", { open: flag && cid === i.id })}
+          >
             {i.subCategories.map((s, j) => (
-              <li key={j}>
-                <NavLink to={"/s/" + s} className="subClass_items">{s}</NavLink>{" "}
+              <li key={j} className="subCategory_items">
+                <NavLink to={"/s/" + s} className="subCategory_items-link">
+                  {s}
+                </NavLink>{" "}
               </li>
             ))}
           </ul>
@@ -72,4 +80,4 @@ const Sidebar = (props) => {
   );
 };
 
-export default withRouter(Sidebar);
+export default Sidebar;

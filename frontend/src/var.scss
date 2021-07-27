@@ -9,38 +9,43 @@ $zIndex-3: 50;
 $zIndex-0: -1;
 
 $color-white: white;
+
 $color-black-1: black;
+$color-black-2: rgb(37, 37, 37);
+
 $color-gray-1: grey;
 $color-gray-2: rgb(233, 230, 230);
 
+$color-red-1: red;
+$color-red-2: rgb(209, 49, 49);
+$color-red-3: #e74c3c;
+$color-red-4: #fa9996;
 
-
-
+$card-radius: 0.5rem;
 
 /*  responsive media  */
 @mixin respond($breakpoint) {
-    @if ($breakpoint == phone) {
-      @media (max-width: 37.5em) {
-        @content;
-      }
-    }
-  
-    @if ($breakpoint == port) {
-      @media (min-width: 37.5em) and (max-width: 56.25em) {
-        @content;
-      }
-    }
-  
-    @if ($breakpoint == land) {
-      @media (min-width: 56.25em) and (max-width: 75em) {
-        @content;
-      }
-    }
-  
-    @if ($breakpoint == desktop) {
-      @media (min-width: 75em) {
-        @content;
-      }
+  @if ($breakpoint == phone) {
+    @media (max-width: 37.5em) {
+      @content;
     }
   }
-  
+
+  @if ($breakpoint == port) {
+    @media (min-width: 37.5em) and (max-width: 56.25em) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint == land) {
+    @media (min-width: 56.25em) and (max-width: 75em) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint == desktop) {
+    @media (min-width: 75em) {
+      @content;
+    }
+  }
+}

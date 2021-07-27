@@ -1,0 +1,109 @@
+@import "../../var.scss";
+
+.card {
+  width: 20rem;
+  height: 35rem;
+  display: grid;
+  grid-template-rows: 29rem 6rem;
+  grid-template-columns: 1fr;
+
+  &__details {
+    cursor: pointer;
+    border-radius: $card-radius;
+    display: grid;
+    grid-template-rows: 20rem 9rem;
+    grid-template-columns: 1fr;
+
+    &:hover {
+      box-shadow: 0rem 0.125rem 0.5rem rgba(0, 0, 0, 0.15);
+    }
+    &--img {
+      overflow: hidden;
+
+      & img {
+        width: 100%;
+        height: 100%;
+        transition: all 0.2s;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+
+    &--info {
+      padding: 0.5rem 0;
+      text-align: center;
+      display: grid;
+      grid-template-rows: 3fr 1fr 1fr;
+
+      & h1 {
+        font-size: 1.4rem;
+        font-weight: normal;
+      }
+
+      & p {
+        font-size: 1.2rem;
+      }
+
+      & h2 {
+        font-size: 1.6rem;
+        color: $color-gray-1;
+      }
+    }
+  }
+
+  &__buttons {
+    display: grid;
+    grid-template-rows: 3rem 3rem;
+    grid-template-columns: 1fr;
+    border-radius: $card-radius;
+    overflow: hidden;
+
+    &--qty {
+      display: grid;
+      grid-template-rows: 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+
+      & button {
+        border: none;
+        outline: none;
+        border-right: 1px solid $color-red-3;
+        font-size: 1.4rem;
+        font-weight: bold;
+        background-color: $color-gray-2;
+      }
+
+      & button:last-child {
+        border-right: none;
+      }
+
+      & .btn-minus,
+      & .btn-plus {
+        cursor: pointer;
+        color: $color-red-3;
+      }
+
+      & .btn-minus:hover,
+      & .btn-plus:hover {
+        color: white;
+        background-color: $color-red-4;
+      }
+    }
+
+    &--cart {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+
+      & button {
+        border: none;
+        outline: none;
+        background-color: $color-red-3;
+        color: white;
+        cursor: pointer;
+        font-size: 1.4rem2;
+      }
+    }
+  }
+}

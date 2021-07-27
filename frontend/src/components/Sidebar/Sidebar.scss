@@ -1,27 +1,50 @@
+@import "../../var.scss";
+
+.sidebar_details {
+  padding: 3rem 1rem;
+  width: 100%;
+}
+
+.sidebar_details-category {
+  margin-bottom: 0.8rem;
+  width: 100%;
+}
 
 .mainCategory {
-  color: green;
-  font-weight: bold;
+  color: $color-black-2;
+  font-size: 1.4rem;
+  width: 100%;
 }
 
-.mainCategory.active{
-  color: red;
+.mainCategory:hover {
+  background: linear-gradient(to right, #ece4e4, #d4e0e4);
 }
 
-.subClass {
+.mainCategory.active {
+  color: $color-red-2;
+}
+
+.subCategory {
   list-style: none;
-  border-left: 1px solid grey;
+  font-size: 1.2rem;
+  color: $color-black-2;
+  cursor: pointer;
+  border-left: 1px solid $color-black-1;
   margin-left: 1rem;
-  padding-left: 1rem;
   display: none;
+  transition: all 2s;
+}
+.subCategory_items {
+  margin-top: 0.8rem;
+  padding: 0.3rem 0.5rem;
 }
 
-.subClass_items{
-  color: rgb(95, 155, 6);
-  cursor: pointer;
+.subCategory_items:hover {
+  background: linear-gradient(to right, #ece4e4, #d4e0e4);
 }
-.subClass_items.active{
-  color: red;
+
+.subCategory_items-link.active {
+  color: $color-red-2;
 }
 .open {
   display: block;
