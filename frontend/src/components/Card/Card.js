@@ -25,7 +25,7 @@ const Card = (props) => {
           <button className="btn-plus">+</button>
         </div>
         <div className="card__buttons--cart">
-          <button>add to cart</button>
+          <button>Add to Cart</button>
         </div>
       </div>
     </div>

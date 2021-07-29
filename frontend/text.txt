@@ -1,125 +1,44 @@
-import React from "react";
-import "./Card.scss";
 
-const Card = (props) => {
-  return (
-    <div className="card">
-      <div className="card__img">
-        <img
-          className="bgImg"
-          src="https://chaldn.com/_mpimage/nestle-nescafe-classic-instant-coffee-jar-50-gm?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D70689&q=low&v=1&m=400&webp=1"
-          alt="pic"
-        />
-      </div>
-      <div className="card__details">
-        <h1>Nestlé Nescafe Creamy Latte Coffee Mix Sachet 18 gm</h1>
-        <p>18gm</p>
-        <h2>৳120</h2>
-      </div>
-      <div className="card__qty">
-        <button className="btn-minus">-</button>
-        <button>10</button>
-        <button className="btn-plus">+</button>
-      </div>
-      <div className="card__cart">
-        <button>add to cart</button>
-      </div>
-    </div>
-  );
-};
-
-export default Card;
-
-
-
-
-====================================================
-
-
-@import "../../var.scss";
-
-.card {
-  width: 20rem;
-  height: 35rem;
-  border-radius: $card-radius;
-  overflow: hidden;
-  display: grid;
-  grid-template-rows: 20rem 9rem 3rem 3rem;
-  grid-template-columns: 1fr;
-
-  &__img {
-    overflow: hidden;
-    & img {
-      width: 100%;
-      height: 100%;
-      &:hover {
-        cursor: pointer;
-        transform: scale(1.1);
-      }
-    }
-  }
-
-  &__details {
-    padding: 0.5rem 0;
-    text-align: center;
-    display: grid;
-    grid-template-rows: 3fr 1fr 1fr;
-
-    & h1 {
-      font-size: 1.4rem;
-      font-weight: normal;
-    }
-    & p {
-      font-size: 1.2rem;
-    }
-    & h2 {
-      font-size: 1.6rem;
-      color: $color-gray-1;
-    }
-  }
-
-  &__qty {
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
-
-    & button {
-      border: none;
-      outline: none;
-      border-right: 1px solid $color-red-3;
-      font-size: 1.4rem;
-      font-weight: bold;
-      background-color: $color-gray-2;
-    }
-    & button:last-child {
-      border-right: none;
-    }
-    & .btn-minus,
-    & .btn-plus {
-      cursor: pointer;
-      color: $color-red-3;
-    }
-    & .btn-minus:hover,
-    & .btn-plus:hover {
-      color: white;
-      background-color: $color-red-4;
-    }
-  }
-  &__cart {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-
-    & button {
-      border: none;
-      outline: none;
-      background-color: $color-red-3;
-      color: white;
-      cursor: pointer;
-      font-size: 1.4rem2;
-    }
-    & button:hover {
-      color: $color-gray-2;
-    }
-  }
+.sidebar__details--category {
+  margin-bottom: 0.8rem;
+  width: 100%;
 }
+
+.mainCategory {
+  color: $color-black-2;
+  font-size: 1.4rem;
+  width: 100%;
+  border: 1px solid black;
+}
+
+.mainCategory:hover {
+  background: linear-gradient(to right, #ece4e4, #d4e0e4);
+}
+
+.mainCategory.active {
+  color: $color-red-2;
+}
+
+.subCategory {
+  list-style: none;
+  font-size: 1.2rem;
+  color: $color-black-2;
+  cursor: pointer;
+  border-left: 1px solid $color-black-1;
+  margin-left: 1rem;
+  display: none;
+  transition: all 2s;
+}
+.subCategory_items {
+  margin-top: 0.8rem;
+  padding: 0.3rem 0.5rem;
+}
+
+.subCategory_items:hover {
+  background: linear-gradient(to right, #ece4e4, #d4e0e4);
+}
+
+.subCategory_items-link.active {
+  color: $color-red-2;
+}
+

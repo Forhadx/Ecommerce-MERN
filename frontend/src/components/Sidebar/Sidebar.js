@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { NavLink, withRouter } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { FaAngleRight } from "react-icons/fa";
+import { FaAngleDown } from "react-icons/fa";
 
 import className from "classnames";
 import "./Sidebar.scss";
@@ -9,6 +11,11 @@ const Sidebar = (props) => {
   const [cid, setCid] = useState(null);
 
   let arr = [
+    {
+      id: 0,
+      mainCategory: "Regular items",
+      subCategories: [],
+    },
     {
       id: 1,
       mainCategory: "Bread & Bakery",
@@ -48,29 +55,35 @@ const Sidebar = (props) => {
   };
 
   return (
-    <div className="sidebar_details">
-      <div className="sidebar_details-category">
-        <NavLink to="/regular" className="mainCategory">
-          Regular item
-        </NavLink>
-      </div>
+    <div className="sidebar__details">
       {arr.map((i) => (
-        <div key={i.id} className="sidebar_details-category">
-          <NavLink
-            to={"/m/" + i.mainCategory}
-            className="mainCategory"
-            onClick={() => openSubCatHandler(i)}
-          >
-            {i.mainCategory}
-          </NavLink>
+        <div key={i.id} className="sidebar__details--category">
+          {i.id === 0 ? (
+            <NavLink
+              to={"/" + i.mainCategory}
+              className="mainCategory"
+              onClick={() => openSubCatHandler(i)}
+            >
+              <div>{i.mainCategory}</div>
+            </NavLink>
+          ) : (
+            <NavLink
+              to={"/m/" + i.mainCategory}
+              className="mainCategory"
+              onClick={() => openSubCatHandler(i)}
+            >
+              <div>{i.mainCategory}</div>
+              {cid === i.id ? <FaAngleDown /> : <FaAngleRight />}
+            </NavLink>
+          )}
           <ul
             className={className("subCategory", { open: flag && cid === i.id })}
           >
             {i.subCategories.map((s, j) => (
-              <li key={j} className="subCategory_items">
-                <NavLink to={"/s/" + s} className="subCategory_items-link">
+              <li key={j} className="subCategory__items">
+                <NavLink to={"/s/" + s} className="subCategory__items--link">
                   {s}
-                </NavLink>{" "}
+                </NavLink>
               </li>
             ))}
           </ul>
@@ -81,3 +94,20 @@ const Sidebar = (props) => {
 };
 
 export default Sidebar;
+
+/*
+
+<NavLink
+            to={"/m/" + i.mainCategory}
+            className="mainCategory"
+            onClick={() => openSubCatHandler(i)}
+          >
+            <div>{i.mainCategory}</div>
+            {i.subCategories.length === 0 ? null : cid === i.id ? (
+              <FaAngleDown />
+            ) : (
+              <FaAngleRight />
+            )}
+          </NavLink>
+
+*/

@@ -4,7 +4,7 @@ import { BiSearchAlt } from "react-icons/bi";
 
 import "./Navigationbar.scss";
 
-const Navigationbar = () => {
+const Navigationbar = (props) => {
   return (
     <div className="navigationbar">
       <div className="nav__logo">
@@ -20,7 +20,7 @@ const Navigationbar = () => {
       <div className="nav__options">
         <div>Help</div>
         <div>Signin</div>
-        <div className="cart__icon">
+        <div className="cart__icon" onClick={props.cartClickHandler}>
           <i className="fa cart__icon-i">&#xf07a;</i>
           <span className="badge badge-warning" id="lblCartCount">
             9
