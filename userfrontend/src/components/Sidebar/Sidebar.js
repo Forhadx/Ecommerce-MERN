@@ -60,7 +60,7 @@ const Sidebar = (props) => {
         <div key={i.id} className="sidebar__details--category">
           {i.id === 0 ? (
             <NavLink
-              to={"/" + i.mainCategory}
+              to={"/" + i.mainCategory.replace(/\s+/g, "+")}
               className="mainCategory"
               onClick={() => openSubCatHandler(i)}
             >
@@ -68,7 +68,7 @@ const Sidebar = (props) => {
             </NavLink>
           ) : (
             <NavLink
-              to={"/m/" + i.mainCategory}
+              to={"/m/" + i.mainCategory.replace(/\s+/g, "+")}
               className="mainCategory"
               onClick={() => openSubCatHandler(i)}
             >
@@ -81,7 +81,10 @@ const Sidebar = (props) => {
           >
             {i.subCategories.map((s, j) => (
               <li key={j} className="subCategory__items">
-                <NavLink to={"/s/" + s} className="subCategory__items--link">
+                <NavLink
+                  to={"/s/" + s.replace(/\s+/g, "+")}
+                  className="subCategory__items--link"
+                >
                   {s}
                 </NavLink>
               </li>

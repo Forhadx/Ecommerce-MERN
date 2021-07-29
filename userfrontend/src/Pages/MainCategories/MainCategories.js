@@ -3,7 +3,8 @@ import "./MainCategories.scss";
 
 const mainCat = (props) => {
   //console.log(props.history.location.pathname)
-  //console.log(props.match.params.name)
+  console.log("maincat: ", props.match.params.name.replace(/[+]/g, " "));
+
   return (
     <div className="mainCategory__page">
       <h1 className="mainCategory__page--heading">
