@@ -5,6 +5,7 @@
 
   &--heading {
     width: 100%;
+    font-size: 3rem;
     text-align: center;
     border-bottom: 0.2rem solid $color-gray-1;
     color: $color-red-2;
@@ -24,14 +25,14 @@
 
     &-details {
       width: 25rem;
-      height: 35rem;
+      height: 30rem;
       margin: 2rem;
       cursor: pointer;
       box-shadow: 0rem 0.125rem 0.25rem 0rem rgba(14, 30, 37, 0.12),
         0rem 0.125rem 1rem 0rem rgba(14, 30, 37, 0.32);
       display: grid;
       grid-template-columns: 1fr;
-      grid-template-rows: 30rem 5rem;
+      grid-template-rows: 27rem 3rem;
 
       & img {
         width: 100%;
@@ -39,7 +40,7 @@
       }
       & h1 {
         text-align: center;
-        font-size: 2rem;
+        font-size: 1.6rem;
         color: $color-gray-1;
       }
     }

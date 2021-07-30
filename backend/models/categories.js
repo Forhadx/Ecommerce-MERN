@@ -17,6 +17,10 @@ const categoriesSchema = new Schema(
       type: String,
       required: true,
     },
+    dpImage: {
+      type: String,
+      required: true,
+    },
     coverImage: {
       type: String,
       required: true,

@@ -26,17 +26,34 @@ const SubCat = (props) => {
         />
       </div>
       <div className="subCategory__page--cards">
-        {props.products.map((prod) => (
-          <div className="subCategory__page--cards-single" key={prod._id}>
-            <Card product={prod} />
-          </div>
-        ))}
-      </div>
-      {props.products.length === 0 && (
-        <div className="subCategory__page--noProduct">
-          {`${subCategoryName}'s stock is empty.`}
+        <div className="subCategory__page--cards-single">
+          <Card />
         </div>
-      )}
+        <div className="subCategory__page--cards-single">
+          <Card />
+        </div>
+        <div className="subCategory__page--cards-single">
+          <Card />
+        </div>
+        <div className="subCategory__page--cards-single">
+          <Card />
+        </div>
+        <div className="subCategory__page--cards-single">
+          <Card />
+        </div>
+        <div className="subCategory__page--cards-single">
+          <Card />
+        </div>
+        <div className="subCategory__page--cards-single">
+          <Card />
+        </div>
+        <div className="subCategory__page--cards-single">
+          <Card />
+        </div>
+        <div className="subCategory__page--cards-single">
+          <Card />
+        </div>
+      </div>
     </div>
   );
 };

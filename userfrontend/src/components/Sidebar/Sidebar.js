@@ -13,7 +13,7 @@ const Sidebar = (props) => {
   let arr = [
     {
       id: 0,
-      mainCategory: "Regular items",
+      mainCategory: "Daily Products",
       subCategories: [],
     },
     {

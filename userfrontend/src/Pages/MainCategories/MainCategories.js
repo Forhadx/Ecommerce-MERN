@@ -4,11 +4,12 @@ import "./MainCategories.scss";
 const mainCat = (props) => {
   //console.log(props.history.location.pathname)
   console.log("maincat: ", props.match.params.name.replace(/[+]/g, " "));
+  let mainCategoryName = props.match.params.name.replace(/[+]/g, " ");
 
   return (
     <div className="mainCategory__page">
       <h1 className="mainCategory__page--heading">
-        <span>{props.match.params.name}</span>
+        <span>{mainCategoryName}</span>
       </h1>
       <div className="mainCategory__page--sub">
         <div className="mainCategory__page--sub-details">

@@ -36,4 +36,11 @@
       margin: 2rem;
     }
   }
+
+  &--noProduct {
+    color: $color-red-1;
+    font-size: 2rem;
+    text-align: center;
+    padding-top: 5rem;
+  }
 }

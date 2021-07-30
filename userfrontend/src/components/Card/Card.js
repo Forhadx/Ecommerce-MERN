@@ -8,14 +8,14 @@ const Card = (props) => {
         <div className="card__details--img">
           <img
             className="bgImg"
-            src="https://chaldn.com/_mpimage/nestle-nescafe-classic-instant-coffee-jar-50-gm?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D70689&q=low&v=1&m=400&webp=1"
-            alt="pic"
+            src={props.product.image}
+            alt={props.product.name}
           />
         </div>
         <div className="card__details--info">
-          <h1>Nestlé Nescafe Creamy Latte Coffee Mix Sachet 18 gm</h1>
-          <p>18gm</p>
-          <h2>৳120</h2>
+          <h1>{props.product.name}</h1>
+          <p>{props.product.amount}</p>
+          <h2>{`${props.product.price} ৳`}</h2>
         </div>
       </div>
       <div className="card__buttons">

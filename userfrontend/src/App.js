@@ -7,7 +7,7 @@ import Cartbar from "./components/Cartbar/Cartbar";
 
 import MainCategories from "./Pages/MainCategories/MainCategories";
 import SubCategies from "./Pages/SubCategories/SubCategories";
-import RegularItems from "./Pages/RegularItems/RegularItems";
+import DailyProducts from "./Pages/DailyProducts/DailyProducts";
 
 import className from "classnames";
 import "./App.scss";
@@ -31,7 +31,7 @@ const App = () => {
         <Switch>
           <Route path="/m/:name" component={MainCategories} />
           <Route path="/s/:name" component={SubCategies} />
-          <Route path="/Regular+items" component={RegularItems} />
+          <Route path="/Daily+Products" component={DailyProducts} />
         </Switch>
       </main>
       <aside className={className("cartbar", { open: isCartOpen })}>
