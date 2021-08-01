@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Schema.Types;
 
 const Schema = mongoose.Schema;
 
@@ -16,10 +17,14 @@ const dailyProductsSchema = new Schema(
       type: String,
       required: true,
     },
-    products: {
-      type: Array,
-      default: [],
-    },
+    products: [
+      {
+        productId: {
+          type: ObjectId,
+          ref: "products",
+        },
+      },
+    ],
   },
   { timestamps: true }
 );

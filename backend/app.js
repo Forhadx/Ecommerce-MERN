@@ -4,23 +4,25 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const productRoutes = require("./routes/products");
-const categoryRoutes = require('./routes/categories');
+const categoryRoutes = require("./routes/categories");
 const buyerOrdersRoutes = require("./routes/buyerOrders");
 const adminOrdersRoutes = require("./routes/adminOrders");
-const buyerRoutes = require('./routes/buyer');
-const adminRoutes = require('./routes/admin');
+const buyerRoutes = require("./routes/buyer");
+const adminRoutes = require("./routes/admin");
+const dailyproductsRoutes = require("./routes/dailyProducts");
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use('/', productRoutes);
-app.use('/', categoryRoutes);
-app.use('/', buyerOrdersRoutes);
-app.use('/', adminOrdersRoutes);
-app.use('/', buyerRoutes);
-app.use('/', adminRoutes);
+app.use("/", productRoutes);
+app.use("/", categoryRoutes);
+app.use("/", buyerOrdersRoutes);
+app.use("/", adminOrdersRoutes);
+app.use("/", buyerRoutes);
+app.use("/", adminRoutes);
+app.use("/", dailyproductsRoutes);
 
 const PORT = process.env.PORT || 5000;
 const CONNECTION_URL =
@@ -29,11 +31,10 @@ const CONNECTION_URL =
 mongoose
   .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((result) => {
-    app.listen(PORT, ()=>{
-        console.log('server run at: ', PORT)
+    app.listen(PORT, () => {
+      console.log("server run at: ", PORT);
     });
   })
   .catch((err) => console.log(err));
-
 
 // mongoose.set('useFindAndModify', false);

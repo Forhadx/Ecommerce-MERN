@@ -2,7 +2,7 @@ const ProductModel = require("../models/products");
 
 exports.getAllProducts = async (req, res, next) => {
   try {
-    let products = await Products.find();
+    let products = await ProductModel.find();
     res.json({ message: "all products", products: products });
   } catch (err) {
     console.log(err);
