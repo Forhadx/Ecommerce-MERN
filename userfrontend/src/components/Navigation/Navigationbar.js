@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import { BiSearchAlt } from "react-icons/bi";
 
@@ -23,7 +24,7 @@ const Navigationbar = (props) => {
         <div className="cart__icon" onClick={props.cartClickHandler}>
           <i className="fa cart__icon-i">&#xf07a;</i>
           <span className="badge badge-warning" id="lblCartCount">
-            9
+            {props.totalItem}
           </span>
         </div>
       </div>
@@ -31,4 +32,10 @@ const Navigationbar = (props) => {
   );
 };
 
-export default Navigationbar;
+const mapStateToProps = (state) => {
+  return {
+    totalItem: state.cart.totalItem,
+  };
+};
+
+export default connect(mapStateToProps)(Navigationbar);

@@ -26,13 +26,16 @@ exports.getAllDailyProducts = async (req, res, next) => {
     const products = dailyProd[0].products.map((p) => {
       return p.productId;
     });
-    res.json({
-      message: "get all daily products!",
+    let details = {
       _id: dailyProd[0]._id,
       name: dailyProd[0].name,
       description: dailyProd[0].description,
       image: dailyProd[0].image,
+    };
+    res.json({
+      message: "get all daily products!",
       products: products,
+      details: { ...details },
     });
   } catch (err) {
     console.log(err);

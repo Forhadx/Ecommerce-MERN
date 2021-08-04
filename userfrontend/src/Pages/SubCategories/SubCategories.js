@@ -7,13 +7,11 @@ import "./SubCategies.scss";
 const SubCat = (props) => {
   const { onFetchSubProd } = props;
   let subCategoryName = props.match.params.name.replace(/[+]/g, " ");
-  console.log("subcat: ", subCategoryName);
 
   useEffect(() => {
     // console.log("params: ", subCategoryName);
     onFetchSubProd(subCategoryName);
   }, [onFetchSubProd, subCategoryName]);
-  console.log("prd: ", props.products);
 
   return (
     <div className="subCategory__page">

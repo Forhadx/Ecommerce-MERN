@@ -10,9 +10,13 @@ import "./index.scss";
 import App from "./App";
 
 import productsReducer from "./store/reducers/products";
+import dailyProductsReducer from "./store/reducers/dailyProducts";
+import cartReducer from "./store/reducers/cart";
 
 const rootReducer = combineReducers({
   prods: productsReducer,
+  dailyProd: dailyProductsReducer,
+  cart: cartReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
