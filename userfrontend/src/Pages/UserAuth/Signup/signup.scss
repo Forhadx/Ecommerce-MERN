@@ -1,0 +1,18 @@
+@import "../../../var.scss";
+
+.user__auth {
+  &--text {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid $login-primary;
+    font-size: 1.4rem;
+
+    & a {
+      color: blue;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

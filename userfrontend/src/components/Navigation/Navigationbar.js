@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { BiSearchAlt } from "react-icons/bi";
 
 import "./Navigationbar.scss";
+import { NavLink } from "react-router-dom";
 
 const Navigationbar = (props) => {
   return (
@@ -20,7 +21,9 @@ const Navigationbar = (props) => {
       </form>
       <div className="nav__options">
         <div>Help</div>
-        <div>Signin</div>
+        <div>
+          <NavLink to="/login">Signin</NavLink>
+        </div>
         <div className="cart__icon" onClick={props.cartClickHandler}>
           <i className="fa cart__icon-i">&#xf07a;</i>
           <span className="badge badge-warning" id="lblCartCount">

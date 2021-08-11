@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CartProduct from "./CartProduct/CartProduct";
 import { connect } from "react-redux";
 import "./Cartbar.scss";
@@ -18,7 +19,7 @@ const Cartbar = (props) => {
           <div>=</div>
           <div>{`${props.totalPrice} ৳`}</div>
         </div>
-        <button>Checkout</button>
+        <Link to="/shipping">Checkout</Link>
       </div>
     </div>
   );

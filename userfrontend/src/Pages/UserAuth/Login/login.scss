@@ -1,0 +1,88 @@
+@import "../../../var.scss";
+
+.user__auth {
+  width: 40rem;
+  margin: auto;
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border: 1px solid $color-gray-2;
+
+  & h1 {
+    font-size: 2rem;
+    text-align: center;
+    color: $login-primary;
+  }
+
+  &--form {
+    display: flex;
+    flex-direction: column;
+
+    & label {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      margin-top: 2rem;
+      color: $login-primary;
+    }
+
+    & input {
+      width: 100%;
+      font-size: 1.4rem;
+      padding: 0.8rem 1rem;
+      border: 1px solid $login-primary;
+
+      &:focus {
+        border: 1px solid $color-red-2;
+        outline: $color-red-2;
+      }
+    }
+
+    & button {
+      padding: 0.8rem;
+      font-size: 1.4rem;
+      outline: none;
+      border: none;
+      margin-top: 2rem;
+      border-radius: 0.5rem;
+      background-color: $login-primary;
+      color: white;
+      cursor: pointer;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+    }
+
+    & p {
+      font-size: 1.2rem;
+      color: $color-red-3;
+    }
+  }
+
+  & h2 {
+    width: 100%;
+    font-size: 1.6rem;
+    text-align: center;
+    color: $login-primary;
+    font-weight: normal;
+    line-height: 0.1em;
+    border-bottom: 1px solid $login-primary;
+    margin: 3rem 0 2rem 0;
+
+    & span {
+      background: #fff;
+      padding: 0 10px;
+    }
+  }
+
+  &--create {
+    padding: 0.8rem;
+    font-size: 1.4rem;
+    text-align: center;
+    background-color: $color-gray-2;
+    border: none;
+    border: 1px solid $login-primary;
+    color: $login-primary;
+    cursor: pointer;
+  }
+}

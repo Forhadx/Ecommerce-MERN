@@ -1,0 +1,81 @@
+@import "../../var.scss";
+
+.shipping {
+  margin: auto;
+  margin-top: 5rem;
+  width: 60rem;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+    color: $color-white;
+    background-color: $color-red-2;
+    border-radius: 0.3rem;
+
+    & h1 {
+      font-size: 1.8rem;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+    border: 1px solid $color-gray-2;
+
+    & h1 {
+      font-size: 2rem;
+      text-align: center;
+      color: $login-primary;
+    }
+
+    & label {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      margin-top: 2rem;
+      color: $login-primary;
+    }
+
+    & input {
+      width: 100%;
+      font-size: 1.4rem;
+      padding: 0.8rem 1rem;
+      border: 1px solid $login-primary;
+
+      &:focus {
+        border: 1px solid $color-red-2;
+        outline: $color-red-2;
+      }
+    }
+
+    & textarea {
+      resize: none;
+      width: 100%;
+      font-size: 1.4rem;
+      padding: 0.8rem 1rem;
+      border: 1px solid $login-primary;
+
+      &:focus {
+        border: 1px solid $color-red-2;
+        outline: $color-red-2;
+      }
+    }
+
+    & button {
+      padding: 0.8rem;
+      font-size: 1.4rem;
+      outline: none;
+      border: none;
+      margin-top: 2rem;
+      border-radius: 0.5rem;
+      background-color: $login-primary;
+      color: white;
+      cursor: pointer;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+    }
+  }
+}

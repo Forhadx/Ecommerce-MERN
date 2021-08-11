@@ -8,6 +8,8 @@ $zIndex-2: 80;
 $zIndex-3: 50;
 $zIndex-0: -1;
 
+$color-nav-header: #141e30;
+
 $color-white: white;
 
 $color-black-1: black;
@@ -25,6 +27,8 @@ $color-green-1: green;
 $color-green-2: #0f9d58;
 
 $card-radius: 0.5rem;
+
+$login-primary: #243b55;
 
 /*  responsive media  */
 @mixin respond($breakpoint) {

@@ -17,6 +17,10 @@ const orderSchema = new Schema(
         },
       },
     ],
+    receiver: {
+      type: String,
+      required: true,
+    },
     totalPrice: {
       type: Number,
       required: true,

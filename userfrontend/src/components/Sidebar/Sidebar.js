@@ -41,7 +41,7 @@ const Sidebar = (props) => {
     {
       id: 7,
       mainCategory: "Fruit & Vegetable",
-      subCategories: ["Fruit", "Vegetable", "Khjur"],
+      subCategories: ["Fruit", "Vegetable", "Khejur"],
     },
   ];
 
