@@ -1,0 +1,60 @@
+/* variables */
+$backgound-color: #f0f3f7;
+$header-height: 5rem;
+$sidebar-width: 20rem;
+
+$zIndex-1: 100;
+$zIndex-2: 80;
+$zIndex-3: 50;
+$zIndex-0: -1;
+
+$color-white: white;
+
+$color-black-1: black;
+$color-black-2: rgb(37, 37, 37);
+
+$color-gray-1: grey;
+$color-gray-2: rgb(233, 230, 230);
+
+$sidebar-bg-color: #134e5e;
+$sidebar-bg-active-color: #1c6d83;
+
+$color-red-1: red;
+$color-red-2: rgb(209, 49, 49);
+$color-red-3: #e74c3c;
+$color-red-4: #fa9996;
+
+$color-green-1: green;
+$color-green-2: #0f9d58;
+$color-green-3: #12b365;
+
+$card-radius: 0.5rem;
+
+$color-primary: #243b55;
+
+/*  responsive media  */
+@mixin respond($breakpoint) {
+  @if ($breakpoint == phone) {
+    @media (max-width: 37.5em) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint == port) {
+    @media (min-width: 37.5em) and (max-width: 56.25em) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint == land) {
+    @media (min-width: 56.25em) and (max-width: 75em) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint == desktop) {
+    @media (min-width: 75em) {
+      @content;
+    }
+  }
+}

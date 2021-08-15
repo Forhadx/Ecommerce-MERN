@@ -12,7 +12,7 @@ import Signup from "./Pages/UserAuth/Signup/Signup";
 import Login from "./Pages/UserAuth/Login/Login";
 import Logout from "./Pages/UserAuth/Logout/Logout";
 import Shipping from "./Pages/Shipping/Shipping";
-import Payment from "./Pages/Shipping/payment";
+import Payment from "./Pages/Shipping/Payment/payment";
 
 import className from "classnames";
 import "./App.scss";

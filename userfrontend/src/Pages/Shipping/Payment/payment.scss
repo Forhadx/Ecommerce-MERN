@@ -1,0 +1,64 @@
+@import "../../../var.scss";
+
+.payment {
+  margin: auto;
+  margin-top: 5rem;
+  width: 40rem;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $color-gray-2;
+
+  & h1 {
+    font-size: 2rem;
+    text-align: center;
+    color: $login-primary;
+  }
+
+  & label {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    margin-top: 2rem;
+    color: $login-primary;
+
+    & span {
+      font-weight: normal;
+      margin-left: 0.5rem;
+    }
+  }
+
+  & input {
+    width: 100%;
+    font-size: 1.4rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid $login-primary;
+
+    &:focus {
+      border: 1px solid $color-red-2;
+      outline: $color-red-2;
+    }
+  }
+
+  & div {
+    padding: 0.8rem 1rem;
+    border: 1px solid $login-primary;
+  }
+
+  & button {
+    padding: 0.8rem;
+    font-size: 1.4rem;
+    outline: none;
+    border: none;
+    margin-top: 2rem;
+    border-radius: 0.5rem;
+    background-color: $login-primary;
+    color: white;
+    cursor: pointer;
+    text-transform: uppercase;
+
+    & span {
+      color: $color-red-4;
+    }
+  }
+}

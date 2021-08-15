@@ -1,0 +1,21 @@
+@import "../../var.scss";
+
+.sidebar__items {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  & a {
+    font-size: 1.6rem;
+    text-align: left;
+    padding: 1.3rem 1rem;
+    border-bottom: 1px solid $color-gray-2;
+    color: white;
+
+    &:hover,
+    &:active,
+    &.active {
+      background-color: $sidebar-bg-active-color;
+    }
+  }
+}

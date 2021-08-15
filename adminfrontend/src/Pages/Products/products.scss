@@ -1,0 +1,47 @@
+@import "../../var.scss";
+
+.products__page {
+  width: 100%;
+
+  &--header {
+    background-color: white;
+    margin: 2rem 2rem;
+    padding: 2rem 2rem;
+    font-size: 3rem;
+    color: $color-primary;
+    font-weight: bold;
+    border-radius: 1rem;
+    box-shadow: 0rem 0.125rem 0.25rem 0rem rgba(14, 30, 37, 0.12),
+      0rem 0.125rem 1rem 0rem rgba(14, 30, 37, 0.32);
+  }
+
+  &--details {
+    background-color: white;
+    margin: 2rem 2rem;
+    padding: 2rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0rem 0.125rem 0.25rem 0rem rgba(14, 30, 37, 0.12),
+      0rem 0.125rem 1rem 0rem rgba(14, 30, 37, 0.32);
+
+    &-add {
+      font-size: 2rem;
+      border: none;
+      outline: none;
+      padding: 1rem 4rem;
+      background-color: $color-green-2;
+      border-radius: 2rem;
+      color: $color-white;
+      cursor: pointer;
+
+      &:hover,
+      &:active {
+        background-color: $color-green-3;
+      }
+    }
+
+    &-filter {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
