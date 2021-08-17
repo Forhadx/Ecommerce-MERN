@@ -22,3 +22,6 @@
     sass
     @stripe/stripe-js
     @stripe/react-stripe-js
+    yup
+    @hookform/resolvers
+    react-hook-form

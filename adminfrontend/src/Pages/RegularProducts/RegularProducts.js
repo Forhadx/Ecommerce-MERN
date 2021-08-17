@@ -2,25 +2,23 @@ import React from "react";
 import ProductFilter from "../../components/productFilter/productFilter";
 import { IoMdAdd } from "react-icons/io";
 import { AiFillEye } from "react-icons/ai";
-import { BiEdit } from "react-icons/bi";
-import { RiDeleteBin5Line } from "react-icons/ri";
-
-import "./products.scss";
-import { Link } from "react-router-dom";
+import { GrCheckbox } from "react-icons/gr";
+import { GrCheckboxSelected } from "react-icons/gr";
 
 const Products = () => {
   return (
     <div className="products__page">
-      <div className="products__page--header">Products</div>
+      <div className="products__page--header">Regular Products</div>
       <div className="products__page--details">
-        <Link to="add+product" className="products__page--details-add">
+        <button className="products__page--details-add">
           <IoMdAdd />
           <span> Add Product</span>
-        </Link>
+        </button>
         <ProductFilter />
         <table className="products__table">
           <thead>
             <tr>
+              <th></th>
               <th>Id</th>
               <th>Image</th>
               <th>Name</th>
@@ -31,6 +29,11 @@ const Products = () => {
           </thead>
           <tbody>
             <tr>
+              <td>
+                <button className="btn-select">
+                  <GrCheckbox />
+                </button>
+              </td>
               <td>1</td>
               <td>
                 <img
@@ -41,23 +44,20 @@ const Products = () => {
               </td>
               <td>adsf</td>
               <td>adsf</td>
-              <td>
-                <div>Category / </div>
-                <div>Category</div>
-              </td>
+              <td>1asdf</td>
               <td>
                 <button className="btn-eye">
                   <AiFillEye />
                 </button>
-                <button className="btn-edit">
-                  <BiEdit />
-                </button>
-                <button className="btn-delete">
-                  <RiDeleteBin5Line />
-                </button>
               </td>
             </tr>
+
             <tr>
+              <td>
+                <button className="btn-select">
+                  <GrCheckboxSelected />
+                </button>
+              </td>
               <td>2</td>
               <td>
                 <img
@@ -73,15 +73,15 @@ const Products = () => {
                 <button className="btn-eye">
                   <AiFillEye />
                 </button>
-                <button className="btn-edit">
-                  <BiEdit />
-                </button>
-                <button className="btn-delete">
-                  <RiDeleteBin5Line />
-                </button>
               </td>
             </tr>
+
             <tr>
+              <td>
+                <button className="btn-select">
+                  <GrCheckbox />
+                </button>
+              </td>
               <td>1</td>
               <td>
                 <img
@@ -97,15 +97,15 @@ const Products = () => {
                 <button className="btn-eye">
                   <AiFillEye />
                 </button>
-                <button className="btn-edit">
-                  <BiEdit />
-                </button>
-                <button className="btn-delete">
-                  <RiDeleteBin5Line />
-                </button>
               </td>
             </tr>
+
             <tr>
+              <td>
+                <button className="btn-select">
+                  <GrCheckboxSelected />
+                </button>
+              </td>
               <td>2</td>
               <td>
                 <img
@@ -120,12 +120,6 @@ const Products = () => {
               <td>
                 <button className="btn-eye">
                   <AiFillEye />
-                </button>
-                <button className="btn-edit">
-                  <BiEdit />
-                </button>
-                <button className="btn-delete">
-                  <RiDeleteBin5Line />
                 </button>
               </td>
             </tr>

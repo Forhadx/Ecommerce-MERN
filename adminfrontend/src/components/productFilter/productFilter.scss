@@ -1,0 +1,48 @@
+@import "../../var.scss";
+
+.products__filter {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  &--category {
+    & label {
+      font-size: 1.4rem;
+      margin-right: 1rem;
+    }
+
+    &-sub {
+      margin-left: 3rem;
+    }
+
+    & select {
+      width: 15rem;
+      outline: none;
+      border: 1px solid $color-gray-1;
+    }
+  }
+
+  &--search {
+    display: grid;
+    grid-template-columns: 17rem 3rem;
+    border: 1px solid $color-gray-1;
+    border-radius: 0.6rem;
+    overflow: hidden;
+
+    & input {
+      padding: 0.5rem 0.8rem;
+      font-size: 1.4rem;
+      border: none;
+      outline: none;
+    }
+
+    & button {
+      font-size: 1.6rem;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      background-color: $color-white;
+    }
+  }
+}
