@@ -7,8 +7,8 @@ const router = express.Router();
 router.get("/product", productsController.getAllProducts);
 
 router.get(
-  "/product/subCategory/:pSubCategory",
-  productsController.fetchProductByCategory
+    "/product/subCategory/:pSubCategory",
+    productsController.fetchProductByCategory
 );
 
 router.post("/product", productsController.addProduct);
@@ -20,5 +20,10 @@ router.delete("/product/:pId", productsController.deleteProduct);
 router.get("/product/id/:pId", productsController.fetchProductById);
 
 router.get("/product/name/:pName", productsController.fetchProductByName);
+
+router.post(
+    "/products/mainCategory",
+    productsController.fetchProductByMainCategory
+);
 
 module.exports = router;

@@ -1,0 +1,68 @@
+@import "../../var.scss";
+
+.products__table {
+  margin-top: 2rem;
+  border-collapse: collapse;
+  width: 100%;
+
+  & thead {
+    background-color: $color-gray-3;
+
+    & tr {
+      & th {
+        font-size: 1.6rem;
+        text-align: center;
+        color: $color-primary;
+        padding: 0.5rem 0;
+      }
+    }
+  }
+
+  & tbody {
+    & tr {
+      border-bottom: 1px solid $color-gray-2;
+
+      & td {
+        text-align: center;
+        font-size: 1.6rem;
+
+        & img {
+          width: 8rem;
+          height: 8rem;
+        }
+
+        & button {
+          border: none;
+          margin-right: 1rem;
+          outline: none;
+          padding: 0.2rem;
+          font-size: 1.4rem;
+          font-weight: bold;
+          color: $color-white;
+          border-radius: 0.5rem;
+          cursor: pointer;
+        }
+
+        & button:last-child {
+          margin-right: 0;
+        }
+
+        & .btn-eye {
+          background-color: $color-blue-2;
+        }
+        & .btn-edit {
+          background-color: $color-green-3;
+        }
+        & .btn-delete {
+          background-color: $color-red-3;
+        }
+
+        & .btn-select {
+          width: 2rem;
+          height: 2rem;
+          background-color: white;
+        }
+      }
+    }
+  }
+}

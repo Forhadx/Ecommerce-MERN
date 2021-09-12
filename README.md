@@ -16,12 +16,15 @@
     react-router-dom
     axios
     classnames
+    sass
     react-icons
+
     redux
     redux-thunk
-    sass
+
     @stripe/stripe-js
     @stripe/react-stripe-js
+
     yup
     @hookform/resolvers
     react-hook-form
