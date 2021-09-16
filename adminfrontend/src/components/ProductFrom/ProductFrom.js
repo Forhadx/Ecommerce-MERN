@@ -9,7 +9,6 @@ import * as Yup from "yup";
 
 import { categoryList } from "../../Data/category";
 import "./ProductsFrom.scss";
-import axios from "axios";
 
 const ProductFrom = (props) => {
     const [copySubCate, setCopySubCate] = useState([]);
@@ -59,8 +58,6 @@ const ProductFrom = (props) => {
     const { singleProd } = props;
     useEffect(() => {
         if (singleProd) {
-            console.log("single: ", singleProd);
-
             setValue("mainCategory", singleProd.mainCategory);
             setValue("image", singleProd.image);
             setValue("name", singleProd.name);
@@ -74,22 +71,17 @@ const ProductFrom = (props) => {
                     setCopySubCate([...c.sCat]);
                 }
             });
-            setValue("subCategory", singleProd.subCategory);
         }
     }, [singleProd, setValue]);
 
+    if (singleProd) {
+        setValue("subCategory", singleProd.subCategory);
+    }
+
     const formSubmitHandler = (data) => {
         if (singleProd) {
-            console.log("id: ", singleProd._id);
-            console.log("up?", data);
-            //props.onUpdateProduct(singleProd._id, data);
-            axios
-                .put(`http://localhost:5000/product/${singleProd._id}`, data)
-                .then((result) => {
-                    console.log("res: ", result);
-                });
+            props.onUpdateProduct(singleProd._id, data);
         } else {
-            console.log("add?");
             props.onAddProduct(data);
         }
         reset();
@@ -125,9 +117,15 @@ const ProductFrom = (props) => {
                 <div className="add__product--form-input">
                     <label>Sub Category</label>
                     <select {...register("subCategory")}>
-                        <option value="" hidden>
-                            - select one -
-                        </option>
+                        {singleProd ? (
+                            <option value={singleProd.subCategory} hidden>
+                                {singleProd.subCategory}
+                            </option>
+                        ) : (
+                            <option value="" hidden>
+                                - select one -
+                            </option>
+                        )}
                         {copySubCate.map((s) => (
                             <option key={s} value={s}>
                                 {s}
@@ -206,3 +204,9 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(null, mapDispatchToProps)(ProductFrom);
+
+/*
+
+
+
+*/

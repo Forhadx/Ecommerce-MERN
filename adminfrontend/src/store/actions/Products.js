@@ -42,10 +42,10 @@ export const singleProductInit = () => {
     };
 };
 
-export const singleProductStore = (prods) => {
+export const singleProductStore = (prod) => {
     return {
         type: actionTypes.SINGLE_PRODUCT_STORE,
-        singleProd: prods,
+        singleProd: prod,
     };
 };
 

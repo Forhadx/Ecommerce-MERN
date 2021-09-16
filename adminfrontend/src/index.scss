@@ -2,37 +2,37 @@
 
 /*  Default define*/
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
 html,
 body {
-  font-size: 50%;
-  background-color: $backgound-color;
-  scroll-behavior: smooth;
-  position: relative;
-  overflow-x: hidden;
+    font-size: 50%;
+    background-color: $backgound-color;
+    scroll-behavior: smooth;
+    position: relative;
+    overflow-x: hidden;
 
-  @include respond(port) {
-    font-size: 56.25%;
-  }
-  @include respond(land) {
-    font-size: 62.5%;
-  }
-  @include respond(desktop) {
-    font-size: 68.75%;
-  }
+    @include respond(port) {
+        font-size: 56.25%;
+    }
+    @include respond(land) {
+        font-size: 62.5%;
+    }
+    @include respond(desktop) {
+        font-size: 68.75%;
+    }
 
-  a {
-    color: unset;
-    text-decoration: none;
-  }
+    a {
+        color: unset;
+        text-decoration: none;
+    }
 
-  ::selection {
-    background-color: $color-red-3;
-    color: $color-white;
-  }
+    ::selection {
+        background-color: $color-green-2;
+        color: $color-white;
+    }
 }
