@@ -1,3 +1,6 @@
+const path = require("path");
+const fs = require("fs");
+
 const ProductModel = require("../models/products");
 
 exports.getAllProducts = async (req, res, next) => {
@@ -10,8 +13,33 @@ exports.getAllProducts = async (req, res, next) => {
 };
 
 exports.addProduct = async (req, res, next) => {
+    //console.log("data: ", req.body);
+    // console.log("data: ", req.file);
+    let imagePath = "";
     try {
-        const product = new ProductModel(req.body);
+        const {
+            mainCategory,
+            subCategory,
+            name,
+            price,
+            amount,
+            brand,
+            description,
+        } = req.body;
+        if (!req.file) {
+            console.log("file not found");
+        }
+        imagePath = req.file.path.replace(/\\/g, "/");
+        const product = new ProductModel({
+            mainCategory: mainCategory,
+            subCategory: subCategory,
+            name: name,
+            price: price,
+            amount: amount,
+            brand: brand,
+            description: description,
+            image: imagePath,
+        });
         if (!product) {
             console.log("product could not added!");
         }
@@ -26,14 +54,13 @@ exports.addProduct = async (req, res, next) => {
 };
 
 exports.updateProduct = async (req, res, next) => {
+    // console.log("update?");
+    // console.log("data: ", req.body);
     const pId = req.params.pId;
-    console.log("id: ", pId);
-    console.log("data: ", req.body);
     const {
         mainCategory,
         subCategory,
         name,
-        image,
         price,
         amount,
         brand,
@@ -55,15 +82,19 @@ exports.updateProduct = async (req, res, next) => {
         if (!product) {
             console.log("product not found!");
         }
+        let imageUrl = req.body.image;
+        if (req.file) {
+            clearImage(product.image);
+            imageUrl = req.file.path.replace(/\\/g, "/");
+        }
         product.mainCategory = mainCategory;
         product.subCategory = subCategory;
         product.name = name;
-        product.image = image;
+        product.image = imageUrl;
         product.price = price;
         product.amount = amount;
         product.brand = brand;
         product.description = description;
-
         await product.save();
 
         //console.log("update: ", product);
@@ -78,16 +109,23 @@ exports.updateProduct = async (req, res, next) => {
 
 exports.deleteProduct = async (req, res, next) => {
     const pId = req.params.pId;
-    // console.log("pId: ", pId);
+    console.log("dpId: ", pId);
     try {
-        let product = await ProductModel.findByIdAndDelete(pId);
+        let product = await ProductModel.findById(pId);
         if (!product) {
             console.log("product not found!");
         }
+        console.log("delete: ", product.image);
+        clearImage(product.image);
+        await ProductModel.findByIdAndDelete(pId);
         res.json({ message: "product delete successfully." });
     } catch (err) {
         console.log(err);
     }
+    /*
+    ProductModel.findById(pId).then((prod) => {
+        console.log("d: ", prod.image);
+    });*/
 };
 
 exports.fetchProductById = async (req, res, next) => {
@@ -116,10 +154,11 @@ exports.fetchProductByName = async (req, res, next) => {
 };
 
 exports.fetchProductByCategory = async (req, res, next) => {
-    let pSubCategory = req.params.pSubCategory;
+    let subCatName = req.body.subCatName;
+
     try {
         const products = await ProductModel.find({
-            subCategory: pSubCategory,
+            subCategory: subCatName,
         });
 
         res.json({
@@ -133,6 +172,7 @@ exports.fetchProductByCategory = async (req, res, next) => {
 
 exports.fetchProductByMainCategory = async (req, res, next) => {
     let mainCatName = req.body.mainCatName;
+
     try {
         const products = await ProductModel.find({
             mainCategory: mainCatName,
@@ -145,4 +185,12 @@ exports.fetchProductByMainCategory = async (req, res, next) => {
     } catch (err) {
         console.log(err);
     }
+};
+
+const clearImage = (ImgPath) => {
+    console.log("p: ", ImgPath);
+    ImgPath = path.join(__dirname, "..", ImgPath);
+    fs.unlink(ImgPath, (err) => {
+        console.log("delete done! ", err);
+    });
 };

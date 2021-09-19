@@ -13,12 +13,25 @@ import "./ProductsFrom.scss";
 const ProductFrom = (props) => {
     const [copySubCate, setCopySubCate] = useState([]);
 
+    const { singleProd } = props;
+
     const validationSchema = Yup.object().shape({
         mainCategory: Yup.string().required("must select one"),
         subCategory: Yup.string().required(
             "must select one, before select main category"
         ),
-        image: Yup.string().required("attached a product image"),
+        image: singleProd
+            ? Yup.mixed()
+            : Yup.mixed().test(
+                  "file",
+                  "Image is required (minimum 5MB)",
+                  (value) => {
+                      if (!value.length) {
+                          return false;
+                      }
+                      return value[0].size <= 5000000;
+                  }
+              ),
         name: Yup.string()
             .required("name is required")
             .min(3, "too small name, minimum 3 character")
@@ -45,8 +58,6 @@ const ProductFrom = (props) => {
         resolver: yupResolver(validationSchema),
     });
 
-    // setValue("name", "max");
-
     const mainCategoryHandler = (e) => {
         categoryList.forEach((c) => {
             if (c.mCat === e.target.value) {
@@ -55,11 +66,10 @@ const ProductFrom = (props) => {
         });
     };
 
-    const { singleProd } = props;
     useEffect(() => {
         if (singleProd) {
             setValue("mainCategory", singleProd.mainCategory);
-            setValue("image", singleProd.image);
+            //setValue("image", singleProd.image);
             setValue("name", singleProd.name);
             setValue("amount", singleProd.amount);
             setValue("price", singleProd.price);
@@ -79,10 +89,25 @@ const ProductFrom = (props) => {
     }
 
     const formSubmitHandler = (data) => {
+        const formData = new FormData();
+        formData.append("mainCategory", data.mainCategory);
+        formData.append("subCategory", data.subCategory);
+        formData.append("name", data.name);
+        formData.append("price", data.price);
+        formData.append("amount", data.amount);
+        formData.append("brand", data.brand);
+        formData.append("description", data.description);
+
         if (singleProd) {
-            props.onUpdateProduct(singleProd._id, data);
+            if (data.image[0]) {
+                formData.append("image", data.image[0]);
+            } else {
+                formData.append("image", singleProd.image);
+            }
+            props.onUpdateProduct(singleProd._id, formData);
         } else {
-            props.onAddProduct(data);
+            formData.append("image", data.image[0]);
+            props.onAddProduct(formData);
         }
         reset();
     };
@@ -137,8 +162,8 @@ const ProductFrom = (props) => {
                 <div className="add__product--form-input">
                     <label>Image</label>
                     <input
-                        type="text"
-                        placeholder="enter product name"
+                        type="file"
+                        accept="image/*"
                         {...register("image")}
                     />
                     <p>{errors.image?.message}</p>
@@ -206,7 +231,13 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(null, mapDispatchToProps)(ProductFrom);
 
 /*
-
+<label>Image</label>
+                    <input
+                        type="text"
+                        placeholder="enter product name"
+                        {...register("image")}
+                    />
+                    <p>{errors.image?.message}</p>
 
 
 */

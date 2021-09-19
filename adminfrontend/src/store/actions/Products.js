@@ -104,15 +104,39 @@ export const updateProduct = (pId, prod) => {
     return async (dispatch) => {
         dispatch(updateProductStart());
         try {
-            //console.log("a p: ", pId, " ", prod);
-            let result = await axios.put(
-                `http://localhost:5000/product/${pId}`,
-                prod
-            );
-            console.log("res: ", result);
+            await axios.patch(`http://localhost:5000/product/${pId}`, prod);
             dispatch(updateProductSuccess());
         } catch (err) {
             dispatch(updateProductFail(err));
+        }
+    };
+};
+
+export const fetchAllProductsStart = () => {
+    return {
+        type: actionTypes.FETCH_ALL_PRODUCTS_START,
+    };
+};
+export const fetchAllProductsSuccess = (products) => {
+    return {
+        type: actionTypes.FETCH_ALL_PRODUCTS_SUCCESS,
+        products: products,
+    };
+};
+export const fetchAllProductsFail = (err) => {
+    return {
+        type: actionTypes.FETCH_ALL_PRODUCTS_FAIL,
+        error: err,
+    };
+};
+export const fetchAllProducts = () => {
+    return async (dispatch) => {
+        dispatch(fetchAllProductsStart());
+        try {
+            const result = await axios.get("http://localhost:5000/products");
+            dispatch(fetchAllProductsSuccess(result.data.products));
+        } catch (err) {
+            dispatch(fetchAllProductsFail(err));
         }
     };
 };
@@ -147,6 +171,38 @@ export const fetchMainProducts = (mainCatName) => {
             dispatch(fetchMainProductsSuccess(result.data.products));
         } catch (err) {
             dispatch(fetchMainProductsFail());
+        }
+    };
+};
+
+export const fetchSubProductsStart = () => {
+    return {
+        type: actionTypes.FETCH_SUB_PRODUCTS_START,
+    };
+};
+export const fetchSubProductsSuccess = (products) => {
+    return {
+        type: actionTypes.FETCH_SUB_PRODUCTS_SUCCESS,
+        products: products,
+    };
+};
+export const fetchSubProductsFail = (err) => {
+    return {
+        type: actionTypes.FETCH_SUB_PRODUCTS_FAIL,
+        error: err,
+    };
+};
+export const fetchSubProducts = (subCatName) => {
+    return async (dispatch) => {
+        dispatch(fetchSubProductsStart());
+        try {
+            const result = await axios.post(
+                "http://localhost:5000/products/subCategory",
+                subCatName
+            );
+            dispatch(fetchSubProductsSuccess(result.data.products));
+        } catch (err) {
+            dispatch(fetchSubProductsFail(err));
         }
     };
 };

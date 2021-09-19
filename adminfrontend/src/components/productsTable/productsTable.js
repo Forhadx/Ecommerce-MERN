@@ -64,8 +64,8 @@ const ProductTable = (props) => {
                                 <td>
                                     <img
                                         className="bgImg"
-                                        src={p.image}
-                                        alt={p.name}
+                                        src={`http://localhost:5000/${p.image}`}
+                                        alt="product"
                                     />
                                 </td>
                                 <td>{p.name}</td>

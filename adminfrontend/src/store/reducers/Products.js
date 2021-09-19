@@ -77,7 +77,27 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                error: action.error,
+                error: true,
+            };
+        case actionTypes.FETCH_ALL_PRODUCTS_START:
+            return {
+                ...state,
+                loading: true,
+                error: false,
+            };
+        case actionTypes.FETCH_ALL_PRODUCTS_SUCCESS:
+            return {
+                ...state,
+                products: action.products,
+                loading: false,
+                error: false,
+            };
+        case actionTypes.FETCH_ALL_PRODUCTS_FAIL:
+            return {
+                ...state,
+                products: [],
+                loading: false,
+                error: true,
             };
         case actionTypes.FETCH_MAIN_PRODUCTS_START:
             return {
@@ -95,6 +115,26 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_MAIN_PRODUCTS_FAIL:
             return {
                 ...state,
+                loading: false,
+                error: true,
+            };
+        case actionTypes.FETCH_SUB_PRODUCTS_START:
+            return {
+                ...state,
+                loading: true,
+                error: false,
+            };
+        case actionTypes.FETCH_SUB_PRODUCTS_SUCCESS:
+            return {
+                ...state,
+                products: action.products,
+                loading: false,
+                error: false,
+            };
+        case actionTypes.FETCH_SUB_PRODUCTS_FAIL:
+            return {
+                ...state,
+                products: [],
                 loading: false,
                 error: true,
             };

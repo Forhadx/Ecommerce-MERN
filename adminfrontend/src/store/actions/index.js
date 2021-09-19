@@ -3,6 +3,8 @@ export {
     singleProductStore,
     singleProductInit,
     updateProduct,
-    fetchMainProducts,
     deleteProduct,
+    fetchAllProducts,
+    fetchMainProducts,
+    fetchSubProducts,
 } from "./Products";

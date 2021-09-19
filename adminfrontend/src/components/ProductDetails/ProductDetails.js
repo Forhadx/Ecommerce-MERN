@@ -11,7 +11,8 @@ const ProductDetails = (props) => {
             </div>
             <div className="single__prod--img">
                 <img
-                    src="https://chaldn.com/_mpimage/china-fuji-apple-50-gm-1-kg?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D54849&q=low&v=1&m=400&webp=1"
+                    className="bgImg"
+                    src={`http://localhost:5000/${props.singleProd.image}`}
                     alt="product"
                 />
             </div>
