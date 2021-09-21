@@ -108,8 +108,8 @@ const ProductFrom = (props) => {
         } else {
             formData.append("image", data.image[0]);
             props.onAddProduct(formData);
+            reset();
         }
-        reset();
     };
 
     return (

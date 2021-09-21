@@ -1,7 +1,7 @@
 const path = require("path");
 
 const express = require("express");
-//const bodyParser = require("body-parser");
+
 const mongoose = require("mongoose");
 const cors = require("cors");
 const stripe = require("stripe")(
@@ -30,6 +30,16 @@ app.use("/", adminOrdersRoutes);
 app.use("/", buyerRoutes);
 app.use("/", adminRoutes);
 app.use("/", dailyproductsRoutes);
+
+//ERROR
+app.use((error, req, res, next) => {
+    //console.log("error?: ", error);
+    const status = error.statusCode || 500;
+    const message = error.message;
+    const data = error.data; // this is error.array() messages
+    // console.log("error message? ", message);
+    res.status(status).json({ message: message, data: data });
+});
 
 // payment
 app.post("/pay", async (req, res) => {

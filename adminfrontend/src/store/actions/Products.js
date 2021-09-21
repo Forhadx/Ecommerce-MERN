@@ -28,9 +28,11 @@ export const addProduct = (prodData) => {
                 "http://localhost:5000/product/",
                 prodData
             );
-            console.log("res: ", result.data.product);
+            //console.log("res: ", result.data.product);
             dispatch(addProductSuccess(result.data.product));
         } catch (err) {
+            console.log("msg? ", err.response);
+            //console.log("get error message?: ", err.remessage);
             dispatch(addProductFail());
         }
     };
@@ -107,6 +109,7 @@ export const updateProduct = (pId, prod) => {
             await axios.patch(`http://localhost:5000/product/${pId}`, prod);
             dispatch(updateProductSuccess());
         } catch (err) {
+            console.log("msg? ", err.response);
             dispatch(updateProductFail(err));
         }
     };
