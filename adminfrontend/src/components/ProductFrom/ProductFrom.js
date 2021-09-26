@@ -69,7 +69,6 @@ const ProductFrom = (props) => {
     useEffect(() => {
         if (singleProd) {
             setValue("mainCategory", singleProd.mainCategory);
-            //setValue("image", singleProd.image);
             setValue("name", singleProd.name);
             setValue("amount", singleProd.amount);
             setValue("price", singleProd.price);
@@ -229,15 +228,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(null, mapDispatchToProps)(ProductFrom);
-
-/*
-<label>Image</label>
-                    <input
-                        type="text"
-                        placeholder="enter product name"
-                        {...register("image")}
-                    />
-                    <p>{errors.image?.message}</p>
-
-
-*/

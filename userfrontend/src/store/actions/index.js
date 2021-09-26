@@ -13,4 +13,8 @@ export {
     cancelTheCart,
     increaseProdQty,
     decreaseProdQty,
+    addReceiverInfo,
+    clearCart,
 } from "./cart";
+
+export { addOrder, addOrderInit } from "./orders";

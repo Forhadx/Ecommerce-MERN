@@ -12,25 +12,27 @@ import App from "./App";
 import productsReducer from "./store/reducers/products";
 import dailyProductsReducer from "./store/reducers/dailyProducts";
 import cartReducer from "./store/reducers/cart";
+import orderReducer from "./store/reducers/order";
 
 const rootReducer = combineReducers({
-  prods: productsReducer,
-  dailyProd: dailyProductsReducer,
-  cart: cartReducer,
+    prods: productsReducer,
+    dailyProd: dailyProductsReducer,
+    cart: cartReducer,
+    order: orderReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(thunk))
+    rootReducer,
+    composeEnhancers(applyMiddleware(thunk))
 );
 
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>,
-  document.getElementById("root")
+    <Provider store={store}>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </Provider>,
+    document.getElementById("root")
 );

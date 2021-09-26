@@ -50,7 +50,7 @@ app.post("/pay", async (req, res) => {
         metadata: { integration_check: "accept_a_payment" },
         receipt_email: email,
     });
-    console.log("details: ", paymentIntent);
+    // console.log("details: ", paymentIntent);
     res.json({ client_secret: paymentIntent["client_secret"] });
 });
 

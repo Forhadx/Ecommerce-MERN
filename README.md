@@ -4,12 +4,14 @@
 
     nodemon
     express
-    body-parser
     cors
     mongoose
     express-validation
     bcrypt
     jsonwebtoken
+    multer
+    uuid
+    stripe
 
 # React modules
 
@@ -18,13 +20,10 @@
     classnames
     sass
     react-icons
-
     redux
     redux-thunk
-
     @stripe/stripe-js
     @stripe/react-stripe-js
-
     yup
     @hookform/resolvers
     react-hook-form

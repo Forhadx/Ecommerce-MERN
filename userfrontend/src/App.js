@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
 import Navigationbar from "./components/Navigation/Navigationbar";
 import Sidebar from "./components/Sidebar/Sidebar";
@@ -13,42 +14,69 @@ import Login from "./Pages/UserAuth/Login/Login";
 import Logout from "./Pages/UserAuth/Logout/Logout";
 import Shipping from "./Pages/Shipping/Shipping";
 import Payment from "./Pages/Shipping/Payment/payment";
+import Home from "./Pages/Home/Home";
+import orderSuccess from "./Pages/OrderSuccess/OrderSuccess";
 
 import className from "classnames";
 import "./App.scss";
 
-const App = () => {
-  const [isCartOpen, setIsCartOpen] = useState(false);
+const App = (props) => {
+    const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const cartClickHandler = () => {
-    setIsCartOpen(!isCartOpen);
-  };
-
-  return (
-    <div className="App">
-      <header className="header">
-        <Navigationbar cartClickHandler={cartClickHandler} />
-      </header>
-      <aside className="sidebar">
-        <Sidebar />
-      </aside>
-      <main className="main">
-        <Switch>
-          <Route path="/m/:name" component={MainCategories} />
-          <Route path="/s/:name" component={SubCategies} />
-          <Route path="/Daily+Products" exact component={DailyProducts} />
-          <Route path="/signup" exact component={Signup} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/logout" exact component={Logout} />
-          <Route path="/shipping" exact component={Shipping} />
-          <Route path="/payment" exact component={Payment} />
-        </Switch>
-      </main>
-      <aside className={className("cartbar", { open: isCartOpen })}>
-        <Cartbar />
-      </aside>
-    </div>
-  );
+    const cartClickHandler = () => {
+        setIsCartOpen(!isCartOpen);
+    };
+    console.log("or su: ", props.orderSuccess);
+    return (
+        <div className="App">
+            <header className="header">
+                <Navigationbar cartClickHandler={cartClickHandler} />
+            </header>
+            <aside className="sidebar">
+                <Sidebar />
+            </aside>
+            <main className="main">
+                <Switch>
+                    <Route path="/m/:name" component={MainCategories} />
+                    <Route path="/s/:name" component={SubCategies} />
+                    <Route
+                        path="/Daily+Products"
+                        exact
+                        component={DailyProducts}
+                    />
+                    <Route path="/signup" exact component={Signup} />
+                    <Route path="/login" exact component={Login} />
+                    <Route path="/logout" exact component={Logout} />
+                    {props.cartProducts.length && (
+                        <Route path="/shipping" exact component={Shipping} />
+                    )}
+                    {props.receiver && (
+                        <Route path="/payment" exact component={Payment} />
+                    )}
+                    {!props.orderSuccess && (
+                        <Route
+                            path="/order-success"
+                            exact
+                            component={orderSuccess}
+                        />
+                    )}
+                    <Route path="/" exact component={Home} />
+                    <Redirect to="/" />
+                </Switch>
+            </main>
+            <aside className={className("cartbar", { open: isCartOpen })}>
+                <Cartbar />
+            </aside>
+        </div>
+    );
 };
 
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        cartProducts: state.cart.cartProducts,
+        receiver: state.cart.receiver,
+        orderSuccess: state.order.orderSuccess,
+    };
+};
+
+export default connect(mapStateToProps)(App);
