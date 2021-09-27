@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/index";
 import "./Card.scss";
+import ProductDetails from "../ProductDetails/ProductDetails";
+import Modal from "../UI/Modal/Modal";
 
 const Card = (props) => {
+    const [modalFlag, setModalFlag] = useState(false);
     const [qty, setQty] = useState(1);
     const [isAddCart, setIsAddCart] = useState(true);
 
@@ -24,14 +27,17 @@ const Card = (props) => {
     const addCartHandler = (data) => {
         props.onAddToCart({ ...data, quantity: qty });
     };
+
     const cancelTheCart = (data) => {
         setQty(1);
         props.onCancelTheCart({ ...data, quantity: qty });
     };
+
     const increaseQty = () => {
         setQty(qty + 1);
         if (!isAddCart) props.onIncreaseProdQty(product);
     };
+
     const decreaseQty = () => {
         if (qty > 1) {
             setQty(qty - 1);
@@ -39,45 +45,61 @@ const Card = (props) => {
         }
     };
 
+    const modalClosedHandler = () => {
+        setModalFlag(false);
+    };
+
+    const showProductHandler = () => {
+        setModalFlag(true);
+    };
+
     return (
-        <div className="card">
-            <div className="card__details">
-                <div className="card__details--img">
-                    <img
-                        className="bgImg"
-                        src={`http://localhost:5000/${product.image}`}
-                        alt={product.name}
-                    />
+        <React.Fragment>
+            <Modal show={modalFlag} modalClosed={modalClosedHandler}>
+                <ProductDetails
+                    modalClosed={modalClosedHandler}
+                    prod={props.product}
+                />
+            </Modal>
+            <div className="card">
+                <div className="card__details" onClick={showProductHandler}>
+                    <div className="card__details--img">
+                        <img
+                            className="bgImg"
+                            src={`http://localhost:5000/${product.image}`}
+                            alt={product.name}
+                        />
+                    </div>
+                    <div className="card__details--info">
+                        <h1>{product.name}</h1>
+                        <p>{product.amount}</p>
+                        <h2>{`${product.price} ৳`}</h2>
+                    </div>
                 </div>
-                <div className="card__details--info">
-                    <h1>{product.name}</h1>
-                    <p>{product.amount}</p>
-                    <h2>{`${product.price} ৳`}</h2>
+                <div className="card__buttons">
+                    <div className="card__buttons--qty">
+                        <button className="btn-minus" onClick={decreaseQty}>
+                            -
+                        </button>
+                        <button className="btn-qty">{qty}</button>
+                        <button className="btn-plus" onClick={increaseQty}>
+                            +
+                        </button>
+                    </div>
+                    <div className="card__buttons--cart">
+                        {isAddCart ? (
+                            <button onClick={() => addCartHandler(product)}>
+                                Add to Cart
+                            </button>
+                        ) : (
+                            <button onClick={() => cancelTheCart(product)}>
+                                Cancel the Cart
+                            </button>
+                        )}
+                    </div>
                 </div>
             </div>
-            <div className="card__buttons">
-                <div className="card__buttons--qty">
-                    <button className="btn-minus" onClick={decreaseQty}>
-                        -
-                    </button>
-                    <button className="btn-qty">{qty}</button>
-                    <button className="btn-plus" onClick={increaseQty}>
-                        +
-                    </button>
-                </div>
-                <div className="card__buttons--cart">
-                    {isAddCart ? (
-                        <button onClick={() => addCartHandler(product)}>
-                            Add to Cart
-                        </button>
-                    ) : (
-                        <button onClick={() => cancelTheCart(product)}>
-                            Cancel the Cart
-                        </button>
-                    )}
-                </div>
-            </div>
-        </div>
+        </React.Fragment>
     );
 };
 

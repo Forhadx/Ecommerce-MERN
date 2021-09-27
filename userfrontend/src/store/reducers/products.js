@@ -44,6 +44,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_MAIN_PRODUCTS_START:
             return {
                 ...state,
+                products: [],
                 loading: true,
                 error: false,
             };
@@ -57,6 +58,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_MAIN_PRODUCTS_FAIL:
             return {
                 ...state,
+                products: [],
                 loading: false,
                 error: true,
             };

@@ -13,12 +13,14 @@ import productsReducer from "./store/reducers/products";
 import dailyProductsReducer from "./store/reducers/dailyProducts";
 import cartReducer from "./store/reducers/cart";
 import orderReducer from "./store/reducers/order";
+import authReducer from "./store/reducers/Auth";
 
 const rootReducer = combineReducers({
     prods: productsReducer,
     dailyProd: dailyProductsReducer,
     cart: cartReducer,
     order: orderReducer,
+    auth: authReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

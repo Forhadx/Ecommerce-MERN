@@ -1,0 +1,19 @@
+@import "../../var.scss";
+
+.Products__gallary {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    &--single {
+        margin: 2rem;
+    }
+
+    &--noProduct {
+        color: $color-red-1;
+        font-size: 2rem;
+        text-align: center;
+        padding-top: 5rem;
+    }
+}

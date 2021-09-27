@@ -18,3 +18,5 @@ export {
 } from "./cart";
 
 export { addOrder, addOrderInit } from "./orders";
+
+export { userInit, userSignup, userLogin, logout, autoLogin } from "./Auth";

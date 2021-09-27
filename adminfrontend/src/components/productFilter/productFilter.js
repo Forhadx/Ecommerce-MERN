@@ -18,9 +18,9 @@ const ProductFilter = (props) => {
         if (mainCat === "All") {
             onFetchAllProducts();
         } else if (mainCat !== "All" && subCat === "All") {
-            onFetchMainProducts({ mainCatName: mainCat });
+            onFetchMainProducts(mainCat);
         } else if (mainCat !== "All" && subCat !== "All") {
-            onFetchSubProducts({ subCatName: subCat });
+            onFetchSubProducts(subCat);
         }
     }, [
         onFetchAllProducts,

@@ -1,46 +1,32 @@
 @import "../../var.scss";
 
 .subCategory__page {
-  padding: 2rem;
+    padding: 2rem;
 
-  & .subCategory__page--heading {
-    margin-bottom: 2rem;
-    font-size: 2.4rem;
-    font-weight: bold;
-    color: $color-black-2;
-  }
+    & .subCategory__page--heading {
+        margin-bottom: 2rem;
+        font-size: 2.4rem;
+        font-weight: bold;
+        color: $color-black-2;
 
-  & .subCategory__page--img {
-    width: 100%;
-    border-bottom: 1px solid $color-gray-1;
-    border-top: 1px solid $color-gray-1;
-    display: flex;
-    justify-content: center;
-    padding-bottom: 2rem;
-    padding-top: 2rem;
-    margin-bottom: 2rem;
-
-    & img {
-      width: 70%;
-      height: 25rem;
+        & span {
+            color: $color-gray-1;
+        }
     }
-  }
 
-  & .subCategory__page--cards {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    & .subCategory__page--img {
+        width: 100%;
+        border-bottom: 1px solid $color-gray-1;
+        border-top: 1px solid $color-gray-1;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 2rem;
+        padding-top: 2rem;
+        margin-bottom: 2rem;
 
-    &-single {
-      margin: 2rem;
+        & img {
+            width: 70%;
+            height: 25rem;
+        }
     }
-  }
-
-  &--noProduct {
-    color: $color-red-1;
-    font-size: 2rem;
-    text-align: center;
-    padding-top: 5rem;
-  }
 }

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import * as actions from "./store/actions/index";
 
 import Navigationbar from "./components/Navigation/Navigationbar";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Cartbar from "./components/Cartbar/Cartbar";
-
 import MainCategories from "./Pages/MainCategories/MainCategories";
 import SubCategies from "./Pages/SubCategories/SubCategories";
 import DailyProducts from "./Pages/DailyProducts/DailyProducts";
@@ -26,7 +26,14 @@ const App = (props) => {
     const cartClickHandler = () => {
         setIsCartOpen(!isCartOpen);
     };
-    console.log("or su: ", props.orderSuccess);
+
+    const { autoLogin } = props;
+
+    useEffect(() => {
+        autoLogin();
+    }, [autoLogin]);
+    console.log("xyxyx");
+
     return (
         <div className="App">
             <header className="header">
@@ -79,4 +86,10 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        autoLogin: () => dispatch(actions.autoLogin()),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

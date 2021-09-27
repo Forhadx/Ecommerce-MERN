@@ -64,11 +64,11 @@ export const fetchMainProductsFail = () => {
 
 export const fetchMainProducts = (mainCatName) => {
     return async (dispatch) => {
-        dispatch(fetchMainProductsSuccess());
+        dispatch(fetchMainProductsStart());
         try {
             const result = await axios.post(
                 "http://localhost:5000/products/mainCategory",
-                mainCatName
+                { mainCatName: mainCatName }
             );
             dispatch(fetchMainProductsSuccess(result.data.products));
         } catch (err) {
@@ -100,7 +100,7 @@ export const fetchSubProducts = (subCatName) => {
         try {
             const result = await axios.post(
                 "http://localhost:5000/products/subCategory",
-                subCatName
+                { subCatName: subCatName }
             );
             dispatch(fetchSubProductsSuccess(result.data.products));
         } catch (err) {
