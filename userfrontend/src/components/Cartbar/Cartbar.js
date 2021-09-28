@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import * as actions from "../../store/actions/index";
 import CartProduct from "./CartProduct/CartProduct";
 import { connect } from "react-redux";
 import "./Cartbar.scss";
@@ -9,8 +10,12 @@ const Cartbar = (props) => {
 
     const checkoutHandler = () => {
         if (props.cartProducts.length !== 0) {
-            console.log("c: ", props.cartProducts);
-            history.push("/shipping");
+            if (props.token) {
+                history.push("/shipping");
+            } else {
+                props.onAuthRedirectPath("/shipping");
+                history.push("/login");
+            }
         }
     };
 
@@ -44,7 +49,14 @@ const mapStateToProps = (state) => {
         cartProducts: state.cart.cartProducts,
         totalPrice: state.cart.totalPrice,
         totalItem: state.cart.totalItem,
+        token: state.auth.token,
     };
 };
 
-export default connect(mapStateToProps)(Cartbar);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onAuthRedirectPath: (path) => dispatch(actions.authRedirectPath(path)),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cartbar);

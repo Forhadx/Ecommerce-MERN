@@ -9,7 +9,7 @@ const SubCat = (props) => {
     let subCatName = props.match.params.name.replace(/[+]/g, " ");
 
     useEffect(() => {
-        console.log("params: ", subCatName);
+        //console.log("params: ", subCatName);
         onFetchSubProducts(subCatName);
     }, [onFetchSubProducts, subCatName]);
 

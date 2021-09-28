@@ -46,6 +46,7 @@ exports.loginBuyer = async (req, res, next) => {
         );
         res.json({
             message: "login successfully",
+            user: buyer.name,
             token: token,
             userId: buyer._id.toString(),
             expiresIn: "1h",

@@ -11,15 +11,16 @@ import { useHistory } from "react-router";
 
 const Signup = (props) => {
     const history = useHistory();
-    const { authRedirectPath } = props;
+    const { authRedirectPath, isSignup, onUserInit } = props;
 
     useEffect(() => {
-        if (authRedirectPath === "/login") {
+        if (isSignup) {
             setTimeout(() => {
-                history.push(authRedirectPath);
+                onUserInit();
+                history.push("/login");
             }, 1000);
         }
-    }, [authRedirectPath, history]);
+    }, [authRedirectPath, history, isSignup, onUserInit]);
 
     const validationSchema = Yup.object().shape({
         name: Yup.string()
@@ -57,7 +58,7 @@ const Signup = (props) => {
 
     return (
         <div className="user__auth">
-            {authRedirectPath === "/login" && <Spninner />}
+            {isSignup && <Spninner />}
             <h1>Create Your Account</h1>
             <form
                 className="user__auth--form"
@@ -108,11 +109,13 @@ const mapStateToProps = (state) => {
         loading: state.auth.loading,
         error: state.auth.error,
         authRedirectPath: state.auth.authRedirectPath,
+        isSignup: state.auth.isSignup,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        onUserInit: () => dispatch(actions.userInit()),
         onUserSignup: (userData) => dispatch(actions.userSignup(userData)),
     };
 };

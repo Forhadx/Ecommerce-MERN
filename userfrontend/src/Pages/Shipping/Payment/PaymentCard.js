@@ -43,7 +43,6 @@ const Payment = (props) => {
                 },
             },
         });
-        console.log("result: ", result);
         if (result.error) {
             setIsClick(false);
             console.log(result.error.message);
@@ -56,7 +55,6 @@ const Payment = (props) => {
                 // go to new page that show success payment
                 let items = [];
                 for (let i of props.cartProducts) {
-                    // console.log("i: ", i);
                     items.push({ productId: i._id, quantity: i.quantity });
                 }
                 let orderData = {

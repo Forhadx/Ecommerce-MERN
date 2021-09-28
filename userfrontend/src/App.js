@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "./store/actions/index";
-
 import Navigationbar from "./components/Navigation/Navigationbar";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Cartbar from "./components/Cartbar/Cartbar";
@@ -32,7 +31,6 @@ const App = (props) => {
     useEffect(() => {
         autoLogin();
     }, [autoLogin]);
-    console.log("xyxyx");
 
     return (
         <div className="App">
@@ -51,9 +49,15 @@ const App = (props) => {
                         exact
                         component={DailyProducts}
                     />
-                    <Route path="/signup" exact component={Signup} />
-                    <Route path="/login" exact component={Login} />
-                    <Route path="/logout" exact component={Logout} />
+                    {!props.token && (
+                        <Route path="/signup" exact component={Signup} />
+                    )}
+                    {!props.token && (
+                        <Route path="/login" exact component={Login} />
+                    )}
+                    {props.token && (
+                        <Route path="/logout" exact component={Logout} />
+                    )}
                     {props.cartProducts.length && (
                         <Route path="/shipping" exact component={Shipping} />
                     )}
@@ -83,6 +87,7 @@ const mapStateToProps = (state) => {
         cartProducts: state.cart.cartProducts,
         receiver: state.cart.receiver,
         orderSuccess: state.order.orderSuccess,
+        token: state.auth.token,
     };
 };
 

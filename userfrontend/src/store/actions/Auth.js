@@ -41,9 +41,11 @@ export const userLoginStart = () => {
         type: actionTypes.USER_LOGIN_START,
     };
 };
-export const userLoginSuccess = (token, userId) => {
+
+export const userLoginSuccess = (user, token, userId) => {
     return {
         type: actionTypes.USER_LOGIN_SUCCESS,
+        user: user,
         token: token,
         userId: userId,
     };
@@ -64,12 +66,17 @@ export const userLogin = (userData) => {
                 "http://localhost:5000/buyer/login",
                 userData
             );
-            console.log("res: ", result);
             const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
             localStorage.setItem("token", result.data.token);
             localStorage.setItem("expirationDate", expirationDate);
             localStorage.setItem("userId", result.data.userId);
-            dispatch(userLoginSuccess(result.data.token, result.data.userId));
+            dispatch(
+                userLoginSuccess(
+                    result.data.user,
+                    result.data.token,
+                    result.data.userId
+                )
+            );
             dispatch(checkAuthTimeout(3600));
         } catch (err) {
             dispatch(userLoginFail(err));
@@ -115,5 +122,12 @@ export const autoLogin = () => {
                 );
             }
         }
+    };
+};
+
+export const authRedirectPath = (path) => {
+    return {
+        type: actionTypes.AUTH_REDIRECT_PATH,
+        path: path,
     };
 };

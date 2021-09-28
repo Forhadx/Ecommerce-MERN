@@ -4,6 +4,8 @@ import * as actions from "../../store/actions/index";
 import ProductGallary from "../../components/ProductGallary/ProductGallary";
 import "./MainCategories.scss";
 
+import * as icons from "./icons";
+
 const MainCat = (props) => {
     //console.log(props.history.location.pathname)
     let mainCategoryName = props.match.params.name.replace(/[+]/g, " ");
@@ -11,9 +13,11 @@ const MainCat = (props) => {
     const { onFetchMainProducts } = props;
 
     useEffect(() => {
-        console.log("main cat name: ", mainCategoryName);
+        // console.log("main cat name: ", mainCategoryName);
         onFetchMainProducts(mainCategoryName);
     }, [onFetchMainProducts, mainCategoryName]);
+
+    console.log("i: ", icons.cake);
 
     return (
         <div className="mainCategory__page">

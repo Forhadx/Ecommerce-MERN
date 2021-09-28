@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./login.scss";
 import * as actions from "../../../store/actions/index";
@@ -6,13 +6,10 @@ import { connect } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { useHistory } from "react-router";
 
 const Login = (props) => {
-    const { onUserInit } = props;
-
-    useEffect(() => {
-        onUserInit();
-    }, [onUserInit]);
+    const history = useHistory();
 
     const validationSchema = Yup.object().shape({
         email: Yup.string()
@@ -33,9 +30,13 @@ const Login = (props) => {
     });
 
     const loginHandler = (data) => {
-        //console.log(data);
         props.onUserLogin(data);
         reset();
+        if (props.authRedirectPath === "/shipping") {
+            history.push("/shipping");
+        } else {
+            history.push("/");
+        }
     };
 
     return (
@@ -75,13 +76,13 @@ const mapStateToProps = (state) => {
     return {
         loading: state.auth.loading,
         error: state.auth.error,
+        token: state.auth.token,
         authRedirectPath: state.auth.authRedirectPath,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onUserInit: () => dispatch(actions.userInit()),
         onUserLogin: (userData) => dispatch(actions.userLogin(userData)),
     };
 };
