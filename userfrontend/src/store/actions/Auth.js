@@ -42,9 +42,10 @@ export const userLoginStart = () => {
     };
 };
 
-export const userLoginSuccess = (user, token, userId) => {
+export const userLoginSuccess = (email, user, token, userId) => {
     return {
         type: actionTypes.USER_LOGIN_SUCCESS,
+        email: email,
         user: user,
         token: token,
         userId: userId,
@@ -60,7 +61,6 @@ export const userLoginFail = (err) => {
 export const userLogin = (userData) => {
     return async (dispatch) => {
         dispatch(userLoginStart());
-        console.log("userD: ", userData);
         try {
             let result = await axios.post(
                 "http://localhost:5000/buyer/login",
@@ -70,8 +70,11 @@ export const userLogin = (userData) => {
             localStorage.setItem("token", result.data.token);
             localStorage.setItem("expirationDate", expirationDate);
             localStorage.setItem("userId", result.data.userId);
+            localStorage.setItem("user", result.data.user);
+            localStorage.setItem("email", result.data.email);
             dispatch(
                 userLoginSuccess(
+                    result.data.email,
                     result.data.user,
                     result.data.token,
                     result.data.userId
@@ -114,7 +117,9 @@ export const autoLogin = () => {
                 dispatch(logout());
             } else {
                 const userId = localStorage.getItem("userId");
-                dispatch(userLoginSuccess(token, userId));
+                const user = localStorage.getItem("user");
+                const email = localStorage.getItem("email");
+                dispatch(userLoginSuccess(email, user, token, userId));
                 dispatch(
                     checkAuthTimeout(
                         (expirationDate.getTime() - new Date().getTime()) / 1000

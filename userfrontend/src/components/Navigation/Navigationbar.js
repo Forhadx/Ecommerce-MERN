@@ -36,9 +36,9 @@ const Navigationbar = (props) => {
                 <div className="nav__options--item">Help</div>
                 <div className="nav__options--item">
                     {props.token ? (
-                        <div onClick={logoutHandler}>Logout</div>
+                        <div onClick={logoutHandler}>{props.user}</div>
                     ) : (
-                        <div onClick={loginHandler}>Login</div>
+                        <div onClick={loginHandler}>login</div>
                     )}
                 </div>
                 <div
@@ -59,6 +59,8 @@ const mapStateToProps = (state) => {
     return {
         totalItem: state.cart.totalItem,
         token: state.auth.token,
+        user: state.auth.user,
+        userId: state.auth.userId,
     };
 };
 

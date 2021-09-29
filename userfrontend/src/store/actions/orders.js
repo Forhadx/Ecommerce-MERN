@@ -24,11 +24,15 @@ export const addOrderFail = (err) => {
     };
 };
 
-export const addOrder = (orderData) => {
+export const addOrder = (orderData, token) => {
     return async (dispatch) => {
         dispatch(addOrderStart());
         try {
-            axios.post("http://localhost:5000/order/b", orderData);
+            axios.post("http://localhost:5000/order/b", orderData, {
+                headers: {
+                    Authorization: "Bearer " + token,
+                },
+            });
             dispatch(addOrderSuccess());
         } catch (err) {
             dispatch(addOrderFail(err));

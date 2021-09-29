@@ -1,7 +1,8 @@
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
-    user: "",
+    email: null,
+    user: null,
     token: null,
     userId: null,
     error: false,
@@ -50,6 +51,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: action.user,
+                email: action.email,
                 token: action.token,
                 userId: action.userId,
                 error: false,
@@ -63,6 +65,8 @@ const reducer = (state = initialState, action) => {
             };
         case actionTypes.USER_LOGOUT:
             return {
+                email: null,
+                user: null,
                 token: null,
                 userId: null,
                 error: false,

@@ -10,7 +10,6 @@ import SubCategies from "./Pages/SubCategories/SubCategories";
 import DailyProducts from "./Pages/DailyProducts/DailyProducts";
 import Signup from "./Pages/UserAuth/Signup/Signup";
 import Login from "./Pages/UserAuth/Login/Login";
-import Logout from "./Pages/UserAuth/Logout/Logout";
 import Shipping from "./Pages/Shipping/Shipping";
 import Payment from "./Pages/Shipping/Payment/payment";
 import Home from "./Pages/Home/Home";
@@ -54,9 +53,6 @@ const App = (props) => {
                     )}
                     {!props.token && (
                         <Route path="/login" exact component={Login} />
-                    )}
-                    {props.token && (
-                        <Route path="/logout" exact component={Logout} />
                     )}
                     {props.cartProducts.length && (
                         <Route path="/shipping" exact component={Shipping} />

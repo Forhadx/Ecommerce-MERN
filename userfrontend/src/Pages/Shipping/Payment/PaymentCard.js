@@ -29,7 +29,7 @@ const Payment = (props) => {
             return;
         }
         const res = await axios.post("http://localhost:5000/pay", {
-            email: "unknow@gmail.com",
+            email: props.email,
         });
         // console.log("res: ", res);
         const clientSecret = res.data["client_secret"];
@@ -38,7 +38,7 @@ const Payment = (props) => {
             payment_method: {
                 card: elements.getElement(CardElement),
                 billing_details: {
-                    email: "unknow@gmail.com",
+                    email: props.email,
                     //cartProduct: props.cartProducts,
                 },
             },
@@ -64,9 +64,9 @@ const Payment = (props) => {
                     phone: props.phone,
                     address: props.address,
                     totalPrice: props.totalPrice,
-                    buyerId: "60e76adcb4d3332c28e56e71",
+                    buyerId: props.userId,
                 };
-                props.onAddOrder(orderData);
+                props.onAddOrder(orderData, props.token);
             }
         }
     };
@@ -101,13 +101,18 @@ const mapStateToProps = (state) => {
         phone: state.cart.phone,
         address: state.cart.address,
         orderSuccess: state.order.orderSuccess,
+        email: state.auth.email,
+        token: state.auth.token,
+        user: state.auth.user,
+        userId: state.auth.userId,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         onAddOrderInit: () => dispatch(actions.addOrderInit()),
-        onAddOrder: (orderData) => dispatch(actions.addOrder(orderData)),
+        onAddOrder: (orderData, token) =>
+            dispatch(actions.addOrder(orderData, token)),
         onClearCart: () => dispatch(actions.clearCart()),
     };
 };

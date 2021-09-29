@@ -2,11 +2,10 @@ const OrdersModel = require("../models/Orders");
 const ProductModel = require("../models/products");
 
 exports.addOrder = async (req, res, next) => {
-    req.buyerId = "60e76adcb4d3332c28e56e71";
     //const { items, totalPrice, buyerId, phone, address } = req.body;
     //console.log("or: ", req.body);
     try {
-        if (req.buyerId !== req.body.buyerId) {
+        if (req.userId !== req.body.buyerId) {
             console.log("buyer id not match!");
         }
         let order = new OrdersModel(req.body);

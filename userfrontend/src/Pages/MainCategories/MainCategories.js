@@ -17,7 +17,7 @@ const MainCat = (props) => {
         onFetchMainProducts(mainCategoryName);
     }, [onFetchMainProducts, mainCategoryName]);
 
-    console.log("i: ", icons.cake);
+    // console.log("i: ", icons.cake);
 
     return (
         <div className="mainCategory__page">

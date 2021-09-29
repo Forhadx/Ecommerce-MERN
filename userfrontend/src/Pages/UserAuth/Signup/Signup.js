@@ -25,7 +25,8 @@ const Signup = (props) => {
     const validationSchema = Yup.object().shape({
         name: Yup.string()
             .required("! Name is required")
-            .min(3, "! too small name, minimum 3 character"),
+            .min(3, "! too small name, minimum 3 character")
+            .max(8, "! maximum 8 character"),
         email: Yup.string()
             .required("! Email is required")
             .email("Email is invalid"),
