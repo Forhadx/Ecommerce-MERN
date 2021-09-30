@@ -1,57 +1,57 @@
 @import "../../var.scss";
 
 .sidebar__details {
-  padding: 3rem 1rem;
+    padding: 3rem 1rem;
 
-  &--category {
-    margin-bottom: 1.2rem;
+    &--category {
+        margin-bottom: 1.2rem;
 
-    & .mainCategory {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.3rem 0.5rem;
-      color: $color-black-2;
-      font-size: 1.5rem;
+        & .mainCategory {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.3rem 0.5rem;
+            color: $color-black-2;
+            font-size: 1.5rem;
 
-      &:hover {
-        background: linear-gradient(to right, #eeebeb, #b3b3b3);
-      }
+            &:hover {
+                background: linear-gradient(to right, #eeebeb, #b3b3b3);
+            }
 
-      &.active {
-        color: $color-red-2;
-      }
-    }
-
-    & .subCategory {
-      display: none;
-      list-style: none;
-      font-size: 1.3rem;
-      color: $color-black-2;
-      cursor: pointer;
-      border-left: 2px solid $color-gray-2;
-      margin-left: 1rem;
-
-      &__items {
-        margin-top: 0.8rem;
-        padding: 0.3rem 0.5rem;
-
-        &:hover {
-          background: linear-gradient(to right, #eeebeb, #b3b3b3);
+            &.active {
+                color: $color-red-2;
+            }
         }
 
-        &--link {
-          display: block;
-          padding-left: 1rem;
+        & .subCategory {
+            display: none;
+            list-style: none;
+            font-size: 1.3rem;
+            color: $color-black-2;
+            cursor: pointer;
+            border-left: 2px solid $color-gray-2;
+            margin-left: 1rem;
+
+            &__items {
+                margin-top: 0.8rem;
+                padding: 0.3rem 0.5rem;
+
+                &:hover {
+                    background: linear-gradient(to right, #eeebeb, #b3b3b3);
+                }
+
+                &--link {
+                    display: block;
+                    padding-left: 1rem;
+                }
+
+                &--link.active {
+                    color: $color-red-2;
+                }
+            }
         }
 
-        &--link.active {
-          color: $color-red-2;
+        & .open {
+            display: block;
         }
-      }
     }
-
-    & .open {
-      display: block;
-    }
-  }
 }

@@ -68,15 +68,13 @@
         align-items: center;
         border-left: 1px solid $color-gray-1;
         cursor: pointer;
-
-        &-logout {
-        }
+        position: relative;
 
         &-i {
             font-size: 3rem;
         }
 
-        #lblCartCount {
+        & #lblCartCount {
             font-size: 1.2rem;
             font-weight: bold;
             background: #ff0000;
@@ -85,12 +83,54 @@
             vertical-align: top;
             margin-left: -1rem;
         }
-        .badge {
+        & .badge {
             padding-left: 1rem;
             padding-right: 1rem;
             -webkit-border-radius: 1rem;
             -moz-border-radius: 1rem;
             border-radius: 1rem;
+        }
+
+        & .user_logo {
+            font-size: 1.6rem;
+            display: flex;
+            flex-direction: row;
+        }
+
+        & .user__info {
+            display: none;
+            position: absolute;
+            top: 5rem;
+            right: 0;
+            width: 15rem;
+            background-color: $color-nav-header;
+            overflow: hidden;
+            border-top: 1px solid $color-gray-1;
+
+            &--item-name {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                font-weight: normal;
+                font-size: 1.4rem;
+                padding: 1.2rem 0;
+                border-bottom: 1px solid $color-gray-1;
+            }
+
+            &--item {
+                width: 100%;
+                text-align: center;
+                font-size: 1.4rem;
+                padding: 1.2rem 0;
+                border-bottom: 1px solid $color-gray-1;
+
+                &:hover {
+                    background-color: #243552;
+                }
+            }
+        }
+        & .open {
+            display: block;
         }
     }
 }

@@ -14,6 +14,7 @@ import Shipping from "./Pages/Shipping/Shipping";
 import Payment from "./Pages/Shipping/Payment/payment";
 import Home from "./Pages/Home/Home";
 import orderSuccess from "./Pages/OrderSuccess/OrderSuccess";
+import Orders from "./Pages/Orders/Orders";
 
 import className from "classnames";
 import "./App.scss";
@@ -48,6 +49,9 @@ const App = (props) => {
                         exact
                         component={DailyProducts}
                     />
+                    {props.token && (
+                        <Route path="/orders" exact component={Orders} />
+                    )}
                     {!props.token && (
                         <Route path="/signup" exact component={Signup} />
                     )}
@@ -67,7 +71,7 @@ const App = (props) => {
                             component={orderSuccess}
                         />
                     )}
-                    <Route path="/" exact component={Home} />
+                    <Route path="/" component={Home} />
                     <Redirect to="/" />
                 </Switch>
             </main>

@@ -1,0 +1,24 @@
+@import "../../var.scss";
+
+.order__page {
+    width: 60rem;
+    margin: auto;
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border: 1px solid $color-gray-2;
+
+    & h1 {
+        font-size: 2rem;
+        text-align: center;
+        color: $login-primary;
+        border-bottom: 1px solid $color-gray-2;
+        margin-bottom: 2rem;
+    }
+
+    &--items {
+        display: flex;
+        flex-direction: column;
+    }
+}

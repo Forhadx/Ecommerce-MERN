@@ -1,0 +1,111 @@
+@import "../../var.scss";
+
+.single__order {
+    width: 100%;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    border: 1px solid $color-gray-2;
+
+    &--header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem 1rem;
+
+        &-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            & h5 {
+                font-size: 1.6rem;
+                color: white;
+                width: 10rem;
+            }
+
+            & h2 {
+                font-size: 1.6rem;
+                color: $color-white;
+                font-weight: normal;
+            }
+
+            & p {
+                font-size: 1.4rem;
+                color: $color-gray-2;
+            }
+
+            & button {
+                outline: none;
+                border: none;
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr;
+                cursor: pointer;
+                font-size: 2rem;
+                border-radius: 0.5rem;
+                background-color: $color-white;
+            }
+        }
+    }
+
+    & .red {
+        background-color: $color-red-2;
+    }
+    & .blue {
+        background-color: skyblue;
+    }
+    & .green {
+        background-color: $color-green-1;
+    }
+    & .gray {
+        background-color: $color-gray-1;
+    }
+
+    &--details {
+        display: none;
+
+        &-table {
+            margin-top: 2rem;
+            padding: 0 0.5rem;
+            border-collapse: collapse;
+            width: 100%;
+
+            & thead {
+                width: 100%;
+
+                & tr {
+                    & th {
+                        font-size: 1.6rem;
+                        text-align: center;
+                        color: $login-primary;
+                        padding: 0.5rem 0;
+                    }
+                }
+            }
+
+            & tbody {
+                width: 100%;
+
+                & tr {
+                    border-bottom: 1px solid $color-gray-2;
+
+                    & td {
+                        text-align: center;
+                        font-size: 1.6rem;
+
+                        & img {
+                            padding: 1rem 0;
+                            max-width: 8rem;
+                            max-height: 8rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    & .open {
+        display: block;
+    }
+}

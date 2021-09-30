@@ -20,15 +20,22 @@ exports.addOrder = async (req, res, next) => {
 };
 
 exports.fetchAllorders = async (req, res, next) => {
-    req.buyerId = "60e76adcb4d3332c28e56e71";
     try {
-        let orders = await OrdersModel.find({ buyerId: req.buyerId }).sort({
-            updatedAt: -1,
-        });
+        let orders = await OrdersModel.find({ buyerId: req.userId })
+            .populate("items.productId", "image name price")
+            .sort({
+                updatedAt: -1,
+            });
         if (!orders) {
             console.log("orders not found!");
         }
-        res.json({ message: "fetch all buyer orders", orders: orders });
+        let updateOrders = orders.map((or) => {
+            let updateItems = or.items.map((i) => {
+                return { ...i.productId._doc, quantity: i.quantity };
+            });
+            return { ...or._doc, items: updateItems };
+        });
+        res.json({ message: "fetch all buyer orders", orders: updateOrders });
     } catch (err) {
         console.log(err);
     }

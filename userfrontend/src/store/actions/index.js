@@ -17,7 +17,7 @@ export {
     clearCart,
 } from "./cart";
 
-export { addOrder, addOrderInit } from "./orders";
+export { addOrder, addOrderInit, fetchOrders } from "./orders";
 
 export {
     userInit,

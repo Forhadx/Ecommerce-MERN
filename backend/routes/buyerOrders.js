@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post("/order/b", isAuth, ordersController.addOrder);
 
-router.get("/order/b/allorders", ordersController.fetchAllorders);
+router.get("/order/b/allorders", isAuth, ordersController.fetchAllorders);
 
 router.get("/order/b/onway", ordersController.fetchOnWayOrders);
 
