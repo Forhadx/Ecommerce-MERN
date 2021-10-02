@@ -1,21 +1,27 @@
 @import "../../var.scss";
 
 .sidebar__items {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 
-  & a {
-    font-size: 1.6rem;
-    text-align: left;
-    padding: 1.3rem 1rem;
-    border-bottom: 1px solid $color-gray-2;
-    color: white;
+    & a {
+        font-size: 1.4rem;
+        text-align: left;
+        padding: 1.3rem 1rem;
+        border-bottom: 1px solid $color-gray-2;
+        color: white;
+        text-transform: uppercase;
 
-    &:hover,
-    &:active,
-    &.active {
-      background-color: $sidebar-bg-active-color;
+        &:hover,
+        &:active,
+        &.active {
+            background-color: $sidebar-bg-active-color;
+        }
+
+        & span {
+            margin-left: 1rem;
+            font-size: 1.4rem;
+        }
     }
-  }
 }

@@ -12,6 +12,7 @@
         flex-direction: row;
         justify-content: space-between;
         padding: 1rem 1rem;
+        border-radius: 0.5rem;
 
         &-item {
             display: flex;
@@ -21,18 +22,21 @@
             & h5 {
                 font-size: 1.6rem;
                 color: white;
+                color: $color-primary;
                 width: 10rem;
             }
 
             & h2 {
                 font-size: 1.6rem;
                 color: $color-white;
+                color: $color-primary;
                 font-weight: normal;
             }
 
             & p {
                 font-size: 1.4rem;
                 color: $color-gray-2;
+                color: $color-primary;
             }
 
             & button {
@@ -50,16 +54,16 @@
     }
 
     & .red {
-        background-color: $color-red-2;
+        border: 1px solid $color-red-2;
     }
     & .blue {
-        background-color: skyblue;
+        border: 1px solid skyblue;
     }
     & .green {
-        background-color: $color-green-1;
+        border: 1px solid $color-green-1;
     }
     & .gray {
-        background-color: $color-gray-1;
+        border: 1px solid $color-gray-1;
     }
 
     &--details {
@@ -78,7 +82,7 @@
                     & th {
                         font-size: 1.4rem;
                         text-align: center;
-                        color: $login-primary;
+                        color: $color-primary;
                         padding: 0.5rem 0;
                     }
                 }

@@ -1,48 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import OrderCard from "../../components/OrderCard/OrderCard";
+import * as actions from "../../store/actions/index";
 
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
+const Orders = (props) => {
+    const { onFetchOrders, token } = props;
 
-const Orders = () => {
-  const validationSchema = Yup.object().shape({
-    name: Yup.string()
-      .required("Name is required")
-      .min(3, "length should be minimum 3")
-      .max(6, "length should be maximum 6"),
-  });
+    useEffect(() => {
+        onFetchOrders(token);
+    }, [onFetchOrders, token]);
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(validationSchema),
-  });
+    console.log("order: ", props.orders);
 
-  const userHandler = (data) => {
-    console.log("data: ", data);
-    reset();
-  };
-
-  return (
-    <div>
-      <div>ooo</div>
-      <form className="form__input" onSubmit={handleSubmit(userHandler)}>
-        <div>
-          <label>NAME</label>
-          <input
-            type="text"
-            placeholder="length should be between 3 to 6"
-            {...register("name")}
-          />
-          <p>{errors.name?.message}</p>
+    return (
+        <div className="page">
+            <div className="page--header">Manage Orders</div>
+            <div className="page--details">
+                {props.orders.map((ord) => (
+                    <OrderCard key={ord._id} order={ord} />
+                ))}
+            </div>
         </div>
-        <button type="submit">ADD</button>
-      </form>
-    </div>
-  );
+    );
 };
 
-export default Orders;
+const mapStateToProps = (state) => {
+    return {
+        orders: state.order.orders,
+        loading: state.order.loading,
+        error: state.order.error,
+        token: state.auth.token,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onFetchOrders: (token) => dispatch(actions.fetchOrders(token)),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Orders);

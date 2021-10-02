@@ -20,6 +20,7 @@
     classnames
     sass
     react-icons
+    moment
     redux
     redux-thunk
     @stripe/stripe-js

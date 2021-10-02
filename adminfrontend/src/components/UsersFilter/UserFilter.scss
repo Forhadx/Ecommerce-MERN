@@ -1,0 +1,29 @@
+@import "../../var.scss";
+
+.users__filter {
+    margin-top: 2rem;
+
+    &--search {
+        width: 20rem;
+        display: grid;
+        grid-template-columns: 17rem 3rem;
+        border: 1px solid $color-gray-1;
+        border-radius: 0.6rem;
+        overflow: hidden;
+
+        & input {
+            padding: 0.5rem 0.8rem;
+            font-size: 1.4rem;
+            border: none;
+            outline: none;
+        }
+
+        & button {
+            font-size: 1.6rem;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            background-color: $color-white;
+        }
+    }
+}

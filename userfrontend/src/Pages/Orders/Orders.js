@@ -12,8 +12,6 @@ const Orders = (props) => {
         onFetchOrders(token);
     }, [onFetchOrders, token]);
 
-    console.log("order: ", props.orders);
-
     return (
         <div className="order__page">
             <h1>Your All Orders List</h1>

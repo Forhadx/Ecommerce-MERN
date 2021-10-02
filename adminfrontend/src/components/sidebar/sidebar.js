@@ -1,19 +1,60 @@
 import React from "react";
+import * as actions from "../../store/actions/Auth";
+import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import "./sidebar.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faHome,
+    faRssSquare,
+    faShoppingBasket,
+    faShoppingCart,
+    faSignOutAlt,
+    faUsers,
+} from "@fortawesome/free-solid-svg-icons";
+import { FaDailymotion } from "react-icons/fa";
 
-const Sidebar = () => {
-  return (
-    <div className="sidebar__items">
-      <NavLink to="/dashboard">Dasboard</NavLink>
-      <NavLink to="/orders">Orders</NavLink>
-      <NavLink to="/products">Products</NavLink>
-      <NavLink to="/regular+products">Regular Products</NavLink>
-      <NavLink to="/category">Category</NavLink>
-      <NavLink to="/users">Users</NavLink>
-      <NavLink to="/logout">Logout</NavLink>
-    </div>
-  );
+const Sidebar = (props) => {
+    const logoutHandler = () => {
+        props.onLogout();
+    };
+
+    return (
+        <div className="sidebar__items">
+            <NavLink to="/" exact>
+                <FontAwesomeIcon icon={faHome} />
+                <span>Dasboard</span>
+            </NavLink>
+            <NavLink to="/orders">
+                <FontAwesomeIcon icon={faShoppingCart} />
+                <span>Orders</span>
+            </NavLink>
+            <NavLink to="/products">
+                <FontAwesomeIcon icon={faShoppingBasket} />
+                <span>Products</span>
+            </NavLink>
+            <NavLink to="/daily+needs">
+                <FaDailymotion />
+                <span>Daily Needs</span>
+            </NavLink>
+            <NavLink to="/category">
+                <FontAwesomeIcon icon={faRssSquare} />
+                <span>Category</span>
+            </NavLink>
+            <NavLink to="/users">
+                <FontAwesomeIcon icon={faUsers} />
+                <span>Users</span>
+            </NavLink>
+            <NavLink to="/logout" onClick={logoutHandler}>
+                <FontAwesomeIcon icon={faSignOutAlt} />
+                <span>Logout</span>
+            </NavLink>
+        </div>
+    );
 };
 
-export default Sidebar;
+const mapDispatchToProps = (dispatch) => {
+    return { onLogout: () => dispatch(actions.logout()) };
+};
+
+export default connect(null, mapDispatchToProps)(Sidebar);

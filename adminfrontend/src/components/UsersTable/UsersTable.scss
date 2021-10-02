@@ -1,0 +1,32 @@
+@import "../../var.scss";
+
+.users__table {
+    margin-top: 2rem;
+    border-collapse: collapse;
+    width: 100%;
+
+    & thead {
+        background-color: $color-gray-3;
+
+        & tr {
+            & th {
+                font-size: 1.6rem;
+                text-align: center;
+                color: $color-primary;
+                padding: 0.5rem 0;
+            }
+        }
+    }
+
+    & tbody {
+        & tr {
+            border-bottom: 1px solid $color-gray-2;
+
+            & td {
+                text-align: center;
+                font-size: 1.6rem;
+                padding: 0.5rem 0;
+            }
+        }
+    }
+}
