@@ -1,0 +1,20 @@
+@import "../../var.scss";
+
+.home__page {
+    padding: 2rem;
+
+    &--img {
+        width: 100%;
+        border-bottom: 1px solid $color-gray-1;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 2rem;
+        padding-top: 2rem;
+        margin-bottom: 2rem;
+
+        & img {
+            width: 70%;
+            max-height: 30rem;
+        }
+    }
+}

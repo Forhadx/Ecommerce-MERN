@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import OrderCard from "../../components/OrderCard/OrderCard";
 import * as actions from "../../store/actions/index";
+import Spinner from "../../components/UI/Spinner/Spinner";
 
 const Orders = (props) => {
     const { onFetchOrders, token } = props;
@@ -10,15 +11,18 @@ const Orders = (props) => {
         onFetchOrders(token);
     }, [onFetchOrders, token]);
 
-    console.log("order: ", props.orders);
-
     return (
         <div className="page">
             <div className="page--header">Manage Orders</div>
             <div className="page--details">
-                {props.orders.map((ord) => (
-                    <OrderCard key={ord._id} order={ord} />
-                ))}
+                <div>af adf</div>
+                {props.loading ? (
+                    <Spinner />
+                ) : (
+                    props.orders.map((ord) => (
+                        <OrderCard key={ord._id} order={ord} />
+                    ))
+                )}
             </div>
         </div>
     );

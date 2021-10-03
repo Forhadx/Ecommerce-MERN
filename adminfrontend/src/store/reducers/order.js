@@ -30,6 +30,76 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 error: true,
             };
+        case actionTypes.REJECT_ORDER_START:
+            return {
+                ...state,
+                loading: true,
+                error: false,
+            };
+        case actionTypes.REJECT_ORDER_SUCCESS:
+            let updatedOrder = [...state.orders];
+            let index = updatedOrder.findIndex((x) => x._id === action.id);
+            updatedOrder[index].orderRejected = true;
+            return {
+                ...state,
+                orders: updatedOrder,
+                loading: false,
+                error: false,
+            };
+        case actionTypes.REJECT_ORDER_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: true,
+            };
+        case actionTypes.ONWAY_ORDER_START:
+            return {
+                ...state,
+                loading: false,
+                error: true,
+            };
+        case actionTypes.ONWAY_ORDER_SUCCESS:
+            let updatedOnwayOrder = [...state.orders];
+            let indexOnway = updatedOnwayOrder.findIndex(
+                (x) => x._id === action.id
+            );
+            updatedOnwayOrder[indexOnway].onWay = true;
+            return {
+                ...state,
+                orders: updatedOnwayOrder,
+                loading: false,
+                error: false,
+            };
+        case actionTypes.ONWAY_ORDER_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: true,
+            };
+        case actionTypes.DELIVERD_ORDER_START:
+            return {
+                ...state,
+                loading: false,
+                error: true,
+            };
+        case actionTypes.DELIVERD_ORDER_SUCCESS:
+            let updatedDeliverdOrder = [...state.orders];
+            let indexDeliverd = updatedDeliverdOrder.findIndex(
+                (x) => x._id === action.id
+            );
+            updatedDeliverdOrder[indexDeliverd].isDelivered = true;
+            return {
+                ...state,
+                orders: updatedDeliverdOrder,
+                loading: false,
+                error: false,
+            };
+        case actionTypes.DELIVERD_ORDER_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: true,
+            };
         default:
             return state;
     }

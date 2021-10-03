@@ -40,8 +40,6 @@ const Login = (props) => {
         reset();
     };
 
-    console.log("token: ", token);
-
     return (
         <div className="user__auth">
             <h1>Please Login</h1>

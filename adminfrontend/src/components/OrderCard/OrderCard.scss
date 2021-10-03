@@ -19,6 +19,49 @@
             flex-direction: column;
             justify-content: center;
 
+            & div {
+                display: flex;
+                flex-direction: row;
+
+                & .acc-btn {
+                    border: none;
+                    outline: none;
+                    background-color: $color-green-1;
+                    color: $color-white;
+                    font-size: 1.2rem;
+                    margin-right: 0.5rem;
+                    padding: 0.5rem 0.8rem;
+                }
+                & .dec-btn {
+                    border: none;
+                    outline: none;
+                    background-color: $color-red-1;
+                    color: $color-white;
+                    font-size: 1.2rem;
+                    padding: 0.5rem 0.8rem;
+                }
+                & .way-btn {
+                    border: none;
+                    outline: none;
+                    background-color: blue;
+                    color: $color-white;
+                    font-size: 1.2rem;
+                    padding: 0.5rem 0.8rem;
+                }
+
+                & .deliver {
+                    font-size: 1.4rem;
+                    font-weight: bold;
+                    color: $color-green-1;
+                }
+
+                & .reject {
+                    font-size: 1.4rem;
+                    font-weight: bold;
+                    color: $color-red-1;
+                }
+            }
+
             & h5 {
                 font-size: 1.6rem;
                 color: white;
@@ -54,16 +97,16 @@
     }
 
     & .red {
-        border: 1px solid $color-red-2;
+        border: 2px solid $color-red-2;
     }
     & .blue {
-        border: 1px solid skyblue;
+        border: 2px solid skyblue;
     }
     & .green {
-        border: 1px solid $color-green-1;
+        border: 2px solid $color-green-1;
     }
     & .gray {
-        border: 1px solid $color-gray-1;
+        border: 2px solid $color-gray-1;
     }
 
     &--details {
@@ -104,6 +147,36 @@
                             max-height: 8rem;
                         }
                     }
+                }
+            }
+        }
+
+        &-address {
+            padding: 0.5rem 1rem;
+
+            & h3 {
+                font-size: 1.6rem;
+                font-weight: bold;
+            }
+
+            & h4 {
+                margin-top: 0.5rem;
+                font-size: 1.4rem;
+                font-weight: normal;
+                color: $color-gray-1;
+
+                & span {
+                    font-weight: bold;
+                }
+            }
+
+            & p {
+                margin-top: 0.5rem;
+                font-size: 1.4rem;
+                color: $color-gray-1;
+
+                & span {
+                    font-weight: bold;
                 }
             }
         }

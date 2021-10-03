@@ -12,10 +12,7 @@ const Products = (props) => {
         <div className="page">
             <div className="page--header">Products</div>
             <div className="page--details">
-                <Link
-                    to="/products/add+product"
-                    className="products__page--details-add"
-                >
+                <Link to="/products/add+product" className="page--details-add">
                     <IoMdAdd />
                     <span> Add Product</span>
                 </Link>

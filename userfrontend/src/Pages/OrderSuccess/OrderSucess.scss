@@ -1,0 +1,17 @@
+.order__success {
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & h2 {
+        font-size: 3rem;
+        color: green;
+        text-transform: capitalize;
+    }
+    & img {
+        width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
+    }
+}

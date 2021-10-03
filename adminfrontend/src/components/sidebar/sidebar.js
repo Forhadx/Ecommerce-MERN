@@ -6,7 +6,6 @@ import "./sidebar.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faHome,
-    faRssSquare,
     faShoppingBasket,
     faShoppingCart,
     faSignOutAlt,
@@ -36,10 +35,6 @@ const Sidebar = (props) => {
             <NavLink to="/daily+needs">
                 <FaDailymotion />
                 <span>Daily Needs</span>
-            </NavLink>
-            <NavLink to="/category">
-                <FontAwesomeIcon icon={faRssSquare} />
-                <span>Category</span>
             </NavLink>
             <NavLink to="/users">
                 <FontAwesomeIcon icon={faUsers} />

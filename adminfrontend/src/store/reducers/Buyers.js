@@ -26,6 +26,24 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 error: true,
             };
+        case actionTypes.SEARCH_BUYER_EMAIL_START:
+            return {
+                buyers: [],
+                loading: true,
+                error: false,
+            };
+        case actionTypes.SEARCH_BUYER_EMAIL_SUCCESS:
+            return {
+                buyers: action.buyer,
+                loading: false,
+                error: false,
+            };
+        case actionTypes.SEARCH_BUYER_EMAIL_FAIL:
+            return {
+                buyers: [],
+                loading: false,
+                error: true,
+            };
         default:
             return state;
     }

@@ -18,6 +18,7 @@ import Orders from "./Pages/Orders/Orders";
 
 import className from "classnames";
 import "./App.scss";
+import Backdrop from "./components/UI/Backdrop/Backdrop";
 
 const App = (props) => {
     const [isCartOpen, setIsCartOpen] = useState(false);
@@ -34,6 +35,7 @@ const App = (props) => {
 
     return (
         <div className="App">
+            <Backdrop show={isCartOpen} clicked={cartClickHandler} />
             <header className="header">
                 <Navigationbar cartClickHandler={cartClickHandler} />
             </header>

@@ -38,5 +38,12 @@
                 background-color: $color-green-3;
             }
         }
+
+        &-msg {
+            padding-top: 2rem;
+            font-size: 1.6rem;
+            color: $color-red-1;
+            text-align: center;
+        }
     }
 }

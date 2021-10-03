@@ -31,8 +31,6 @@ export const addProduct = (prodData) => {
             //console.log("res: ", result.data.product);
             dispatch(addProductSuccess(result.data.product));
         } catch (err) {
-            console.log("msg? ", err.response);
-            //console.log("get error message?: ", err.remessage);
             dispatch(addProductFail());
         }
     };
@@ -149,20 +147,17 @@ export const fetchMainProductsStart = () => {
         type: actionTypes.FETCH_MAIN_PRODUCTS_START,
     };
 };
-
 export const fetchMainProductsSuccess = (products) => {
     return {
         type: actionTypes.FETCH_MAIN_PRODUCTS_SUCCESS,
         products: products,
     };
 };
-
 export const fetchMainProductsFail = () => {
     return {
         type: actionTypes.FETCH_MAIN_PRODUCTS_FAIL,
     };
 };
-
 export const fetchMainProducts = (mainCatName) => {
     return async (dispatch) => {
         dispatch(fetchMainProductsSuccess());
@@ -206,6 +201,37 @@ export const fetchSubProducts = (subCatName) => {
             dispatch(fetchSubProductsSuccess(result.data.products));
         } catch (err) {
             dispatch(fetchSubProductsFail(err));
+        }
+    };
+};
+
+export const searchProductByNameStart = () => {
+    return {
+        type: actionTypes.SEARCH_PRODUCT_BY_NAME_START,
+    };
+};
+export const searchProductByNameSuccess = (products) => {
+    return {
+        type: actionTypes.SEARCH_PRODUCT_BY_NAME_SUCCESS,
+        products: products,
+    };
+};
+export const searchProductByNameFail = (err) => {
+    return {
+        type: actionTypes.SEARCH_PRODUCT_BY_NAME_FAIL,
+        error: err,
+    };
+};
+export const searchProductByName = (name) => {
+    return async (dispatch) => {
+        dispatch(searchProductByNameStart());
+        try {
+            const result = await axios.get(
+                `http://localhost:5000/product/name/${name}`
+            );
+            dispatch(searchProductByNameSuccess(result.data.products));
+        } catch (err) {
+            dispatch(searchProductByNameFail(err));
         }
     };
 };

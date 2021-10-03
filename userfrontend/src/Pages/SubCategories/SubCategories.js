@@ -18,13 +18,6 @@ const SubCat = (props) => {
             <h2 className="subCategory__page--heading">
                 Bread & Bakery | <span>{subCatName}</span>
             </h2>
-            <div className="subCategory__page--img">
-                <img
-                    className="bgImg"
-                    src="https://images.othoba.com/images/thumbs/0236958.jpeg"
-                    alt="imgage"
-                />
-            </div>
             <ProductGallary products={props.products} loading={props.loading} />
         </div>
     );
@@ -46,3 +39,13 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SubCat);
+
+/*
+<div className="subCategory__page--img">
+                <img
+                    className="bgImg"
+                    src="https://images.othoba.com/images/thumbs/0236958.jpeg"
+                    alt="imgage"
+                />
+            </div>
+*/

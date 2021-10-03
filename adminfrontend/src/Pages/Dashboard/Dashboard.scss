@@ -1,0 +1,55 @@
+@import "../../var.scss";
+
+.dashboard__page {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    &--item {
+        background-color: white;
+        width: 40%;
+        height: 20rem;
+        margin: 2rem 2rem;
+        padding: 2rem 2rem;
+        font-size: 3rem;
+        color: $color-primary;
+        font-weight: bold;
+        border-radius: 1rem;
+        box-shadow: 0rem 0.125rem 0.25rem 0rem rgba(14, 30, 37, 0.12),
+            0rem 0.125rem 1rem 0rem rgba(14, 30, 37, 0.32);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        & h1 {
+            font-size: 2.4rem;
+            text-transform: uppercase;
+            color: $color-white;
+            margin-bottom: 2rem;
+        }
+        & p {
+            font-size: 2.4rem;
+            color: $color-gray-3;
+        }
+
+        &-user {
+            background-color: $color-green-3;
+        }
+
+        &-products {
+            background-color: $color-red-3;
+        }
+
+        &-revenue {
+            background-color: $color-blue-2;
+        }
+
+        &-order {
+            background-color: $sidebar-bg-active-color;
+        }
+    }
+}

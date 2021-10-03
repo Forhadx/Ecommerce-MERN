@@ -48,7 +48,6 @@ const ProductTable = (props) => {
             <table className="products__table">
                 <thead>
                     <tr>
-                        <th>Id</th>
                         <th>Image</th>
                         <th>Name</th>
                         <th>Price</th>
@@ -60,7 +59,6 @@ const ProductTable = (props) => {
                     {props.products &&
                         props.products.map((p, index) => (
                             <tr key={p._id}>
-                                <td>{p._id.slice(-5)}</td>
                                 <td>
                                     <img
                                         className="bgImg"

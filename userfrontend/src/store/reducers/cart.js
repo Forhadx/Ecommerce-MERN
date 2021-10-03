@@ -58,7 +58,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 receiver: action.info.receiver,
                 phone: action.info.phone,
-                address: action.info.phone,
+                address: action.info.address,
             };
         case actiontypes.CLEAR_CART:
             return {

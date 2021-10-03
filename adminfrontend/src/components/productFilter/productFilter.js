@@ -5,11 +5,13 @@ import "./productFilter.scss";
 import { BiSearchAlt } from "react-icons/bi";
 import { categoryList } from "../../Data/category";
 import { connect } from "react-redux";
+import { BiRefresh } from "react-icons/bi";
 
 const ProductFilter = (props) => {
     const [mainCat, setMainCat] = useState("All");
     const [subCat, setSubCat] = useState("All");
     const [copySubCate, setCopySubCate] = useState([]);
+    const [prodName, setProdName] = useState("");
 
     const { onFetchAllProducts, onFetchMainProducts, onFetchSubProducts } =
         props;
@@ -37,6 +39,21 @@ const ProductFilter = (props) => {
                 setCopySubCate([...c.sCat]);
             }
         });
+    };
+
+    const searchProductHandler = (e) => {
+        e.preventDefault();
+        if (prodName) {
+            props.onSearchProductByName(prodName);
+            setMainCat("All");
+            setSubCat("All");
+        }
+    };
+
+    const refreshHandler = () => {
+        setMainCat("All");
+        setSubCat("All");
+        onFetchAllProducts();
     };
 
     return (
@@ -68,12 +85,22 @@ const ProductFilter = (props) => {
                     ))}
                 </select>
             </div>
-            <form className="products__filter--search">
-                <input type="text" placeholder="search products" />
-                <button>
+            <form
+                className="products__filter--search"
+                onSubmit={searchProductHandler}
+            >
+                <input
+                    type="text"
+                    placeholder="product name"
+                    onChange={(e) => setProdName(e.target.value)}
+                />
+                <button type="submit">
                     <BiSearchAlt />
                 </button>
             </form>
+            <button className="refresh-btn" onClick={refreshHandler}>
+                <BiRefresh />
+            </button>
         </div>
     );
 };
@@ -85,6 +112,8 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(actions.fetchMainProducts(mainCatName)),
         onFetchSubProducts: (subCatName) =>
             dispatch(actions.fetchSubProducts(subCatName)),
+        onSearchProductByName: (name) =>
+            dispatch(actions.searchProductByName(name)),
     };
 };
 

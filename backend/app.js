@@ -9,7 +9,6 @@ const stripe = require("stripe")(
 );
 
 const productRoutes = require("./routes/products");
-const categoryRoutes = require("./routes/categories");
 const buyerOrdersRoutes = require("./routes/buyerOrders");
 const adminOrdersRoutes = require("./routes/adminOrders");
 const buyerRoutes = require("./routes/buyer");
@@ -24,7 +23,6 @@ app.use("/uploads/images", express.static(path.join("uploads", "images")));
 
 // All routes
 app.use("/", productRoutes);
-app.use("/", categoryRoutes);
 app.use("/", buyerOrdersRoutes);
 app.use("/", adminOrdersRoutes);
 app.use("/", buyerRoutes);

@@ -3,12 +3,26 @@ import { FiMinusSquare, FiPlusSquare } from "react-icons/fi";
 import moment from "moment";
 import className from "classnames";
 import "./OrderCard.scss";
+import { connect } from "react-redux";
+import * as actions from "../../store/actions/orders";
 
 const OrderCard = (props) => {
     const [isOpenDetails, setIsOpenDetails] = useState(false);
 
     const detailsShowHandler = () => {
         setIsOpenDetails(!isOpenDetails);
+    };
+
+    const rejectOrderHandler = (id) => {
+        props.onRejectOrder(id);
+    };
+
+    const acceptOrderHandler = (id) => {
+        props.onOnwayOrder(id);
+    };
+
+    const deliverOrderHandler = (id) => {
+        props.onDeliveredOrder(id);
     };
 
     return (
@@ -22,14 +36,56 @@ const OrderCard = (props) => {
                 })}
             >
                 <div className="single__order--header-item">
-                    {props.order.orderRejected && <h5>REJECTED</h5>}
-                    {!props.order.onWay && !props.order.orderRejected && (
-                        <h5>Hold</h5>
-                    )}
-                    {props.order.onWay && !props.order.isDelivered && (
-                        <h5>ON Way</h5>
-                    )}
-                    {props.order.isDelivered && <h5>DELIVERD</h5>}
+                    {!props.order.orderRejected &&
+                        !props.order.onWay &&
+                        !props.order.isDelivered && (
+                            <div>
+                                <button
+                                    className="acc-btn"
+                                    onClick={() =>
+                                        acceptOrderHandler(props.order._id)
+                                    }
+                                >
+                                    Accept
+                                </button>
+                                <button
+                                    className="dec-btn"
+                                    onClick={() =>
+                                        rejectOrderHandler(props.order._id)
+                                    }
+                                >
+                                    Decline
+                                </button>
+                            </div>
+                        )}
+                    {!props.order.orderRejected &&
+                        props.order.onWay &&
+                        !props.order.isDelivered && (
+                            <div>
+                                <button
+                                    className="way-btn"
+                                    onClick={() =>
+                                        deliverOrderHandler(props.order._id)
+                                    }
+                                >
+                                    ON WAY
+                                </button>
+                            </div>
+                        )}
+                    {!props.order.orderRejected &&
+                        props.order.onWay &&
+                        props.order.isDelivered && (
+                            <div>
+                                <span className="deliver">Deliverd</span>
+                            </div>
+                        )}
+                    {props.order.orderRejected &&
+                        !props.order.onWay &&
+                        !props.order.isDelivered && (
+                            <div>
+                                <span className="reject">Rejected</span>
+                            </div>
+                        )}
                 </div>
                 <div className="single__order--header-item">
                     <h2>ID: {props.order._id}</h2>
@@ -80,9 +136,37 @@ const OrderCard = (props) => {
                         ))}
                     </tbody>
                 </table>
+                <div className="single__order--details-address">
+                    <h3>Receiver Info</h3>
+                    <h4>
+                        <span>Phone: </span>
+                        {props.order.phone}
+                    </h4>
+                    <p>
+                        <span>Address: </span>
+                        {props.order.address}
+                    </p>
+                </div>
             </div>
         </div>
     );
 };
 
-export default OrderCard;
+const mapStateToProps = (state) => {
+    return {
+        orders: state.order.orders,
+        loading: state.order.loading,
+        error: state.order.error,
+        token: state.auth.token,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onRejectOrder: (id) => dispatch(actions.rejectOrder(id)),
+        onOnwayOrder: (id) => dispatch(actions.onwayOrder(id)),
+        onDeliveredOrder: (id) => dispatch(actions.deliveredOrder(id)),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderCard);

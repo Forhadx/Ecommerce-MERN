@@ -10,14 +10,13 @@ const Users = (props) => {
     useEffect(() => {
         onFetchAllBuyers();
     }, [onFetchAllBuyers]);
-    console.log("b: ", props.buyers);
 
     return (
         <div className="page">
             <div className="page--header">All register Users</div>
             <div className="page--details">
                 <UserFilter />
-                <UsersTable />
+                {props.loading ? <Spinner /> : <UsersTable />}
             </div>
         </div>
     );

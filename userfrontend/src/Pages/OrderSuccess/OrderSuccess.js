@@ -1,9 +1,15 @@
 import React from "react";
+import "./OrderSucess.scss";
 
 const orderSuccess = () => {
     return (
-        <div>
-            <h2>order success</h2>
+        <div className="order__success">
+            <h2>Order Successfully Sent</h2>
+            <img
+                className="bgImg"
+                src="https://i.stack.imgur.com/ZRTb6.gif"
+                alt="success"
+            />
         </div>
     );
 };

@@ -159,7 +159,6 @@ exports.fetchProductById = async (req, res, next) => {
 
 exports.fetchProductByName = async (req, res, next) => {
     const name = req.params.pName;
-    console.log("name: ", name);
     try {
         let products = await ProductModel.find({ name: name });
         if (!products) {

@@ -80,6 +80,17 @@ const OrderCard = (props) => {
                         ))}
                     </tbody>
                 </table>
+                <div className="single__order--details-address">
+                    <h3>Receiver Info</h3>
+                    <h4>
+                        <span>Phone: </span>
+                        {props.order.phone}
+                    </h4>
+                    <p>
+                        <span>Address: </span>
+                        {props.order.address}
+                    </p>
+                </div>
             </div>
         </div>
     );

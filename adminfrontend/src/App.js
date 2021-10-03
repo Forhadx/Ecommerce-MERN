@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import * as actions from "./store/actions/index";
 import Sidebar from "./components/sidebar/sidebar";
 import Products from "./Pages/Products/Products";
-import Category from "./Pages/Category/Category";
 import Orders from "./Pages/Orders/Orders";
 import DailyNeeds from "./Pages/DailyNeeds/DailyNeeds";
 import AddProduct from "./Pages/AddProduct/AddProducts";
@@ -32,7 +31,6 @@ const App = (props) => {
                     </aside>
                     <main className="main">
                         <Switch>
-                            <Route path="/category" component={Category} />
                             <Route path="/orders" component={Orders} />
                             <Route path="/daily+needs" component={DailyNeeds} />
                             <Route path="/users" component={Users} />

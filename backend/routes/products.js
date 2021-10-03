@@ -83,27 +83,3 @@ router.post(
 );
 
 module.exports = router;
-
-/*
- [
-        body("mainCategory").notEmpty(),
-        body("subCategory").notEmpty(),
-        body("name", "product name should be between 3 to 60 character.")
-            .trim()
-            .isString()
-            .isLength({ min: 3, max: 60 }),
-        body("amount", "product amount should be max 20 character.")
-            .trim()
-            .isString()
-            .isLength({ max: 20 }),
-        body("price").isNumeric().isLength({ min: 10, max: 2000 }),
-        body("brand", "product brand should be max 50 character.")
-            .trim()
-            .isString()
-            .isLength({ max: 50 }),
-        body("description", "product description should be max 500 character.")
-            .trim()
-            .isString()
-            .isLength({ max: 500 }),
-    ]
-*/

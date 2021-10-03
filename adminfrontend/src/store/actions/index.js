@@ -7,10 +7,11 @@ export {
     fetchAllProducts,
     fetchMainProducts,
     fetchSubProducts,
+    searchProductByName,
 } from "./Products";
 
 export { userLogin, autoLogin, logout } from "./Auth";
 
-export { fetchAllBuyers } from "./Buyers";
+export { fetchAllBuyers, searchBuyerEmail } from "./Buyers";
 
-export { fetchOrders } from "./orders";
+export { fetchOrders, rejectOrder, onwayOrder, deliveredOrder } from "./orders";

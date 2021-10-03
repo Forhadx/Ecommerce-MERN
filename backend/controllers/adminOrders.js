@@ -34,21 +34,6 @@ exports.rejectOrder = async (req, res, next) => {
     }
 };
 
-exports.visitedOrder = async (req, res, next) => {
-    const oId = req.params.oId;
-    try {
-        let order = await OrdersModel.findById(oId);
-        if (!order) {
-            console.log("order not found!");
-        }
-        order.isVisited = true;
-        await order.save();
-        res.json({ message: "order is visited!", order: order });
-    } catch (err) {
-        console.log(err);
-    }
-};
-
 exports.deliveredOrder = async (req, res, next) => {
     const oId = req.params.oId;
     try {

@@ -32,7 +32,7 @@ router.post("/buyer/login", buyerController.loginBuyer);
 
 router.get("/buyer/a", buyerController.fetchAllBuyers);
 
-router.get("/buyer/a/email", buyerController.fetchBuyerByEmail);
+router.post("/buyer/a/email", buyerController.fetchBuyerByEmail);
 
 router.get("/buyer/a/:bId", buyerController.fetchBuyerById);
 
