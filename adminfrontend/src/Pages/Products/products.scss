@@ -13,6 +13,16 @@
         border-radius: 1rem;
         box-shadow: 0rem 0.125rem 0.25rem 0rem rgba(14, 30, 37, 0.12),
             0rem 0.125rem 1rem 0rem rgba(14, 30, 37, 0.32);
+
+        @include respond(phone) {
+            margin: 2rem 1rem;
+            padding: 1rem;
+        }
+
+        @include respond(port) {
+            margin: 2rem 1rem;
+            padding: 1rem;
+        }
     }
 
     &--details {
@@ -22,6 +32,16 @@
         border-radius: 1rem;
         box-shadow: 0rem 0.125rem 0.25rem 0rem rgba(14, 30, 37, 0.12),
             0rem 0.125rem 1rem 0rem rgba(14, 30, 37, 0.32);
+
+        @include respond(phone) {
+            margin: 2rem 1rem;
+            padding: 2rem 1rem;
+        }
+
+        @include respond(port) {
+            margin: 2rem 1rem;
+            padding: 2rem 1rem;
+        }
 
         &-add {
             font-size: 2rem;

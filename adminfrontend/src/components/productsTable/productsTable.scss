@@ -48,6 +48,12 @@
                         width: 2.4rem;
                         margin-bottom: 0.5rem;
                     }
+
+                    @include respond(port) {
+                        font-size: 1.4rem;
+                        width: 2.4rem;
+                        margin-bottom: 0.5rem;
+                    }
                 }
 
                 & button:last-child {
@@ -73,6 +79,11 @@
 
             & .btns {
                 @include respond(phone) {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                @include respond(port) {
                     display: flex;
                     flex-direction: column;
                 }

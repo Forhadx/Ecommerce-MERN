@@ -115,7 +115,7 @@ const ProductFrom = (props) => {
             setGoBack(true);
         } else {
             formData.append("image", data.image[0]);
-            props.onAddProduct(formData);
+            // props.onAddProduct(formData); // stop update porduct
             reset();
         }
     };
@@ -224,6 +224,7 @@ const ProductFrom = (props) => {
                 </div>
                 <button type="submit">SAVE PRODUCT</button>
             </form>
+            <h3>ADD, UPDATE AND DELETE OPERATION IS MUTED</h3>
         </div>
     );
 };

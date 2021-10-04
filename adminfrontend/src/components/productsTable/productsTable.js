@@ -49,7 +49,6 @@ const ProductTable = (props) => {
                         <th>Image</th>
                         <th>Name</th>
                         <th>Price</th>
-                        <th>Category</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -66,10 +65,6 @@ const ProductTable = (props) => {
                                 </td>
                                 <td>{p.name}</td>
                                 <td>{p.price}</td>
-                                <td>
-                                    <div>{p.mainCategory} / </div>
-                                    <div>{p.subCategory}</div>
-                                </td>
                                 <td className="btns">
                                     <button
                                         className="btn-eye"

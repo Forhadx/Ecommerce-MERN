@@ -1,5 +1,6 @@
 @import "../../var.scss";
 
+/*
 .add__product {
     background-color: white;
     padding: 2rem 2rem;
@@ -129,5 +130,156 @@
             margin-bottom: 2rem;
             margin-left: 20rem;
         }
+    }
+}
+
+*/
+
+.add__product {
+    max-width: 80rem;
+    margin: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    background-color: white;
+    padding: 2rem 2rem;
+    box-shadow: 0rem 0.125rem 0.25rem 0rem rgba(14, 30, 37, 0.12),
+        0rem 0.125rem 1rem 0rem rgba(14, 30, 37, 0.32);
+
+    @include respond(phone) {
+        width: 90%;
+    }
+
+    @include respond(port) {
+        width: 90%;
+    }
+
+    &--back {
+        color: $color-blue-2;
+        font-size: 1.6rem;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &--header {
+        text-align: center;
+        color: $color-primary;
+        font-size: 2rem;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    &--form {
+        width: 80%;
+        margin: auto;
+
+        &-input {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            margin-bottom: 2rem;
+
+            & p {
+                grid-column: 2/3;
+                color: $color-red-1;
+                font-size: 1.4rem;
+            }
+
+            & label {
+                font-size: 1.4rem;
+                font-weight: 500;
+                color: $color-primary;
+            }
+
+            & select {
+                width: 100%;
+                font-size: 1.4rem;
+                padding: 0.5rem 0.8rem;
+                border-radius: 0.3rem;
+                border: 1px solid $color-primary;
+                background-color: $color-gray-3;
+
+                &:focus {
+                    border: 1px solid $color-red-2;
+                    outline: $color-red-2;
+                    background-color: $color-white;
+                }
+
+                & option {
+                    width: 100%;
+                    font-size: 1.4rem;
+                    padding: 0.3rem 0.5rem;
+                    border-radius: 0.3rem;
+                    border: 1px solid $color-primary;
+                    background-color: $color-gray-3;
+
+                    &:focus {
+                        border: 1px solid $color-red-2;
+                        outline: $color-red-2;
+                        background-color: $color-white;
+                    }
+                }
+            }
+
+            & input {
+                width: 100%;
+                font-size: 1.4rem;
+                padding: 0.3rem 0.5rem;
+                border-radius: 0.3rem;
+                border: 1px solid $color-primary;
+                background-color: $color-gray-3;
+
+                &:focus {
+                    border: 1px solid $color-red-2;
+                    outline: $color-red-2;
+                    background-color: $color-white;
+                }
+            }
+
+            & textarea {
+                resize: none;
+                width: 100%;
+                font-size: 1.4rem;
+                padding: 0.3rem 0.5rem;
+                border-radius: 0.3rem;
+                border: 1px solid $color-primary;
+                background-color: $color-gray-3;
+
+                &:focus {
+                    border: 1px solid $color-red-2;
+                    outline: $color-red-2;
+                    background-color: $color-white;
+                }
+            }
+        }
+
+        & button {
+            padding: 0.8rem 1rem;
+            font-size: 1.4rem;
+            outline: none;
+            border: none;
+            border-radius: 0.5rem;
+            background-color: $color-green-1;
+            color: white;
+            cursor: pointer;
+            text-transform: uppercase;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            margin-left: 20rem;
+
+            @include respond(phone) {
+                margin-left: 0;
+            }
+
+            @include respond(port) {
+                margin-left: 0;
+            }
+        }
+    }
+
+    & h3 {
+        font-size: 1.4rem;
+        text-align: center;
+        color: red;
     }
 }

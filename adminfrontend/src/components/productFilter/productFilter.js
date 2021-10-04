@@ -58,7 +58,7 @@ const ProductFilter = (props) => {
 
     return (
         <div className="products__filter">
-            <div className="products__filter--category">
+            <div className="products__filter--item">
                 <label className="products__filter--category-main">
                     Main Category
                 </label>
@@ -70,6 +70,8 @@ const ProductFilter = (props) => {
                         </option>
                     ))}
                 </select>
+            </div>
+            <div className="products__filter--item">
                 <label className="products__filter--category-sub">
                     Sub Category
                 </label>
@@ -85,23 +87,24 @@ const ProductFilter = (props) => {
                     ))}
                 </select>
             </div>
-
-            <form
-                className="products__filter--search"
-                onSubmit={searchProductHandler}
-            >
-                <input
-                    type="text"
-                    placeholder="product name"
-                    onChange={(e) => setProdName(e.target.value)}
-                />
-                <button type="submit">
-                    <BiSearchAlt />
+            <div className="products__filter--item">
+                <form
+                    className="products__filter--search"
+                    onSubmit={searchProductHandler}
+                >
+                    <input
+                        type="text"
+                        placeholder="product name"
+                        onChange={(e) => setProdName(e.target.value)}
+                    />
+                    <button type="submit">
+                        <BiSearchAlt />
+                    </button>
+                </form>
+                <button className="refresh-btn" onClick={refreshHandler}>
+                    <BiRefresh />
                 </button>
-            </form>
-            <button className="refresh-btn" onClick={refreshHandler}>
-                <BiRefresh />
-            </button>
+            </div>
         </div>
     );
 };

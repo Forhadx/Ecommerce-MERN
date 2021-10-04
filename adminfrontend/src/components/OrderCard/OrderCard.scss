@@ -1,7 +1,8 @@
 @import "../../var.scss";
 
 .single__order {
-    width: 100%;
+    max-width: 80rem;
+    margin: auto;
     border-radius: 0.5rem;
     overflow: hidden;
     margin-bottom: 2rem;
@@ -20,10 +21,16 @@
             justify-content: center;
 
             & div {
+                width: 20rem;
                 display: flex;
                 flex-direction: row;
 
                 @include respond(phone) {
+                    flex-direction: column;
+                    width: auto;
+                }
+                @include respond(phone) {
+                    width: auto;
                     flex-direction: column;
                 }
 
