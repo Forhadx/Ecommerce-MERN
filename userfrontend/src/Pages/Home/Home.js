@@ -1,5 +1,6 @@
 import React from "react";
 import "./Home.scss";
+import "../MainCategories/MainCategories.scss";
 
 import { categoryList } from "../../Data/Category";
 import { useHistory } from "react-router";

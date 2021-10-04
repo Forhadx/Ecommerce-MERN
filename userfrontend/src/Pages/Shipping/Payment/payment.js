@@ -4,9 +4,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import PaymentCard from "./PaymentCard";
 import "./payment.scss";
 
-const stripePromise = loadStripe(
-    "pk_test_51IiPSLGowqc4Ssvcb15zqkkinpFhevug3A2PSFjW4AHla3SQhOuiodRABrdtv5RW3MoAPScKXFvg0OGeUKReA2uv00ZOKf5nCq"
-);
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_ID);
 
 const Payment = () => {
     return (

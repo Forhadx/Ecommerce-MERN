@@ -28,3 +28,4 @@
     yup
     @hookform/resolvers
     react-hook-form
+    dotenv

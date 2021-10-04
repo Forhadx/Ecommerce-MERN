@@ -4,9 +4,7 @@ const express = require("express");
 
 const mongoose = require("mongoose");
 const cors = require("cors");
-const stripe = require("stripe")(
-    "sk_test_51IiPSLGowqc4SsvcHw00PKXYRRwBHOhuypUWqltdFWuYXG9BLsv4OmVQ8C7zbs4Zp0uGzWXHhP9IWcu7FEg2zM5r000chZwg76"
-);
+const stripe = require("stripe")(process.env.STRIPE_SK);
 
 const productRoutes = require("./routes/products");
 const buyerOrdersRoutes = require("./routes/buyerOrders");
@@ -31,11 +29,9 @@ app.use("/", dashboardRoutes);
 
 //ERROR
 app.use((error, req, res, next) => {
-    //console.log("error?: ", error);
     const status = error.statusCode || 500;
     const message = error.message;
-    const data = error.data; // this is error.array() messages
-    // console.log("error message? ", message);
+    const data = error.data;
     res.status(status).json({ message: message, data: data });
 });
 
@@ -54,8 +50,7 @@ app.post("/pay", async (req, res) => {
 
 // Database Connection
 const PORT = process.env.PORT || 5000;
-const CONNECTION_URL =
-    "mongodb+srv://forhad12:forhad123456@cluster0.sonyg.mongodb.net/ecommerce?retryWrites=true&w=majority";
+const CONNECTION_URL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.sonyg.mongodb.net/${process.env.MONGODB_NAME}?retryWrites=true&w=majority`;
 
 mongoose
     .connect(CONNECTION_URL, {
@@ -68,5 +63,3 @@ mongoose
         });
     })
     .catch((err) => console.log(err));
-
-// mongoose.set('useFindAndModify', false);

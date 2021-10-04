@@ -1,17 +1,41 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
+import { Redirect, Route, Switch } from "react-router";
 import { connect } from "react-redux";
 import * as actions from "./store/actions/index";
-import Sidebar from "./components/sidebar/sidebar";
-import Products from "./Pages/Products/Products";
-import Orders from "./Pages/Orders/Orders";
-import AddProduct from "./Pages/AddProduct/AddProducts";
-import UpdateProduct from "./Pages/UpdateProduct/UpdateProduct";
-import Login from "./Pages/Login/Login";
-import Users from "./Pages/Users/Users";
 import "./App.scss";
-import Dashboard from "./Pages/Dashboard/Dashboard";
-import { Redirect, Route, Switch } from "react-router";
+import "./products.scss";
 import className from "classnames";
+import Spinner from "./components/UI/Spinner/Spinner";
+import Sidebar from "./components/sidebar/sidebar";
+// import Products from "./Pages/Products/Products";
+// import Orders from "./Pages/Orders/Orders";
+// import AddProduct from "./Pages/AddProduct/AddProducts";
+// import UpdateProduct from "./Pages/UpdateProduct/UpdateProduct";
+// import Login from "./Pages/Login/Login";
+// import Users from "./Pages/Users/Users";
+// import Dashboard from "./Pages/Dashboard/Dashboard";
+
+const Orders = React.lazy(() => {
+    return import("./Pages/Orders/Orders");
+});
+const Users = React.lazy(() => {
+    return import("./Pages/Users/Users");
+});
+const AddProduct = React.lazy(() => {
+    return import("./Pages/AddProduct/AddProducts");
+});
+const UpdateProduct = React.lazy(() => {
+    return import("./Pages/UpdateProduct/UpdateProduct");
+});
+const Products = React.lazy(() => {
+    return import("./Pages/Products/Products");
+});
+const Dashboard = React.lazy(() => {
+    return import("./Pages/Dashboard/Dashboard");
+});
+const Login = React.lazy(() => {
+    return import("./Pages/Login/Login");
+});
 
 const App = (props) => {
     const [isSidebarClose, setIsSidebarClose] = useState(false);
@@ -42,35 +66,56 @@ const App = (props) => {
                         <Sidebar />
                     </aside>
                     <main className="main">
-                        <Switch>
-                            <Route path="/orders" component={Orders} />
-                            <Route path="/users" component={Users} />
-                            <Route
-                                path="/products/add+product/"
-                                exact
-                                component={AddProduct}
-                            />
-                            <Route
-                                path="/products/update+product/:pId"
-                                exact
-                                component={UpdateProduct}
-                            />
-                            <Route
-                                path="/products"
-                                exact
-                                component={Products}
-                            />
-                            <Route path="/" exact component={Dashboard} />
-                            <Redirect to="/" />
-                        </Switch>
+                        <Suspense fallback={<Spinner />}>
+                            <Switch>
+                                <Route
+                                    path="/orders"
+                                    render={(props) => <Orders {...props} />}
+                                />
+                                <Route
+                                    path="/users"
+                                    render={(props) => <Users {...props} />}
+                                />
+                                <Route
+                                    path="/products/add+product/"
+                                    exact
+                                    render={(props) => (
+                                        <AddProduct {...props} />
+                                    )}
+                                />
+                                <Route
+                                    path="/products/update+product/:pId"
+                                    exact
+                                    render={(props) => (
+                                        <UpdateProduct {...props} />
+                                    )}
+                                />
+                                <Route
+                                    path="/products"
+                                    exact
+                                    render={(props) => <Products {...props} />}
+                                />
+                                <Route
+                                    path="/"
+                                    exact
+                                    render={(props) => <Dashboard {...props} />}
+                                />
+                                <Redirect to="/" />
+                            </Switch>
+                        </Suspense>
                     </main>
                 </React.Fragment>
             ) : (
                 <div>
-                    <Switch>
-                        <Route path="/login" component={Login} />
-                        <Redirect to="/login" />
-                    </Switch>
+                    <Suspense fallback={<Spinner />}>
+                        <Switch>
+                            <Route
+                                path="/login"
+                                render={(props) => <Login {...props} />}
+                            />
+                            <Redirect to="/login" />
+                        </Switch>
+                    </Suspense>
                 </div>
             )}
         </div>

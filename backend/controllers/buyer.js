@@ -56,7 +56,7 @@ exports.loginBuyer = async (req, res, next) => {
                 email: buyer.email,
                 userId: buyer._id.toString(),
             },
-            "blablabla",
+            process.env.JWT_TOKEN,
             { expiresIn: "365d" }
         );
         res.json({

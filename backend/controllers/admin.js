@@ -38,7 +38,7 @@ exports.loginAdmin = async (req, res, next) => {
         }
         const token = jwt.sign(
             { email: user.email, userId: user._id.toString() },
-            "blablabla",
+            process.env.JWT_TOKEN,
             { expiresIn: "365d" }
         );
         res.json({

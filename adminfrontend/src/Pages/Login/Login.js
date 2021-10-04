@@ -57,14 +57,14 @@ const Login = (props) => {
                 className="user__auth--form"
                 onSubmit={handleSubmit(loginHandler)}
             >
-                <label>E-mail</label>
+                <label>E-mail(admin@admin.com)</label>
                 <input
                     type="text"
                     placeholder="enter your email"
                     {...register("email")}
                 />
                 <p>{errors.email?.message}</p>
-                <label>Password</label>
+                <label>Password(123456)</label>
                 <input
                     type="password"
                     placeholder="At least 6 character"

@@ -3,7 +3,6 @@ import ProductFilter from "../../components/productFilter/productFilter";
 import { connect } from "react-redux";
 import { IoMdAdd } from "react-icons/io";
 import Spinner from "../../components/UI/Spinner/Spinner";
-import "./products.scss";
 import { Link } from "react-router-dom";
 import ProductTable from "../../components/productsTable/productsTable";
 

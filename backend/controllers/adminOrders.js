@@ -55,8 +55,9 @@ exports.deliveredOrder = async (req, res, next) => {
         }
         order.isDelivered = true;
         order.deliveredAt = new Date();
-        const buyer = await BuyerModel.findById(order.buyerId);
-        buyer.totalbuy = buyer.totalbuy + order.totalPrice;
+        const buyer = await BuyerModel.findById(order.buyerId.toString());
+        buyer.totalbuy = +buyer.totalbuy + +order.totalPrice;
+        await buyer.save();
         await order.save();
         res.json({ message: "order is visited!", order: order });
     } catch (err) {
