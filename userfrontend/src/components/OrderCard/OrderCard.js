@@ -67,7 +67,10 @@ const OrderCard = (props) => {
                                 <td>
                                     <img
                                         className="bgImg"
-                                        src={`http://localhost:5000/${i.image}`}
+                                        src={
+                                            process.env.REACT_APP_BASE_URL +
+                                            i.image
+                                        }
                                         alt="product"
                                     />
                                 </td>

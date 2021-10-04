@@ -44,8 +44,8 @@ const Shipping = (props) => {
     return (
         <div className="shipping">
             <div className="shipping__header">
-                <h1>9 Items Selected</h1>
-                <h1>Total Price 2323tk</h1>
+                <h1>{`${props.totalItem} Items Selected`}</h1>
+                <h1>{`Total Price ${props.totalPrice}৳`}</h1>
             </div>
             <form
                 className="shipping__form"
@@ -80,10 +80,17 @@ const Shipping = (props) => {
     );
 };
 
+const mapStateToProps = (state) => {
+    return {
+        totalItem: state.cart.totalItem,
+        totalPrice: state.cart.totalPrice,
+    };
+};
+
 const mapDispatchToProps = (dispatch) => {
     return {
         onAddReceiverInfo: (subName) =>
             dispatch(actions.addReceiverInfo(subName)),
     };
 };
-export default connect(null, mapDispatchToProps)(Shipping);
+export default connect(mapStateToProps, mapDispatchToProps)(Shipping);

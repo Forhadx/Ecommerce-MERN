@@ -12,7 +12,9 @@ const ProductDetails = (props) => {
             <div className="single__prod--img">
                 <img
                     className="bgImg"
-                    src={`http://localhost:5000/${props.singleProd.image}`}
+                    src={
+                        process.env.REACT_APP_BASE_URL + props.singleProd.image
+                    }
                     alt="product"
                 />
             </div>

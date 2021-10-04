@@ -1,5 +1,9 @@
 # Ecommerce-MERN
 
+User site: https://gomart-eccomerce.netlify.app/
+
+Admin site: https://gomart-admin.netlify.app/
+
 # Node moudules
 
     nodemon

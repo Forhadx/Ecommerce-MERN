@@ -66,8 +66,8 @@ const Card = (props) => {
                     <div className="card__details--img">
                         <img
                             className="bgImg"
-                            src={`http://localhost:5000/${product.image}`}
-                            alt={product.name}
+                            src={process.env.REACT_APP_BASE_URL + product.image}
+                            alt="product"
                         />
                     </div>
                     <div className="card__details--info">

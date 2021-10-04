@@ -39,8 +39,8 @@ const CartProduct = (props) => {
             <div className="cartbar__product--img">
                 <img
                     className="bgImg"
-                    src={`http://localhost:5000/${product.image}`}
-                    alt={product.name}
+                    src={process.env.REACT_APP_BASE_URL + product.image}
+                    alt="product"
                 />
             </div>
             <div className="cartbar__product--details">

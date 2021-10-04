@@ -59,7 +59,10 @@ const ProductTable = (props) => {
                                 <td>
                                     <img
                                         className="bgImg"
-                                        src={`http://localhost:5000/${p.image}`}
+                                        src={
+                                            process.env.REACT_APP_BASE_URL +
+                                            p.image
+                                        }
                                         alt="product"
                                     />
                                 </td>

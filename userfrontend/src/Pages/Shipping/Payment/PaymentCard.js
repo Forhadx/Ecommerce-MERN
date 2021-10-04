@@ -28,7 +28,7 @@ const Payment = (props) => {
         if (!stripe || !elements) {
             return;
         }
-        const res = await axios.post("http://localhost:5000/pay", {
+        const res = await axios.post(process.env.REACT_APP_BASE_URL + "pay", {
             email: props.email,
         });
         // console.log("res: ", res);
