@@ -3,6 +3,14 @@
 .mainCategory__page {
     padding: 2rem;
 
+    @include respond(phone) {
+        padding: 0;
+    }
+
+    @include respond(port) {
+        padding: 0;
+    }
+
     &--heading {
         width: 100%;
         font-size: 3rem;

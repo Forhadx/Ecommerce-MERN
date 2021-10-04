@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import axios from "axios";
+import axios from "../../axios";
 
 export const userInit = () => {
     return {
@@ -28,7 +28,7 @@ export const userSignup = (userData) => {
     return async (dispatch) => {
         dispatch(userSignupStart());
         try {
-            axios.post("http://localhost:5000/buyer/signup", userData);
+            axios.post("/buyer/signup", userData);
             dispatch(userSignupSuccess());
         } catch (err) {
             dispatch(userSignupFail(err));
@@ -62,11 +62,10 @@ export const userLogin = (userData) => {
     return async (dispatch) => {
         dispatch(userLoginStart());
         try {
-            let result = await axios.post(
-                "http://localhost:5000/buyer/login",
-                userData
+            let result = await axios.post("/buyer/login", userData);
+            const expirationDate = new Date(
+                new Date().getTime() + 365 * 24 * 3600 * 1000
             );
-            const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
             localStorage.setItem("token", result.data.token);
             localStorage.setItem("expirationDate", expirationDate);
             localStorage.setItem("userId", result.data.userId);
@@ -80,7 +79,7 @@ export const userLogin = (userData) => {
                     result.data.userId
                 )
             );
-            dispatch(checkAuthTimeout(3600));
+            dispatch(checkAuthTimeout(365 * 24 * 3600));
         } catch (err) {
             dispatch(userLoginFail(err));
         }

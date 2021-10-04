@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import * as actions from "./store/actions/index";
 import Sidebar from "./components/sidebar/sidebar";
 import Products from "./Pages/Products/Products";
 import Orders from "./Pages/Orders/Orders";
-import DailyNeeds from "./Pages/DailyNeeds/DailyNeeds";
 import AddProduct from "./Pages/AddProduct/AddProducts";
 import UpdateProduct from "./Pages/UpdateProduct/UpdateProduct";
 import Login from "./Pages/Login/Login";
@@ -12,27 +11,39 @@ import Users from "./Pages/Users/Users";
 import "./App.scss";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import { Redirect, Route, Switch } from "react-router";
+import className from "classnames";
 
 const App = (props) => {
+    const [isSidebarClose, setIsSidebarClose] = useState(false);
+
     const { autoLogin, token } = props;
     useEffect(() => {
         autoLogin();
     }, [autoLogin, token]);
 
+    const sidebarToggleHandler = () => {
+        setIsSidebarClose(!isSidebarClose);
+    };
     return (
         <div className="App">
             <header className="header">
+                <div className="header-logo" onClick={sidebarToggleHandler}>
+                    &#9776;
+                </div>
                 <div>Gro-Mart</div>
             </header>
             {props.token ? (
                 <React.Fragment>
-                    <aside className="sidebar">
+                    <aside
+                        className={className("sidebar", {
+                            close: isSidebarClose,
+                        })}
+                    >
                         <Sidebar />
                     </aside>
                     <main className="main">
                         <Switch>
                             <Route path="/orders" component={Orders} />
-                            <Route path="/daily+needs" component={DailyNeeds} />
                             <Route path="/users" component={Users} />
                             <Route
                                 path="/products/add+product/"

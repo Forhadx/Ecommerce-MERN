@@ -13,7 +13,7 @@ const buyerOrdersRoutes = require("./routes/buyerOrders");
 const adminOrdersRoutes = require("./routes/adminOrders");
 const buyerRoutes = require("./routes/buyer");
 const adminRoutes = require("./routes/admin");
-const dailyproductsRoutes = require("./routes/dailyProducts");
+const dashboardRoutes = require("./routes/dashboard");
 
 const app = express();
 
@@ -27,7 +27,7 @@ app.use("/", buyerOrdersRoutes);
 app.use("/", adminOrdersRoutes);
 app.use("/", buyerRoutes);
 app.use("/", adminRoutes);
-app.use("/", dailyproductsRoutes);
+app.use("/", dashboardRoutes);
 
 //ERROR
 app.use((error, req, res, next) => {

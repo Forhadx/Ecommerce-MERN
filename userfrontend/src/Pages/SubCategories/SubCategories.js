@@ -39,13 +39,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SubCat);
-
-/*
-<div className="subCategory__page--img">
-                <img
-                    className="bgImg"
-                    src="https://images.othoba.com/images/thumbs/0236958.jpeg"
-                    alt="imgage"
-                />
-            </div>
-*/

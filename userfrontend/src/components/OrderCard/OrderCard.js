@@ -33,16 +33,14 @@ const OrderCard = (props) => {
                 </div>
                 <div className="single__order--header-item">
                     <h2>ID: {props.order._id}</h2>
+                    <h3>{`${props.order.totalPrice} ৳`}</h3>
                     <p>
                         {moment(props.order.createdAt).format(
                             "h:m, DD-MMM-YYYY"
                         )}
                     </p>
                 </div>
-                <div className="single__order--header-item">
-                    <h2>Total Price</h2>
-                    <p>{`${props.order.totalPrice} ৳`}</p>
-                </div>
+
                 <div className="single__order--header-item">
                     <button onClick={detailsShowHandler}>
                         {isOpenDetails ? <FiMinusSquare /> : <FiPlusSquare />}

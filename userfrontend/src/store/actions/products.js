@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import axios from "axios";
+import axios from "../../axios";
 
 export const singleProductInit = () => {
     return {
@@ -35,7 +35,7 @@ export const fetchAllProducts = () => {
     return async (dispatch) => {
         dispatch(fetchAllProductsStart());
         try {
-            const result = await axios.get("http://localhost:5000/products");
+            const result = await axios.get("/products");
             dispatch(fetchAllProductsSuccess(result.data.products));
         } catch (err) {
             dispatch(fetchAllProductsFail(err));
@@ -66,10 +66,9 @@ export const fetchMainProducts = (mainCatName) => {
     return async (dispatch) => {
         dispatch(fetchMainProductsStart());
         try {
-            const result = await axios.post(
-                "http://localhost:5000/products/mainCategory",
-                { mainCatName: mainCatName }
-            );
+            const result = await axios.post("/products/mainCategory", {
+                mainCatName: mainCatName,
+            });
             dispatch(fetchMainProductsSuccess(result.data.products));
         } catch (err) {
             dispatch(fetchMainProductsFail());
@@ -98,13 +97,41 @@ export const fetchSubProducts = (subCatName) => {
     return async (dispatch) => {
         dispatch(fetchSubProductsStart());
         try {
-            const result = await axios.post(
-                "http://localhost:5000/products/subCategory",
-                { subCatName: subCatName }
-            );
+            const result = await axios.post("/products/subCategory", {
+                subCatName: subCatName,
+            });
             dispatch(fetchSubProductsSuccess(result.data.products));
         } catch (err) {
             dispatch(fetchSubProductsFail(err));
+        }
+    };
+};
+
+export const searchProductByNameStart = () => {
+    return {
+        type: actionTypes.SEARCH_PRODUCT_BY_NAME_START,
+    };
+};
+export const searchProductByNameSuccess = (products) => {
+    return {
+        type: actionTypes.SEARCH_PRODUCT_BY_NAME_SUCCESS,
+        products: products,
+    };
+};
+export const searchProductByNameFail = (err) => {
+    return {
+        type: actionTypes.SEARCH_PRODUCT_BY_NAME_FAIL,
+        error: err,
+    };
+};
+export const searchProductByName = (name) => {
+    return async (dispatch) => {
+        dispatch(searchProductByNameStart());
+        try {
+            const result = await axios.get(`/product/name/${name}`);
+            dispatch(searchProductByNameSuccess(result.data.products));
+        } catch (err) {
+            dispatch(searchProductByNameFail(err));
         }
     };
 };

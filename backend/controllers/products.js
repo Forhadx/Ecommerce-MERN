@@ -8,6 +8,11 @@ const ProductModel = require("../models/products");
 exports.getAllProducts = async (req, res, next) => {
     try {
         let products = await ProductModel.find();
+        if (!products) {
+            const error = new Error("Invalid products!");
+            error.statusCode = 401;
+            throw error;
+        }
         res.json({ message: "all products", products: products });
     } catch (err) {
         if (!err.statusCode) {
@@ -18,10 +23,8 @@ exports.getAllProducts = async (req, res, next) => {
 };
 
 exports.addProduct = async (req, res, next) => {
-    //console.log(req.body);
     try {
         const errors = validationResult(req);
-        //console.log("val err? ", errors.array());
         if (!errors.isEmpty()) {
             const error = new Error();
             error.message = errors.array()[0].msg;
@@ -80,7 +83,6 @@ exports.updateProduct = async (req, res, next) => {
     } = req.body;
     try {
         const errors = validationResult(req);
-        //console.log("val err? ", errors.array());
         if (!errors.isEmpty()) {
             const error = new Error();
             error.message = errors.array()[0].msg;
@@ -200,7 +202,6 @@ exports.fetchProductBySubCategory = async (req, res, next) => {
 
 exports.fetchProductByMainCategory = async (req, res, next) => {
     let mainCatName = req.body.mainCatName;
-
     try {
         const products = await ProductModel.find({
             mainCategory: mainCatName,

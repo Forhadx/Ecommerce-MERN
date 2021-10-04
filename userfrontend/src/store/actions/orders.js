@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import axios from "axios";
+import axios from "../../axios";
 
 export const addOrderInit = () => {
     return {
@@ -28,7 +28,7 @@ export const addOrder = (orderData, token) => {
     return async (dispatch) => {
         dispatch(addOrderStart());
         try {
-            await axios.post("http://localhost:5000/order/b", orderData, {
+            await axios.post("/order/b", orderData, {
                 headers: {
                     Authorization: "Bearer " + token,
                 },
@@ -62,14 +62,11 @@ export const fetchOrders = (token) => {
     return async (dispatch) => {
         dispatch(fetchOrdersStart());
         try {
-            let result = await axios.get(
-                "http://localhost:5000/order/b/allorders",
-                {
-                    headers: {
-                        Authorization: "Bearer " + token,
-                    },
-                }
-            );
+            let result = await axios.get("/order/b/allorders", {
+                headers: {
+                    Authorization: "Bearer " + token,
+                },
+            });
             dispatch(fetchOrdersSuccess(result.data.orders));
         } catch (err) {
             dispatch(fetchOrdersFail(err));

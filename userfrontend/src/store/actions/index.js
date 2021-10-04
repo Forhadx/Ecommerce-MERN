@@ -4,9 +4,8 @@ export {
     fetchAllProducts,
     fetchMainProducts,
     fetchSubProducts,
+    searchProductByName,
 } from "./products";
-
-export { fetchDailyProd } from "./dailyProducts";
 
 export {
     addToCart,

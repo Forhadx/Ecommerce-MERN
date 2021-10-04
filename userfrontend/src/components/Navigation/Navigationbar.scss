@@ -13,10 +13,17 @@
     display: flex;
     align-items: center;
     padding-left: 1rem;
+
     &-btn {
+        display: none;
         font-size: 2.4rem;
         cursor: pointer;
+
+        @include respond(phone) {
+            display: block;
+        }
     }
+
     &-name {
         padding-left: 1rem;
         font-size: 2.4rem;
@@ -29,6 +36,61 @@
     height: 3.5rem;
     width: 60%;
     border-radius: 0.7rem;
+    overflow: hidden;
+    border: 1px solid $color-gray-1;
+
+    @include respond(phone) {
+        display: none;
+    }
+
+    @include respond(port) {
+        width: 40%;
+    }
+
+    & input {
+        border: none;
+        outline: none;
+        font-size: 1.6rem;
+        width: 90%;
+        height: 100%;
+        padding: 0 1rem;
+        color: $color-black-1;
+    }
+    & button {
+        border: none;
+        outline: none;
+        width: 10%;
+        height: 100%;
+        font-size: 2rem;
+        color: $color-gray-1;
+        border-left: 1px solid $color-gray-2;
+        background-color: $color-white;
+        cursor: pointer;
+    }
+}
+
+.mini__search {
+    display: none;
+    outline: none;
+    border: none;
+    font-size: 2.4rem;
+    color: $color-white;
+    background-color: $color-nav-header;
+
+    @include respond(phone) {
+        display: block;
+    }
+}
+
+.mini__Search-form {
+    z-index: 200;
+    position: fixed;
+    top: 10rem;
+    left: 10%;
+    background-color: $color-white;
+    height: 3.5rem;
+    width: 80%;
+    border-radius: 0.2rem;
     overflow: hidden;
     border: 1px solid $color-gray-1;
 

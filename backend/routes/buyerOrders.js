@@ -9,10 +9,12 @@ router.post("/order/b", isAuth, ordersController.addOrder);
 
 router.get("/order/b/allorders", isAuth, ordersController.fetchAllorders);
 
+/*
 router.get("/order/b/onway", ordersController.fetchOnWayOrders);
 
 router.get("/order/b/delivered", ordersController.fetchDeliveredOrders);
 
 router.get("/order/b/rejected", ordersController.fetchRejectedOrders);
+*/
 
 module.exports = router;

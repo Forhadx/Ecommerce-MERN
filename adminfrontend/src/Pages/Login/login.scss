@@ -8,11 +8,20 @@
     flex-direction: column;
     padding: 2rem;
     border: 1px solid $color-gray-2;
+    background-color: $color-white;
+    border-radius: 0.5rem;
 
     & h1 {
         font-size: 2rem;
         text-align: center;
         color: $color-primary;
+    }
+
+    & h3 {
+        text-align: center;
+        font-weight: normal;
+        color: $color-red-1;
+        font-size: 1.6rem;
     }
 
     &--form {

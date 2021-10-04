@@ -6,14 +6,17 @@ import * as actions from "../../store/actions/index";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-
+import { useHistory } from "react-router";
 import { categoryList } from "../../Data/category";
 import "./ProductsFrom.scss";
 
 const ProductFrom = (props) => {
-    const [copySubCate, setCopySubCate] = useState([]);
+    const history = useHistory();
 
-    const { singleProd } = props;
+    const { singleProd, onFetchAllProducts } = props;
+
+    const [goBack, setGoBack] = useState(false);
+    const [copySubCate, setCopySubCate] = useState([]);
 
     const validationSchema = Yup.object().shape({
         mainCategory: Yup.string().required("must select one"),
@@ -81,7 +84,12 @@ const ProductFrom = (props) => {
                 }
             });
         }
-    }, [singleProd, setValue]);
+        if (goBack) {
+            setGoBack(false);
+            onFetchAllProducts();
+            history.push("/products");
+        }
+    }, [singleProd, setValue, goBack, history, onFetchAllProducts]);
 
     if (singleProd) {
         setValue("subCategory", singleProd.subCategory);
@@ -103,7 +111,8 @@ const ProductFrom = (props) => {
             } else {
                 formData.append("image", singleProd.image);
             }
-            props.onUpdateProduct(singleProd._id, formData);
+            // props.onUpdateProduct(singleProd._id, formData);  // stop update porduct
+            setGoBack(true);
         } else {
             formData.append("image", data.image[0]);
             props.onAddProduct(formData);
@@ -224,6 +233,7 @@ const mapDispatchToProps = (dispatch) => {
         onAddProduct: (prodData) => dispatch(actions.addProduct(prodData)),
         onUpdateProduct: (pId, prod) =>
             dispatch(actions.updateProduct(pId, prod)),
+        onFetchAllProducts: () => dispatch(actions.fetchAllProducts()),
     };
 };
 

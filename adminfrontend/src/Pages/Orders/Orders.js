@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import OrderCard from "../../components/OrderCard/OrderCard";
 import * as actions from "../../store/actions/index";
 import Spinner from "../../components/UI/Spinner/Spinner";
+import OrderFilter from "../../components/OrderFilter/OrderFilter";
 
 const Orders = (props) => {
     const { onFetchOrders, token } = props;
@@ -15,7 +16,7 @@ const Orders = (props) => {
         <div className="page">
             <div className="page--header">Manage Orders</div>
             <div className="page--details">
-                <div>af adf</div>
+                <OrderFilter />
                 {props.loading ? (
                     <Spinner />
                 ) : (

@@ -6,16 +6,23 @@ exports.addOrder = async (req, res, next) => {
     //console.log("or: ", req.body);
     try {
         if (req.userId !== req.body.buyerId) {
-            console.log("buyer id not match!");
+            const error = new Error("buyer id not match!");
+            error.statusCode = 401;
+            throw error;
         }
         let order = new OrdersModel(req.body);
         if (!order) {
-            console.log("order not added!");
+            const error = new Error("order not added!");
+            error.statusCode = 401;
+            throw error;
         }
         await order.save();
         res.json({ message: "order added", order: order });
     } catch (err) {
-        console.log(err);
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
     }
 };
 
@@ -27,7 +34,9 @@ exports.fetchAllorders = async (req, res, next) => {
                 updatedAt: -1,
             });
         if (!orders) {
-            console.log("orders not found!");
+            const error = new Error("order not found!");
+            error.statusCode = 401;
+            throw error;
         }
         let updateOrders = orders.map((or) => {
             let updateItems = or.items.map((i) => {
@@ -37,10 +46,13 @@ exports.fetchAllorders = async (req, res, next) => {
         });
         res.json({ message: "fetch all buyer orders", orders: updateOrders });
     } catch (err) {
-        console.log(err);
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
     }
 };
-
+/*
 exports.fetchOnWayOrders = async (req, res, next) => {
     req.buyerId = "60e76adcb4d3332c28e56e71";
     try {
@@ -49,11 +61,16 @@ exports.fetchOnWayOrders = async (req, res, next) => {
             onWay: true,
         });
         if (!orders) {
-            console.log("orders not found!");
+            const error = new Error("order not found!");
+            error.statusCode = 401;
+            throw error;
         }
         res.json({ message: "fetch onway buyers orders", orders: orders });
     } catch (err) {
-        console.log(err);
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
     }
 };
 
@@ -65,11 +82,16 @@ exports.fetchDeliveredOrders = async (req, res, next) => {
             isDelivered: true,
         }).sort({ deliveredAt: -1 });
         if (!orders) {
-            console.log("orders not found!");
+            const error = new Error("order not found!");
+            error.statusCode = 401;
+            throw error;
         }
         res.json({ message: "fetch delivered buyers orders", orders: orders });
     } catch (err) {
-        console.log(err);
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
     }
 };
 
@@ -81,10 +103,16 @@ exports.fetchRejectedOrders = async (req, res, next) => {
             orderRejected: true,
         }).sort({ updatedAt: -1 });
         if (!orders) {
-            console.log("orders not found!");
+            const error = new Error("order not found!");
+            error.statusCode = 401;
+            throw error;
         }
         res.json({ message: "fetch rejected buyers orders", orders: orders });
     } catch (err) {
-        console.log(err);
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
     }
 };
+*/

@@ -5,6 +5,16 @@
     margin-top: 5rem;
     width: 60rem;
 
+    @include respond(phone) {
+        margin-top: 3rem;
+        width: 90%;
+    }
+
+    @include respond(port) {
+        margin-top: 3rem;
+        width: 90%;
+    }
+
     &__header {
         display: flex;
         justify-content: space-between;

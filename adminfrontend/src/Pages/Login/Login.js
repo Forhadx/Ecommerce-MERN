@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import * as actions from "../../store/actions/index";
 import "./login.scss";
 import { connect } from "react-redux";
@@ -9,13 +9,10 @@ import { useHistory } from "react-router";
 
 const Login = (props) => {
     const history = useHistory();
+    const [isLogin, setIsLogin] = useState(false);
+    const [isWrong, setIsWrong] = useState(false);
 
     const { token } = props;
-    useEffect(() => {
-        if (token) {
-            history.push("/");
-        }
-    }, [token, history]);
 
     const validationSchema = Yup.object().shape({
         email: Yup.string()
@@ -35,9 +32,22 @@ const Login = (props) => {
         resolver: yupResolver(validationSchema),
     });
 
+    useEffect(() => {
+        if (isLogin) {
+            if (token) {
+                setIsLogin(false);
+                setIsWrong(false);
+                reset();
+                history.push("/");
+            } else {
+                setIsWrong(true);
+            }
+        }
+    }, [token, history, isLogin, isWrong, reset]);
+
     const loginHandler = (data) => {
         props.onUserLogin(data);
-        reset();
+        setIsLogin(true);
     };
 
     return (
@@ -63,6 +73,7 @@ const Login = (props) => {
                 <p>{errors.password?.message}</p>
                 <button type="submit">login</button>
             </form>
+            {isWrong && <h3>wrong password</h3>}
         </div>
     );
 };

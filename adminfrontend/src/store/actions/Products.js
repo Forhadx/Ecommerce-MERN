@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import axios from "axios";
+import axios from "../../axios";
 
 export const addProductStart = () => {
     return {
@@ -24,10 +24,7 @@ export const addProduct = (prodData) => {
     return async (dispatch) => {
         dispatch(addProductStart());
         try {
-            const result = await axios.post(
-                "http://localhost:5000/product/",
-                prodData
-            );
+            const result = await axios.post("/product/", prodData);
             //console.log("res: ", result.data.product);
             dispatch(addProductSuccess(result.data.product));
         } catch (err) {
@@ -73,7 +70,7 @@ export const deleteProduct = (pId) => {
     return async (dispatch) => {
         dispatch(deleteProductStart());
         try {
-            await axios.delete(`http://localhost:5000/product/${pId}`);
+            await axios.delete(`/product/${pId}`);
             dispatch(deleteProductSuccess(pId));
         } catch (err) {
             dispatch(deleteProductFail(err));
@@ -87,7 +84,7 @@ export const updateProductStart = () => {
     };
 };
 
-export const updateProductSuccess = (prod) => {
+export const updateProductSuccess = () => {
     return {
         type: actionTypes.UPDATE_PRODUCT_SUCCESS,
     };
@@ -104,10 +101,10 @@ export const updateProduct = (pId, prod) => {
     return async (dispatch) => {
         dispatch(updateProductStart());
         try {
-            await axios.patch(`http://localhost:5000/product/${pId}`, prod);
+            console.log("up a");
+            await axios.patch(`/product/${pId}`, prod);
             dispatch(updateProductSuccess());
         } catch (err) {
-            console.log("msg? ", err.response);
             dispatch(updateProductFail(err));
         }
     };
@@ -134,7 +131,7 @@ export const fetchAllProducts = () => {
     return async (dispatch) => {
         dispatch(fetchAllProductsStart());
         try {
-            const result = await axios.get("http://localhost:5000/products");
+            const result = await axios.get("/products");
             dispatch(fetchAllProductsSuccess(result.data.products));
         } catch (err) {
             dispatch(fetchAllProductsFail(err));
@@ -162,10 +159,9 @@ export const fetchMainProducts = (mainCatName) => {
     return async (dispatch) => {
         dispatch(fetchMainProductsSuccess());
         try {
-            const result = await axios.post(
-                "http://localhost:5000/products/mainCategory",
-                { mainCatName: mainCatName }
-            );
+            const result = await axios.post("/products/mainCategory", {
+                mainCatName: mainCatName,
+            });
             dispatch(fetchMainProductsSuccess(result.data.products));
         } catch (err) {
             dispatch(fetchMainProductsFail());
@@ -194,10 +190,9 @@ export const fetchSubProducts = (subCatName) => {
     return async (dispatch) => {
         dispatch(fetchSubProductsStart());
         try {
-            const result = await axios.post(
-                "http://localhost:5000/products/subCategory",
-                { subCatName: subCatName }
-            );
+            const result = await axios.post("/products/subCategory", {
+                subCatName: subCatName,
+            });
             dispatch(fetchSubProductsSuccess(result.data.products));
         } catch (err) {
             dispatch(fetchSubProductsFail(err));
@@ -226,9 +221,7 @@ export const searchProductByName = (name) => {
     return async (dispatch) => {
         dispatch(searchProductByNameStart());
         try {
-            const result = await axios.get(
-                `http://localhost:5000/product/name/${name}`
-            );
+            const result = await axios.get(`/product/name/${name}`);
             dispatch(searchProductByNameSuccess(result.data.products));
         } catch (err) {
             dispatch(searchProductByNameFail(err));

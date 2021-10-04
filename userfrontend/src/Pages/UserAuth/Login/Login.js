@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./login.scss";
 import * as actions from "../../../store/actions/index";
@@ -10,6 +10,10 @@ import { useHistory } from "react-router";
 
 const Login = (props) => {
     const history = useHistory();
+    const [isLogin, setIsLogin] = useState(false);
+    const [isWrong, setIsWrong] = useState(false);
+
+    const { token, authRedirectPath } = props;
 
     const validationSchema = Yup.object().shape({
         email: Yup.string()
@@ -29,14 +33,26 @@ const Login = (props) => {
         resolver: yupResolver(validationSchema),
     });
 
+    useEffect(() => {
+        if (isLogin) {
+            if (token) {
+                setIsLogin(false);
+                setIsWrong(false);
+                reset();
+                if (authRedirectPath === "/shipping") {
+                    history.push("/shipping");
+                } else {
+                    history.push("/");
+                }
+            } else {
+                setIsWrong(true);
+            }
+        }
+    }, [token, isLogin, history, isWrong, reset, authRedirectPath]);
+
     const loginHandler = (data) => {
         props.onUserLogin(data);
-        reset();
-        if (props.authRedirectPath === "/shipping") {
-            history.push("/shipping");
-        } else {
-            history.push("/");
-        }
+        setIsLogin(true);
     };
 
     return (
@@ -62,6 +78,7 @@ const Login = (props) => {
                 <p>{errors.password?.message}</p>
                 <button type="submit">login</button>
             </form>
+            {isWrong && <h3>wrong password</h3>}
             <h2>
                 <span>New to Gro-mart</span>
             </h2>

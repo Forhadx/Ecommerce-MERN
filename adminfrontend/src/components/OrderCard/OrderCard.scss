@@ -23,6 +23,10 @@
                 display: flex;
                 flex-direction: row;
 
+                @include respond(phone) {
+                    flex-direction: column;
+                }
+
                 & .acc-btn {
                     border: none;
                     outline: none;
@@ -31,6 +35,10 @@
                     font-size: 1.2rem;
                     margin-right: 0.5rem;
                     padding: 0.5rem 0.8rem;
+
+                    @include respond(phone) {
+                        margin-bottom: 0.5rem;
+                    }
                 }
                 & .dec-btn {
                     border: none;
@@ -71,14 +79,18 @@
 
             & h2 {
                 font-size: 1.6rem;
-                color: $color-white;
                 color: $color-primary;
                 font-weight: normal;
             }
 
+            & h3 {
+                font-size: 1.6rem;
+                color: $color-primary;
+                margin: 0.5rem 0;
+            }
+
             & p {
                 font-size: 1.4rem;
-                color: $color-gray-2;
                 color: $color-primary;
             }
 

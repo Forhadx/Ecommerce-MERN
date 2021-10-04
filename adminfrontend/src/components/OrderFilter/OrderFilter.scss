@@ -1,0 +1,57 @@
+@import "../../var.scss";
+
+.orders__filter {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+
+    &--category {
+        & select {
+            width: 15rem;
+            outline: none;
+            border: 1px solid $color-gray-1;
+            padding: 0.5rem 0.8rem;
+            background-color: $color-green-3;
+            color: $color-white;
+            border-radius: 0.5rem;
+            font-size: 1.4rem;
+            text-transform: lowercase;
+        }
+    }
+
+    &--search {
+        display: grid;
+        grid-template-columns: 20rem 3rem 1fr;
+        border: 1px solid $color-gray-1;
+        border-radius: 0.6rem;
+        overflow: hidden;
+        margin-left: 5rem;
+
+        & input {
+            padding: 0.5rem 0.8rem;
+            font-size: 1.4rem;
+            border: none;
+            outline: none;
+        }
+
+        & button {
+            font-size: 1.6rem;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            background-color: $color-white;
+        }
+    }
+
+    & .refresh-btn {
+        margin-left: 1rem;
+        padding: 0.2rem 0.5rem;
+        outline: none;
+        border: none;
+        border: 1px solid $color-gray-1;
+        background-color: $color-white;
+        cursor: pointer;
+        font-size: 1.6rem;
+    }
+}

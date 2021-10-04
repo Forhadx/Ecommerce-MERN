@@ -18,33 +18,23 @@ const ProductDetails = (props) => {
             </div>
             <div className="single__prod--info">
                 <div className="single__prod--info-line">
-                    <span className="bold">Name:</span>
                     {props.singleProd.name}
                 </div>
                 <div className="single__prod--info-line">
-                    <span className="bold">Brand:</span>
-                    {props.singleProd.brand}
+                    <p>{props.singleProd.brand}</p>
                 </div>
                 <div className="single__prod--info-line">
-                    <span className="bold">Amount:</span>
-                    {props.singleProd.amount}
+                    <p> {props.singleProd.amount} </p>
                 </div>
                 <div className="single__prod--info-line">
-                    <span className="bold">Price:</span>
-                    {`${props.singleProd.price} ৳`}
-                </div>
-                <div className="single__prod--info-line">
-                    <span className="bold">Main Category:</span>
-                    {props.singleProd.mainCategory}
-                </div>
-                <div className="single__prod--info-line">
-                    <span className="bold">Sub Category:</span>
-                    {props.singleProd.subCategory}
+                    <span className="bold">
+                        {`${props.singleProd.price} ৳`}
+                    </span>
                 </div>
             </div>
             <div className="single__prod--details">
                 <div className="single__prod--details-description">
-                    <span className="bold">Description:</span>
+                    <span className="bold">Details:</span>
                     {props.singleProd.description}
                 </div>
             </div>

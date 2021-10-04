@@ -12,12 +12,14 @@ import productsReducer from "./store/reducers/Products";
 import authReducer from "./store/reducers/Auth";
 import buyerReducer from "./store/reducers/Buyers";
 import orderReducer from "./store/reducers/order";
+import dashReducer from "./store/reducers/dashboard";
 
 const rootReducer = combineReducers({
     prods: productsReducer,
     auth: authReducer,
     buyer: buyerReducer,
     order: orderReducer,
+    dash: dashReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

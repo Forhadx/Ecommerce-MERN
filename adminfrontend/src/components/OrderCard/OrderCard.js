@@ -14,15 +14,15 @@ const OrderCard = (props) => {
     };
 
     const rejectOrderHandler = (id) => {
-        props.onRejectOrder(id);
+        props.onRejectOrder(id, props.token);
     };
 
     const acceptOrderHandler = (id) => {
-        props.onOnwayOrder(id);
+        props.onOnwayOrder(id, props.token);
     };
 
     const deliverOrderHandler = (id) => {
-        props.onDeliveredOrder(id);
+        props.onDeliveredOrder(id, props.token);
     };
 
     return (
@@ -89,16 +89,14 @@ const OrderCard = (props) => {
                 </div>
                 <div className="single__order--header-item">
                     <h2>ID: {props.order._id}</h2>
+                    <h3>{`${props.order.totalPrice} ৳`}</h3>
                     <p>
                         {moment(props.order.createdAt).format(
                             "h:m, DD-MMM-YYYY"
                         )}
                     </p>
                 </div>
-                <div className="single__order--header-item">
-                    <h2>Total Price</h2>
-                    <p>{`${props.order.totalPrice} ৳`}</p>
-                </div>
+
                 <div className="single__order--header-item">
                     <button onClick={detailsShowHandler}>
                         {isOpenDetails ? <FiMinusSquare /> : <FiPlusSquare />}
@@ -139,6 +137,9 @@ const OrderCard = (props) => {
                 <div className="single__order--details-address">
                     <h3>Receiver Info</h3>
                     <h4>
+                        <span>{props.order.receiver}</span>
+                    </h4>
+                    <h4>
                         <span>Phone: </span>
                         {props.order.phone}
                     </h4>
@@ -163,9 +164,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onRejectOrder: (id) => dispatch(actions.rejectOrder(id)),
-        onOnwayOrder: (id) => dispatch(actions.onwayOrder(id)),
-        onDeliveredOrder: (id) => dispatch(actions.deliveredOrder(id)),
+        onRejectOrder: (id, token) => dispatch(actions.rejectOrder(id, token)),
+        onOnwayOrder: (id, token) => dispatch(actions.onwayOrder(id, token)),
+        onDeliveredOrder: (id, token) =>
+            dispatch(actions.deliveredOrder(id, token)),
     };
 };
 

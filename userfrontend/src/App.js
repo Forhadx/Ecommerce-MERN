@@ -7,7 +7,6 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Cartbar from "./components/Cartbar/Cartbar";
 import MainCategories from "./Pages/MainCategories/MainCategories";
 import SubCategies from "./Pages/SubCategories/SubCategories";
-import DailyProducts from "./Pages/DailyProducts/DailyProducts";
 import Signup from "./Pages/UserAuth/Signup/Signup";
 import Login from "./Pages/UserAuth/Login/Login";
 import Shipping from "./Pages/Shipping/Shipping";
@@ -15,13 +14,14 @@ import Payment from "./Pages/Shipping/Payment/payment";
 import Home from "./Pages/Home/Home";
 import orderSuccess from "./Pages/OrderSuccess/OrderSuccess";
 import Orders from "./Pages/Orders/Orders";
-
+import SearchProducts from "./Pages/SearchProducts/SearchProducts";
 import className from "classnames";
 import "./App.scss";
 import Backdrop from "./components/UI/Backdrop/Backdrop";
 
 const App = (props) => {
     const [isCartOpen, setIsCartOpen] = useState(false);
+    const [isSidebarClose, setIsSidebarClose] = useState(false);
 
     const cartClickHandler = () => {
         setIsCartOpen(!isCartOpen);
@@ -33,24 +33,31 @@ const App = (props) => {
         autoLogin();
     }, [autoLogin]);
 
+    const sidebarToggleHandler = () => {
+        setIsSidebarClose(!isSidebarClose);
+    };
+
     return (
         <div className="App">
             <Backdrop show={isCartOpen} clicked={cartClickHandler} />
             <header className="header">
-                <Navigationbar cartClickHandler={cartClickHandler} />
+                <Navigationbar
+                    cartClickHandler={cartClickHandler}
+                    sidebarToggleHandler={sidebarToggleHandler}
+                />
             </header>
-            <aside className="sidebar">
+            <aside
+                className={className("sidebar", {
+                    close: isSidebarClose,
+                })}
+            >
                 <Sidebar />
             </aside>
             <main className="main">
                 <Switch>
                     <Route path="/m/:name" component={MainCategories} />
                     <Route path="/s/:name" component={SubCategies} />
-                    <Route
-                        path="/Daily+Products"
-                        exact
-                        component={DailyProducts}
-                    />
+                    <Route path="/search/:name" component={SearchProducts} />
                     {props.token && (
                         <Route path="/orders" exact component={Orders} />
                     )}

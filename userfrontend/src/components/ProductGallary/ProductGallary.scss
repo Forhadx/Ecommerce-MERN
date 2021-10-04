@@ -6,8 +6,24 @@
     justify-content: flex-start;
     flex-wrap: wrap;
 
+    @include respond(phone) {
+        justify-content: space-around;
+    }
+
+    @include respond(port) {
+        justify-content: space-around;
+    }
+
     &--single {
         margin: 2rem;
+
+        @include respond(phone) {
+            margin: 0.2rem;
+        }
+
+        @include respond(port) {
+            margin: 0.2rem;
+        }
     }
 
     &--noProduct {

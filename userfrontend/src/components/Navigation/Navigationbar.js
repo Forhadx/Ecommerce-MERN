@@ -8,9 +8,13 @@ import "./Navigationbar.scss";
 import { BiUserCircle } from "react-icons/bi";
 import { VscTriangleDown, VscTriangleUp } from "react-icons/vsc";
 import className from "classnames";
+import Backdrop from "../UI/Backdrop/Backdrop";
 
 const Navigationbar = (props) => {
+    const [prodName, setProdName] = useState("");
     const [isUserShow, setIsUserShow] = useState(false);
+    const [isMiniSearchShow, setIsMiniSearchShow] = useState(false);
+
     const history = useHistory();
 
     const logoutHandler = () => {
@@ -32,20 +36,65 @@ const Navigationbar = (props) => {
         history.push("/orders");
     };
 
+    const searchProductHandler = (e) => {
+        e.preventDefault();
+        if (prodName) {
+            console.log("p: ", prodName);
+            props.onSearchProductByName(prodName);
+            setIsMiniSearchShow(false);
+            history.push(`/search/${prodName}`);
+        }
+    };
+
+    const openMobileSearchHandler = () => {
+        setIsMiniSearchShow(!isMiniSearchShow);
+    };
+    const searchClosekHandler = () => {
+        setIsMiniSearchShow(!isMiniSearchShow);
+    };
+
     return (
         <div className="navigationbar">
+            <Backdrop show={isMiniSearchShow} clicked={searchClosekHandler} />
             <div className="nav__logo">
-                <div className="nav__logo-btn">&#9776;</div>
+                <div
+                    className="nav__logo-btn"
+                    onClick={props.sidebarToggleHandler}
+                >
+                    &#9776;
+                </div>
                 <Link to="/" className="nav__logo-name">
                     Gro-Mart
                 </Link>
             </div>
-            <form className="nav__search">
-                <input type="text" placeholder="search" />
+            <form className="nav__search" onSubmit={searchProductHandler}>
+                <input
+                    type="text"
+                    placeholder="search"
+                    onChange={(e) => setProdName(e.target.value)}
+                />
                 <button type="submit">
                     <BiSearchAlt />
                 </button>
             </form>
+            <button className="mini__search" onClick={openMobileSearchHandler}>
+                <BiSearchAlt />
+            </button>
+            {isMiniSearchShow && (
+                <form
+                    className="mini__Search-form"
+                    onSubmit={searchProductHandler}
+                >
+                    <input
+                        type="text"
+                        placeholder="search"
+                        onChange={(e) => setProdName(e.target.value)}
+                    />
+                    <button type="submit">
+                        <BiSearchAlt />
+                    </button>
+                </form>
+            )}
             <div className="nav__options">
                 <div className="nav__options--item">Help</div>
                 <div className="nav__options--item">
@@ -114,6 +163,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onLogout: () => dispatch(actions.logout()),
+        onSearchProductByName: (name) =>
+            dispatch(actions.searchProductByName(name)),
     };
 };
 

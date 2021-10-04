@@ -85,6 +85,7 @@ const ProductFilter = (props) => {
                     ))}
                 </select>
             </div>
+
             <form
                 className="products__filter--search"
                 onSubmit={searchProductHandler}

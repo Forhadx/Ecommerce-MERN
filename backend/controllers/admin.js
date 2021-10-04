@@ -10,11 +10,16 @@ exports.signupAdmin = async (req, res, next) => {
         const user = new adminModel({ email: email, password: hashPw });
         await user.save();
         if (!user) {
-            console.log("user not added");
+            const error = new Error("Invalid user!");
+            error.statusCode = 401;
+            throw error;
         }
         res.json({ message: "admin created", userId: user._id });
     } catch (err) {
-        console.log(err);
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
     }
 };
 
@@ -23,7 +28,9 @@ exports.loginAdmin = async (req, res, next) => {
     try {
         const user = await adminModel.findOne({ email: email });
         if (!user) {
-            console.log("email not found!");
+            const error = new Error("Invalid user!");
+            error.statusCode = 401;
+            throw error;
         }
         const isEqual = await bcrypt.compare(password, user.password);
         if (!isEqual) {
@@ -32,15 +39,17 @@ exports.loginAdmin = async (req, res, next) => {
         const token = jwt.sign(
             { email: user.email, userId: user._id.toString() },
             "blablabla",
-            { expiresIn: "1h" }
+            { expiresIn: "365d" }
         );
-        //console.log("token: ", token);
         res.json({
             message: "admin login successfully",
             token: token,
             userId: user._id.toString(),
         });
     } catch (err) {
-        console.log(err);
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
     }
 };

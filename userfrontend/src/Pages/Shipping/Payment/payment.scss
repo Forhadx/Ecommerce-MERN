@@ -9,6 +9,16 @@
     flex-direction: column;
     border: 1px solid $color-gray-2;
 
+    @include respond(phone) {
+        margin-top: 5rem;
+        width: 80%;
+    }
+
+    @include respond(port) {
+        margin-top: 5rem;
+        width: 80%;
+    }
+
     & h1 {
         font-size: 2rem;
         text-align: center;

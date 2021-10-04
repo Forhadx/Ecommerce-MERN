@@ -46,19 +46,29 @@
 
 .sidebar {
     z-index: $zIndex-2;
+    background-color: $color-white;
     position: fixed;
     top: 0;
     left: 0;
-    margin-top: $header-height + 1.5rem;
+    right: 0;
+    margin-top: $header-height;
     width: $sidebar-width;
     height: 100vh;
     overflow-y: auto;
     border-right: 0.2rem solid $color-gray-2;
 }
 
+.close {
+    display: none;
+}
+
 .main {
     padding-top: $header-height;
     padding-left: $sidebar-width;
+
+    @include respond(phone) {
+        padding-left: 0;
+    }
 }
 
 .cartbar {

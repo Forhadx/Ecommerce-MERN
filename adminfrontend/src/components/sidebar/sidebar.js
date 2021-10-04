@@ -11,7 +11,6 @@ import {
     faSignOutAlt,
     faUsers,
 } from "@fortawesome/free-solid-svg-icons";
-import { FaDailymotion } from "react-icons/fa";
 
 const Sidebar = (props) => {
     const logoutHandler = () => {
@@ -31,10 +30,6 @@ const Sidebar = (props) => {
             <NavLink to="/products">
                 <FontAwesomeIcon icon={faShoppingBasket} />
                 <span>Products</span>
-            </NavLink>
-            <NavLink to="/daily+needs">
-                <FaDailymotion />
-                <span>Daily Needs</span>
             </NavLink>
             <NavLink to="/users">
                 <FontAwesomeIcon icon={faUsers} />

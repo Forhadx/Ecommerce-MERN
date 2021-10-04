@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import axios from "axios";
+import axios from "../../axios";
 
 export const userLoginStart = () => {
     return {
@@ -25,16 +25,15 @@ export const userLogin = (userData) => {
     return async (dispatch) => {
         dispatch(userLoginStart());
         try {
-            let result = await axios.post(
-                "http://localhost:5000/admin/login",
-                userData
+            let result = await axios.post("/admin/login", userData);
+            const expirationDate = new Date(
+                new Date().getTime() + 365 * 24 * 3600 * 1000
             );
-            const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
             localStorage.setItem("adminTnoken", result.data.token);
             localStorage.setItem("admintExpirationDate", expirationDate);
             localStorage.setItem("adminId", result.data.userId);
             dispatch(userLoginSuccess(result.data.token, result.data.userId));
-            dispatch(checkAuthTimeout(3600));
+            dispatch(checkAuthTimeout(365 * 24 * 3600));
         } catch (err) {
             dispatch(userLoginFail(err));
         }

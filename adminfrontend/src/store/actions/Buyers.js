@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import axios from "axios";
+import axios from "../../axios";
 
 export const fetchAllBuyersStart = () => {
     return {
@@ -22,7 +22,7 @@ export const fetchAllBuyers = () => {
     return async (dispatch) => {
         dispatch(fetchAllBuyersStart());
         try {
-            const result = await axios.get("http://localhost:5000/buyer/a");
+            const result = await axios.get("/buyer/a");
             dispatch(fetchAllBuyersSuccess(result.data.buyers));
         } catch (err) {
             dispatch(fetchAllBuyersFail(err));
@@ -51,12 +51,9 @@ export const searchBuyerEmail = (emailName) => {
     return async (dispatch) => {
         dispatch(searchBuyerEmailStart());
         try {
-            const result = await axios.post(
-                "http://localhost:5000/buyer/a/email",
-                {
-                    email: emailName,
-                }
-            );
+            const result = await axios.post("/buyer/a/email", {
+                email: emailName,
+            });
             dispatch(searchBuyerEmailSuccess(result.data.buyer));
         } catch (err) {
             dispatch(searchBuyerEmailFail(err));

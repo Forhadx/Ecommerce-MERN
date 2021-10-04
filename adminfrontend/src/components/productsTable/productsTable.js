@@ -30,12 +30,10 @@ const ProductTable = (props) => {
     };
 
     const deleteProductHandler = (pId) => {
-        // console.log("p: ", pId);
-        props.onDeleteProduct(pId);
+        //props.onDeleteProduct(pId);   //  stop delete product.
     };
 
     const updateProductHandler = (prod) => {
-        console.log("prod: ", prod);
         props.onSingleProductStore(prod);
         history.push("/products/update+product/" + prod.name);
     };
@@ -72,7 +70,7 @@ const ProductTable = (props) => {
                                     <div>{p.mainCategory} / </div>
                                     <div>{p.subCategory}</div>
                                 </td>
-                                <td>
+                                <td className="btns">
                                     <button
                                         className="btn-eye"
                                         onClick={() => showProductHandler(p)}

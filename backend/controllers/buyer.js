@@ -30,7 +30,10 @@ exports.signupBuyer = async (req, res, next) => {
         }
         res.json({ message: "Buyer created!", userId: user._id });
     } catch (err) {
-        console.log(err);
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
     }
 };
 
@@ -40,7 +43,9 @@ exports.loginBuyer = async (req, res, next) => {
     try {
         const buyer = await BuyerModel.findOne({ email: email });
         if (!buyer) {
-            console.log("email not found!");
+            const error = new Error("Invalid Buyer!");
+            error.statusCode = 401;
+            throw error;
         }
         const isEqual = await bcrypt.compare(password, buyer.password);
         if (!isEqual) {
@@ -52,7 +57,7 @@ exports.loginBuyer = async (req, res, next) => {
                 userId: buyer._id.toString(),
             },
             "blablabla",
-            { expiresIn: "1h" }
+            { expiresIn: "365d" }
         );
         res.json({
             message: "login successfully",
@@ -76,7 +81,9 @@ exports.fetchAllBuyers = async (req, res, next) => {
     try {
         const buyers = await BuyerModel.find().sort({ createdAt: -1 });
         if (!buyers) {
-            console.log("buyers not found!");
+            const error = new Error("Invalid Buyer!");
+            error.statusCode = 401;
+            throw error;
         }
         res.json({ message: "fetch all buyers", buyers: buyers });
     } catch (err) {
@@ -92,7 +99,9 @@ exports.fetchBuyerById = async (req, res, next) => {
     try {
         const buyer = await BuyerModel.findById(bId);
         if (!buyer) {
-            console.log("buyer not found!");
+            const error = new Error("Invalid Buyer!");
+            error.statusCode = 401;
+            throw error;
         }
         res.json({ message: "buyer fetch successfully.", buyer: buyer });
     } catch (err) {
@@ -107,7 +116,9 @@ exports.fetchBuyerByEmail = async (req, res, next) => {
     try {
         const buyer = await BuyerModel.find({ email: req.body.email.trim() });
         if (!buyer) {
-            console.log("buyer not found!");
+            const error = new Error("Invalid Buyer!");
+            error.statusCode = 401;
+            throw error;
         }
         res.json({ message: "buyer fetch successfully.", buyer: buyer });
     } catch (err) {

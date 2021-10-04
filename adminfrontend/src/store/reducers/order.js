@@ -100,6 +100,111 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 error: true,
             };
+        case actionTypes.FETCH_NEW_ORDER_START:
+            return {
+                ...state,
+                orders: [],
+                loading: true,
+                error: false,
+            };
+        case actionTypes.FETCH_NEW_ORDER_SUCCESS:
+            return {
+                ...state,
+                orders: action.orders,
+                loading: false,
+                error: false,
+            };
+        case actionTypes.FETCH_NEW_ORDER_FAIL:
+            return {
+                ...state,
+                orders: [],
+                loading: false,
+                error: true,
+            };
+        case actionTypes.FETCH_ONWAY_ORDER_START:
+            return {
+                ...state,
+                orders: [],
+                loading: true,
+                error: false,
+            };
+        case actionTypes.FETCH_ONWAY_ORDER_SUCCESS:
+            return {
+                ...state,
+                orders: action.orders,
+                loading: false,
+                error: false,
+            };
+        case actionTypes.FETCH_ONWAY_ORDER_FAIL:
+            return {
+                ...state,
+                orders: [],
+                loading: false,
+                error: true,
+            };
+        case actionTypes.FETCH_DELIVERD_ORDER_START:
+            return {
+                ...state,
+                orders: [],
+                loading: true,
+                error: false,
+            };
+        case actionTypes.FETCH_DELIVERD_ORDER_SUCCESS:
+            return {
+                ...state,
+                orders: action.orders,
+                loading: false,
+                error: false,
+            };
+        case actionTypes.FETCH_DELIVERD_ORDER_FAIL:
+            return {
+                ...state,
+                orders: [],
+                loading: false,
+                error: true,
+            };
+        case actionTypes.FETCH_REJECT_ORDER_START:
+            return {
+                ...state,
+                orders: [],
+                loading: true,
+                error: false,
+            };
+        case actionTypes.FETCH_REJECT_ORDER_SUCCESS:
+            return {
+                ...state,
+                orders: action.orders,
+                loading: false,
+                error: false,
+            };
+        case actionTypes.FETCH_REJECT_ORDER_FAIL:
+            return {
+                ...state,
+                orders: [],
+                loading: false,
+                error: true,
+            };
+        case actionTypes.FETCH_ORDERS_BY_ID_START:
+            return {
+                ...state,
+                orders: [],
+                loading: true,
+                error: false,
+            };
+        case actionTypes.FETCH_ORDERS_BY_ID_SUCCESS:
+            return {
+                ...state,
+                orders: action.orders,
+                loading: false,
+                error: false,
+            };
+        case actionTypes.FETCH_ORDERS_BY_ID_FAIL:
+            return {
+                ...state,
+                orders: [],
+                loading: false,
+                error: true,
+            };
         default:
             return state;
     }

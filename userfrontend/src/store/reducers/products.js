@@ -82,6 +82,27 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 error: true,
             };
+        case actionTypes.SEARCH_PRODUCT_BY_NAME_START:
+            return {
+                ...state,
+                products: [],
+                loading: true,
+                error: false,
+            };
+        case actionTypes.SEARCH_PRODUCT_BY_NAME_SUCCESS:
+            return {
+                ...state,
+                products: action.products,
+                loading: false,
+                error: false,
+            };
+        case actionTypes.SEARCH_PRODUCT_BY_NAME_FAIL:
+            return {
+                ...state,
+                products: [],
+                loading: false,
+                error: true,
+            };
         default:
             return state;
     }

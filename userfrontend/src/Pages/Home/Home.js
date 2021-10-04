@@ -11,7 +11,6 @@ const Home = () => {
     for (let el of categoryList) {
         allSubcategory = allSubcategory.concat(el.subCategories);
     }
-    console.log("c: ", allSubcategory);
 
     return (
         <div className="home__page">

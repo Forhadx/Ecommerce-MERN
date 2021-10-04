@@ -1,5 +1,4 @@
 @import "../../var.scss";
-
 .single__prod {
     padding: 2rem 3rem;
     width: 100%;
@@ -32,15 +31,23 @@
 
         &-line {
             margin-bottom: 1rem;
+            font-size: 1.6rem;
+            color: $login-primary;
+            font-weight: bold;
+
+            & p {
+                font-weight: normal;
+            }
         }
     }
     &--details {
         grid-column: 1/3;
+        color: $color-gray-1;
     }
 }
 
 .bold {
-    color: $login-primary;
+    color: $color-gray-1;
     font-weight: bold;
     margin-right: 1rem;
 }
