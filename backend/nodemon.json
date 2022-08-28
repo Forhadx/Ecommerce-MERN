@@ -1,9 +1,0 @@
-{
-    "env": {
-        "DB_USER": "forhad12",
-        "DB_PASSWORD": "forhad123456",
-        "MONGODB_NAME": "ecommerce",
-        "STRIPE_SK": "sk_test_51IiPSLGowqc4SsvcHw00PKXYRRwBHOhuypUWqltdFWuYXG9BLsv4OmVQ8C7zbs4Zp0uGzWXHhP9IWcu7FEg2zM5r000chZwg76",
-        "JWT_TOKEN": "blablabla"
-    }
-}
